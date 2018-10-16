@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <mengh.zy.base.widgets.HeaderToolBar
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
+        app:titleText="注册" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/nickNameEt"
+        style="@style/MatchWrap"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="13dp"
+        android:hint="@string/nickname_hint"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:lines="1"
+        app:met_autoValidate="true"
+        app:met_baseColor="@color/common_black"
+        app:met_clearButton="true"
+        app:met_errorColor="@color/common_red"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="账号"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="false" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/userPhoneEt"
+        style="@style/MatchWrap"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:hint="@string/user_name_hint"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:lines="1"
+        app:met_autoValidate="true"
+        app:met_baseColor="@color/common_black"
+        app:met_clearButton="true"
+        app:met_errorColor="@color/common_red"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="账号"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="false" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/psdEt"
+        style="@style/MatchWrap"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="30dp"
+        android:hint="@string/psd_hint"
+        android:imeOptions="actionGo"
+        android:inputType="textPassword"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:met_autoValidate="true"
+        app:met_baseColor="@color/common_black"
+        app:met_clearButton="true"
+        app:met_errorColor="@color/common_red"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="密码"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="false" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_gravity="center"
+        android:layout_marginTop="75dp"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:enabled="false"
+        android:background="@drawable/btn_common_selector"
+        android:text="@string/finish_register"
+        android:textColor="@color/white" />
+</LinearLayout>

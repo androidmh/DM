@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <mengh.zy.base.widgets.HeaderToolBar
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:rightText="注册"
+        app:titleText="登录" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/userPhoneEt"
+        style="@style/MatchWrap"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="13dp"
+        android:hint="@string/user_name_hint"
+        android:imeOptions="actionNext"
+        android:inputType="phone"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.52"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.332"
+        app:met_autoValidate="true"
+        app:met_baseColor="@color/common_black"
+        app:met_clearButton="true"
+        app:met_errorColor="@color/common_red"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="账号"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="false" />
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/psdEt"
+        style="@style/MatchWrap"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="13dp"
+        android:layout_marginBottom="8dp"
+        android:hint="@string/psd_hint"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:lines="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.64"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/userPhoneEt"
+        app:layout_constraintVertical_bias="0.304"
+        app:met_autoValidate="true"
+        app:met_baseColor="@color/common_black"
+        app:met_clearButton="true"
+        app:met_errorColor="@color/common_red"
+        app:met_floatingLabel="highlight"
+        app:met_floatingLabelText="密码"
+        app:met_maxCharacters="11"
+        app:met_primaryColor="@color/colorPrimary"
+        app:met_singleLineEllipsis="false" />
+
+    <CheckBox
+        android:id="@+id/rememberCb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/remember_psd"
+        app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/psdEt" />
+
+    <Button
+        android:id="@+id/loginBtn"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/btn_common_selector"
+        android:enabled="false"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.854" />
+
+
+</android.support.constraint.ConstraintLayout>

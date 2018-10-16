@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch.Vertical">
+    <mengh.zy.base.widgets.HeaderToolBar
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
+        app:titleText="设置" />
+    <TextView
+        android:id="@+id/mUserProtocolTv"
+        style="@style/SettingItemStyle"
+        android:text="@string/user_agreement"/>
+    <TextView
+        android:id="@+id/mFeedBackTv"
+        style="@style/SettingItemStyle"
+        android:text="@string/feedback"/>
+    <TextView
+        android:id="@+id/mAboutTv"
+        style="@style/SettingItemStyle"
+        android:text="@string/about"/>
+    <Button
+        android:id="@+id/mLogoutBtn"
+        android:text="@string/login_out"
+        style="@style/FullBtnStyle"
+        android:enabled="true"
+        />
+</LinearLayout>

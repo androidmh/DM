@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">DM</string>
+    <string name="jump_time">跳过 5</string>
+    <string name="jump_times">跳过 %1$s</string>
+</resources>

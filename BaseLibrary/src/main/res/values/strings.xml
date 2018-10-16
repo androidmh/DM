@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BaseLibrary</string>
+    <string name="index">首页</string>
+    <string name="img">看图</string>
+    <string name="video">视频</string>
+    <string name="user_center">我的</string>
+    <string name="agree">确定</string>
+    <string name="disagree">取消</string>
+</resources>
