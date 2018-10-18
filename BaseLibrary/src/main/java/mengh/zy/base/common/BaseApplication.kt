@@ -3,10 +3,14 @@ package mengh.zy.base.common
 import android.app.Application
 import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
+import com.bilibili.boxing.BoxingCrop
+import com.bilibili.boxing.BoxingMediaLoader
 import mengh.zy.base.injection.component.AppComponent
 import com.orhanobut.hawk.Hawk
 import mengh.zy.base.injection.component.DaggerAppComponent
 import mengh.zy.base.injection.module.AppModule
+import mengh.zy.base.widgets.BoxingGlideLoader
+import mengh.zy.base.widgets.BoxingUcrop
 
 /**
  * @author by mengh
@@ -31,6 +35,8 @@ class BaseApplication : Application() {
         }
         ARouter.init(this) // 尽可能早，推荐在Application中初始化
         Hawk.init(this).build()
+        BoxingMediaLoader.getInstance().init(BoxingGlideLoader())
+        BoxingCrop.getInstance().init(BoxingUcrop())
     }
 
     private fun isDebug(): Boolean {

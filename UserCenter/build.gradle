@@ -33,7 +33,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Dagger2
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
     //ARouter

@@ -4,6 +4,7 @@ import android.view.View
 import kotlinx.android.synthetic.main.fragment_user.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.data.protocol.UserInfo
+import mengh.zy.base.ext.loadUrl
 import mengh.zy.base.ext.onClick
 import mengh.zy.base.ui.fragment.BaseFragment
 import mengh.zy.base.utils.HawkUtils
@@ -13,7 +14,6 @@ import mengh.zy.user.R
 import mengh.zy.user.ui.activity.SettingActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
 import org.jetbrains.anko.support.v4.startActivity
-import org.jetbrains.anko.support.v4.toast
 
 /**
  * @author by mengh
@@ -43,8 +43,9 @@ class UserFragment : BaseFragment() {
             val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
             userInfo?.let {
                 mUserNameTv.text = it.nickname
+                userInfo.user_icon?.let { it1 -> mUserIconIv.loadUrl(it1) }
             }
-        }else{
+        } else {
             mUserIconIv.setImageResource(R.drawable.icon_default_user)
             mUserNameTv.text = getString(R.string.un_login_text)
         }

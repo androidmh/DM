@@ -8,6 +8,10 @@ package mengh.zy.base.common
  */
 class ResultCode{
     companion object {
+        //联网请求成功
         const val SUCCESS = 0
+
+        //图片选择的响应码
+        var REQUEST_CODE = 1024
     }
 }

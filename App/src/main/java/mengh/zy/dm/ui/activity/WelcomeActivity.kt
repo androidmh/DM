@@ -5,7 +5,6 @@ import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_welcome.*
 import mengh.zy.base.common.BaseApplication.Companion.context
 import mengh.zy.base.ui.activity.BaseActivity
-import mengh.zy.user.ui.activity.LoginActivity
 import org.jetbrains.anko.startActivity
 import java.util.*
 

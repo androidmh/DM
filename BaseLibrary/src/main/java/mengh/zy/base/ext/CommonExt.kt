@@ -67,6 +67,7 @@ fun Button.enable(method: () -> Boolean, vararg et: EditText) {
     }
 }
 
+
 /*
     多状态视图开始加载
  */
@@ -88,7 +89,7 @@ fun EditText.getToString(): String {
     ImageView加载网络图片
  */
 fun ImageView.loadUrl(url: String) {
-    GlideUtils.loadUrlImage(context, url, this)
+    GlideUtils.loadImg(context, url, this)
 }
 
 /*

@@ -2,34 +2,40 @@ package mengh.zy.base.utils
 
 import android.content.Context
 import android.widget.ImageView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import mengh.zy.base.R
+import mengh.zy.base.common.GlideApp
 
-/*
-    Glide工具类
+
+/**
+ * @author by mengh
+ * @email menghedianmo@163.com
+ * @date on 2018/9/3$.
+ * PS: Not easy to write code, please indicate.
+ *
+ *   Describe:Glide工具类
  */
 object GlideUtils {
-    fun loadImage(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context).load(url).centerCrop().into(imageView)
-    }
+    //glide相关设置
+    var options: RequestOptions = RequestOptions()
+            .placeholder(R.drawable.icon_default_user)
+            .centerCrop()
+            .circleCrop()
 
-    fun loadImageFitCenter(context: Context, url: String, imageView: ImageView) {
-        Glide.with(context).load(url).fitCenter().into(imageView)
-    }
 
-    /*
-        当fragment或者activity失去焦点或者destroyed的时候，Glide会自动停止加载相关资源，确保资源不会被浪费
+    /**
+     * @param activity 上下文
+     * @param url 加载地址
+     * @param imageView 加载imageview
+     * 普通加载图片
      */
-    fun loadUrlImage(context: Context, url: String, imageView: ImageView){
-        Glide.with(context).load(url).placeholder(R.drawable.icon_back).error(R.drawable.icon_back).centerCrop().into(
-                object : SimpleTarget<GlideDrawable>() {
-                    override fun onResourceReady(resource: GlideDrawable,
-                                                 glideAnimation: GlideAnimation<in GlideDrawable>) {
-                        imageView.setImageDrawable(resource)
-                    }
-                })
+    fun loadImg(context: Context, url: String, imageView: ImageView) {
+        GlideApp.with(context)
+                .load(url)
+                .apply(options)
+                .transition(DrawableTransitionOptions().crossFade(500))
+                .into(imageView)
     }
+
 }
