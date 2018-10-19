@@ -6,7 +6,7 @@
     <mengh.zy.base.widgets.HeaderToolBar
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
-        app:rightText="注册"
+        app:rightText="保存"
         app:titleText="个人信息" />
 
     <RelativeLayout

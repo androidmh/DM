@@ -1,10 +1,8 @@
 package mengh.zy.user.service
 
 import io.reactivex.Observable
-import mengh.zy.user.data.protocol.GetTokenReq
-import mengh.zy.user.data.protocol.LoginTokenBean
-import mengh.zy.user.data.protocol.RegisterReq
-import mengh.zy.user.data.protocol.UserInfoBean
+import mengh.zy.user.data.protocol.*
+import okhttp3.MultipartBody
 
 /**
  * @author by mengh
@@ -19,4 +17,8 @@ interface UserService {
     fun getToken(req: GetTokenReq): Observable<LoginTokenBean>
 
     fun getUser(): Observable<UserInfoBean>
+
+    fun updateUser(req: UpdateUserReq): Observable<String>
+
+    fun updateAvatar(part: MultipartBody.Part): Observable<String>
 }

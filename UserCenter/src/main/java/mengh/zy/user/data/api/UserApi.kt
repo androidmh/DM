@@ -2,10 +2,8 @@ package mengh.zy.user.data.api
 
 import io.reactivex.Observable
 import mengh.zy.base.data.protocol.BaseResp
-import mengh.zy.user.data.protocol.GetTokenReq
-import mengh.zy.user.data.protocol.LoginTokenBean
-import mengh.zy.user.data.protocol.RegisterReq
-import mengh.zy.user.data.protocol.UserInfoBean
+import mengh.zy.user.data.protocol.*
+import okhttp3.MultipartBody
 import retrofit2.http.*
 
 /**
@@ -22,7 +20,7 @@ interface UserApi {
      * 注册
      */
     @POST("client/register")
-    fun register(@Body req: RegisterReq):Observable<BaseResp<Any>>
+    fun register(@Body req: RegisterReq): Observable<BaseResp<Any>>
 
     /**
      * 获取token
@@ -35,5 +33,18 @@ interface UserApi {
      */
     @GET("user")
     fun getUser(): Observable<BaseResp<UserInfoBean>>
+
+    /**
+     * 更新userInfo
+     */
+    @POST("user")
+    fun updateUser(@Body req: UpdateUserReq): Observable<BaseResp<Any>>
+
+    /**
+     * 更新头像
+     */
+    @Multipart
+    @POST("avatar")
+    fun updateAvatar(@Part avatar: MultipartBody.Part): Observable<BaseResp<Any>>
 
 }

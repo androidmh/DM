@@ -15,6 +15,6 @@ data class UserInfo(
         var id: Int = 1,
         var nickname: String = "",
         var phone: String = "",
-        var user_icon:String?="",
+        var user_icon:String="",
         var sign: String? = ""
 )

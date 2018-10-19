@@ -6,4 +6,4 @@ package mengh.zy.user.data.protocol
  * author HDM
  */
 
-data class UserInfoBean(var auth: Int, var gender: Int, var id: Int, var nickname: String, var phone: String, var sign: String?, var user_icon: String?)
+data class UserInfoBean(var auth: Int, var gender: Int, var id: Int, var nickname: String, var phone: String, var sign: String?, var user_icon: String)

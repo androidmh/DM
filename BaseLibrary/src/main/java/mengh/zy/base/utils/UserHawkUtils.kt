@@ -2,6 +2,7 @@ package mengh.zy.base.utils
 
 import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
 import mengh.zy.base.data.protocol.UserInfo
+import kotlin.math.sign
 
 /**
  * @author by mengh
@@ -13,14 +14,28 @@ import mengh.zy.base.data.protocol.UserInfo
  */
 object UserHawkUtils {
     fun getUserToken(): String {
-        val a = HawkUtils.getObj<UserInfo>(USER_INFO)
-        if (a != null) {
-            return a.access_token
+        val info = HawkUtils.getObj<UserInfo>(USER_INFO)
+        if (info != null) {
+            return info.access_token
         }
         return ""
     }
 
     fun deleteUserInfo(){
         HawkUtils.deleteObj(USER_INFO)
+    }
+
+    fun putUserInfo(gender: Int, nickname: String, sign: String) {
+        val info = HawkUtils.getObj<UserInfo>(USER_INFO)
+        info?.gender = gender
+        info?.nickname = nickname
+        info?.sign = sign
+        HawkUtils.putObj(USER_INFO,info)
+    }
+
+    fun putUserAvatar(user_icon: String) {
+        val info = HawkUtils.getObj<UserInfo>(USER_INFO)
+        info?.user_icon = user_icon
+        HawkUtils.putObj(USER_INFO,info)
     }
 }

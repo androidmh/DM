@@ -6,10 +6,8 @@ import mengh.zy.base.ext.convert
 import mengh.zy.user.data.repository.UserRepository
 import mengh.zy.user.service.UserService
 import mengh.zy.base.ext.convertMsg
-import mengh.zy.user.data.protocol.GetTokenReq
-import mengh.zy.user.data.protocol.LoginTokenBean
-import mengh.zy.user.data.protocol.RegisterReq
-import mengh.zy.user.data.protocol.UserInfoBean
+import mengh.zy.user.data.protocol.*
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 /**
@@ -38,5 +36,15 @@ class UserServiceImpl @Inject constructor() : UserService {
     override fun getUser(): Observable<UserInfoBean> {
         return repository.getUser()
                 .convert()
+    }
+
+    override fun updateUser(req: UpdateUserReq): Observable<String> {
+        return repository.updateUser(req)
+                .convertMsg()
+    }
+
+    override fun updateAvatar(part: MultipartBody.Part): Observable<String> {
+        return repository.updateAvatar(part)
+                .convertMsg()
     }
 }

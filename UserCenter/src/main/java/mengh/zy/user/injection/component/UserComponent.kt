@@ -6,6 +6,7 @@ import mengh.zy.base.injection.PerComponentScope
 import mengh.zy.base.injection.component.ActivityComponent
 import mengh.zy.user.ui.activity.LoginActivity
 import mengh.zy.user.ui.activity.RegisterActivity
+import mengh.zy.user.ui.activity.UserInfoActivity
 
 /**
  * @author by mengh
@@ -20,4 +21,5 @@ import mengh.zy.user.ui.activity.RegisterActivity
 interface UserComponent {
     fun inject(activity: LoginActivity)
     fun inject(activity: RegisterActivity)
+    fun inject(activity: UserInfoActivity)
 }

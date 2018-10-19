@@ -25,7 +25,7 @@
         app:met_clearButton="true"
         app:met_errorColor="@color/common_red"
         app:met_floatingLabel="highlight"
-        app:met_floatingLabelText="账号"
+        app:met_floatingLabelText="昵称"
         app:met_maxCharacters="11"
         app:met_primaryColor="@color/colorPrimary"
         app:met_singleLineEllipsis="false" />

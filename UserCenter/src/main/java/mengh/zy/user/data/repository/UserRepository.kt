@@ -4,10 +4,10 @@ import io.reactivex.Observable
 import mengh.zy.user.data.api.UserApi
 import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
-import mengh.zy.user.data.protocol.GetTokenReq
-import mengh.zy.user.data.protocol.LoginTokenBean
-import mengh.zy.user.data.protocol.RegisterReq
-import mengh.zy.user.data.protocol.UserInfoBean
+import mengh.zy.user.data.protocol.*
+import okhttp3.MultipartBody
+import retrofit2.http.Body
+import retrofit2.http.Part
 import javax.inject.Inject
 
 /**
@@ -34,5 +34,15 @@ class UserRepository @Inject constructor() {
     fun getUser(): Observable<BaseResp<UserInfoBean>> {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .getUser()
+    }
+
+    fun updateUser(req: UpdateUserReq): Observable<BaseResp<Any>> {
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .updateUser(req)
+    }
+
+    fun updateAvatar(part: MultipartBody.Part): Observable<BaseResp<Any>>{
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .updateAvatar(part)
     }
 }
