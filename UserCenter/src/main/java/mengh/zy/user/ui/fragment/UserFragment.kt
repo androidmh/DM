@@ -1,19 +1,24 @@
 package mengh.zy.user.ui.fragment
 
 import android.view.View
+import android.widget.Button
+import com.afollestad.materialdialogs.list.listItems
 import kotlinx.android.synthetic.main.fragment_user.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.data.protocol.UserInfo
 import mengh.zy.base.ext.loadUrl
 import mengh.zy.base.ext.onClick
+import mengh.zy.base.ext.onLongClick
 import mengh.zy.base.ui.fragment.BaseFragment
 import mengh.zy.base.utils.HawkUtils
+import mengh.zy.base.utils.MaterialDialogUtils
 import mengh.zy.provider.common.afterLogin
 import mengh.zy.provider.common.isLogin
 import mengh.zy.user.R
 import mengh.zy.user.ui.activity.SettingActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
 import org.jetbrains.anko.support.v4.startActivity
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * @author by mengh
@@ -31,6 +36,12 @@ class UserFragment : BaseFragment() {
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
+        backgroundLin.onLongClick {
+            MaterialDialogUtils.getBasicDialog(mActivity)
+                    .listItems(items = listOf("更换背景")) { _, _, _ ->
+                    }
+                    .show()
+        }
     }
 
     override fun onStart() {

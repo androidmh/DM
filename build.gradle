@@ -67,4 +67,10 @@ ext {
     circle_imageView_version = '2.2.0'
 
     boxingVersion = '1.0.4'
+
+    ucropVersion = '2.2.0'
+
+    bottomVersion = '2.0.5'
+
+    materialedittextVersion = '2.1.4'
 }

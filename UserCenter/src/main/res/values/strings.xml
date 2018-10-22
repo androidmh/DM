@@ -11,4 +11,12 @@
     <string name="feedback">反馈意见</string>
     <string name="about">关于</string>
     <string name="login_out">退出登录</string>
+    <string name="tv_message">消息</string>
+    <string name="tv_member">会员</string>
+    <string name="tv_collect">收藏</string>
+    <string name="tv_history">观看历史</string>
+    <string name="tv_spread">推广</string>
+    <string name="tv_share">分享</string>
+    <string name="tv_setting">设置</string>
+    <string name="iv_avatar_des">avatar</string>
 </resources>

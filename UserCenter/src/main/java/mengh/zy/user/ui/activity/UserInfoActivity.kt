@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.View
 import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.entity.impl.ImageMedia
+import com.bilibili.boxing.utils.ImageCompressor
 import kotlinx.android.synthetic.main.activity_user_info.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.ext.onClick
@@ -28,10 +29,6 @@ import java.io.File
 import okhttp3.RequestBody
 
 
-
-
-
-
 class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView {
     override val layoutId: Int
         get() = R.layout.activity_user_info
@@ -46,7 +43,7 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
     private fun initData() {
         val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
         userInfo?.let {
-            mUserIconIv.loadUrl(it.user_icon)
+            it.user_icon?.let { it1 -> mUserIconIv.loadUrl(it1) }
             mUserNameEt.setText(it.nickname)
             if (it.gender == 1) {
                 mGenderMaleRb.isChecked = true
@@ -68,7 +65,12 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
         val medias = Boxing.getResult(data)
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
             val imageMedia = medias?.get(0) as ImageMedia
-            val file = File(imageMedia.thumbnailPath)
+            var file = File(imageMedia.thumbnailPath)
+            imageMedia.setSize(file.length().toString())
+            if (imageMedia.compress(ImageCompressor(this))) {
+                imageMedia.removeExif()
+                file = File(imageMedia.compressPath)
+            }
             val imageBody = RequestBody.create(null, file)
             val createFormData = MultipartBody.Part.createFormData("avatar", file.name, imageBody)
             mPresenter.updateAvatar(createFormData)

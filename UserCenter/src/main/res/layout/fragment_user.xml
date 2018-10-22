@@ -1,65 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/MatchMatch.Vertical">
+
     <LinearLayout
+        android:id="@+id/backgroundLin"
         android:layout_width="match_parent"
-        android:layout_height="150.0dip"
-        android:orientation="horizontal"
-        android:background="@drawable/bg_me_header">
+        android:layout_height="180dp"
+        android:background="@drawable/bg_me_header"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/mUserIconIv"
+            android:contentDescription="@string/iv_avatar_des"
             android:layout_width="@dimen/common_icon_width"
             android:layout_height="@dimen/common_icon_height"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/common_margin"
             android:layout_marginLeft="@dimen/common_margin"
-            android:src="@drawable/icon_default_user"
-            android:layout_marginStart="@dimen/common_margin" />
+            android:src="@drawable/icon_default_user" />
+
         <TextView
             android:id="@+id/mUserNameTv"
             style="@style/WrapWrap"
-            android:textSize="@dimen/text_big_size"
-            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/common_margin"
             android:layout_marginLeft="@dimen/common_margin"
             android:text="@string/un_login_text"
-            android:layout_marginStart="@dimen/common_margin" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_big_size" />
     </LinearLayout>
+
     <LinearLayout
+        style="@style/MatchWrap.Horizontal"
         android:background="@drawable/border_bottom"
         android:paddingTop="@dimen/common_padding_middle"
-        android:paddingBottom="@dimen/common_padding_middle"
-        style="@style/MatchWrap.Horizontal">
-        <TextView android:id="@+id/mWaitPayOrderTv"
-            android:text="标签1"
-            android:drawableTop="@drawable/icon_default_user"
-            style="@style/MeOrderLabelStyle"/>
-        <TextView android:id="@+id/mWaitConfirmOrderTv"
-            android:text="标签2"
-            android:drawableTop="@drawable/icon_default_user"
-            style="@style/MeOrderLabelStyle"/>
-        <TextView android:id="@+id/mCompleteOrderTv"
-            android:text="标签3"
-            android:drawableTop="@drawable/icon_default_user"
-            style="@style/MeOrderLabelStyle"/>
-        <TextView android:id="@+id/mAllOrderTv"
-            android:text="标签4"
-            android:drawableTop="@drawable/icon_default_user"
-            style="@style/MeOrderLabelStyle"/>
+        android:paddingBottom="@dimen/common_padding_middle">
+
+        <TextView
+            android:id="@+id/mWaitPayOrderTv"
+            style="@style/MeOrderLabelStyle"
+            android:drawableTop="@mipmap/message"
+            android:text="@string/tv_message" />
+
+        <TextView
+            android:id="@+id/mWaitConfirmOrderTv"
+            style="@style/MeOrderLabelStyle"
+            android:drawableTop="@mipmap/member"
+            android:text="@string/tv_member" />
+
+        <TextView
+            android:id="@+id/mCompleteOrderTv"
+            style="@style/MeOrderLabelStyle"
+            android:drawableTop="@mipmap/collect"
+            android:text="@string/tv_collect" />
+
+        <TextView
+            android:id="@+id/mAllOrderTv"
+            style="@style/MeOrderLabelStyle"
+            android:drawableTop="@mipmap/history"
+            android:text="@string/tv_history" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/mAddressTv"
+        style="@style/MeItemStyle"
         android:layout_marginTop="@dimen/common_margin"
-        android:text="推广"
-        android:drawableLeft="@drawable/icon_default_user"
-        style="@style/MeItemStyle"/>
+        android:drawableStart="@mipmap/spread"
+        android:drawableLeft="@mipmap/spread"
+        android:drawablePadding="20dp"
+        android:text="@string/tv_spread" />
+
     <TextView
         android:id="@+id/mShareTv"
-        android:text="分享"
-        android:drawableLeft="@drawable/icon_default_user"
-        style="@style/MeItemStyle"/>
+        style="@style/MeItemStyle"
+        android:drawableLeft="@mipmap/share"
+        android:drawablePadding="20dp"
+        android:text="@string/tv_share"
+        android:drawableStart="@mipmap/share" />
+
     <TextView
         android:id="@+id/mSettingTv"
-        android:text="设置"
-        android:drawableLeft="@drawable/icon_default_user"
-        style="@style/MeItemStyle"/>
+        style="@style/MeItemStyle"
+        android:drawableLeft="@mipmap/setting"
+        android:drawablePadding="20dp"
+        android:text="@string/tv_setting"
+        android:drawableStart="@mipmap/setting" />
 </LinearLayout>

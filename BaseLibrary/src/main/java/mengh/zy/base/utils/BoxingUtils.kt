@@ -32,9 +32,4 @@ object BoxingUtils {
                 .needCamera(R.drawable.ic_boxing_camera_white)
         Boxing.of(singleCropImgConfig).withIntent(activity, BoxingActivity::class.java).start(activity, code)
     }
-
-    fun selectSingleImg(activity: BaseActivity, code: Int) {
-        val singleImgConfig = BoxingConfig(BoxingConfig.Mode.SINGLE_IMG).withMediaPlaceHolderRes(R.mipmap.image)
-        Boxing.of(singleImgConfig).withIntent(activity, BoxingActivity::class.java).start(activity, code)
-    }
 }

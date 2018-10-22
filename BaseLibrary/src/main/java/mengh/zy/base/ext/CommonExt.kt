@@ -56,6 +56,17 @@ fun View.onClick(method: () -> Unit): View {
     return this
 }
 
+/*
+    扩展长按事件，参数为方法
+ */
+fun View.onLongClick(method: () -> Unit): View {
+    setOnLongClickListener {
+        method()
+        false
+    }
+    return this
+}
+
 fun Button.enable(method: () -> Boolean, vararg et: EditText) {
     val btn = this
     for (editText in et) {

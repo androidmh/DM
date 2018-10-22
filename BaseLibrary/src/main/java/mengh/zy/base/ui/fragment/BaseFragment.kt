@@ -1,5 +1,6 @@
 package mengh.zy.base.ui.fragment
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import mengh.zy.base.common.AppManger
 abstract class BaseFragment : RxFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mActivity = activity!!
         return inflater.inflate(layoutId,null)
     }
 
@@ -32,6 +34,8 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
      * 绑定布局
      */
     protected abstract val layoutId: Int
+
+    protected lateinit var mActivity:Activity
 
     abstract fun initView()
 
