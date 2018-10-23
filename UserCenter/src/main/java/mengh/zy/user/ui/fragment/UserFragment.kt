@@ -24,6 +24,7 @@ import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.UserPresenter
 import mengh.zy.user.presenter.view.UserView
 import mengh.zy.user.ui.activity.SettingActivity
+import mengh.zy.user.ui.activity.TestActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -46,6 +47,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
+        mAddressTv.onClick(this)
 //        backgroundLin.onLongClick {
 //            MaterialDialogUtils.getBasicDialog(mActivity)
 //                    .listItems(items = listOf("更换背景")) { _, _, _ ->
@@ -84,7 +86,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
                     mUserIconIv.loadUrl(it1)
                 }
                 userInfo.user_back?.let { it2 ->
-//                    backgroundLin.loadUrl(it2)
+                    //                    backgroundLin.loadUrl(it2)
                 }
             }
         } else {
@@ -102,6 +104,9 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
             }
             mSettingTv -> {
                 startActivity<SettingActivity>()
+            }
+            mAddressTv -> {
+                startActivity<TestActivity>()
             }
         }
     }
