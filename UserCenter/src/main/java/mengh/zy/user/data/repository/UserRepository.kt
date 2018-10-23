@@ -45,4 +45,9 @@ class UserRepository @Inject constructor() {
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .updateAvatar(part)
     }
+
+    fun updateBack(part: MultipartBody.Part): Observable<BaseResp<Any>>{
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .updateBack(part)
+    }
 }

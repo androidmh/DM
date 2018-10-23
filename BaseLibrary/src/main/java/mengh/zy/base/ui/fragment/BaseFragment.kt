@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.trello.rxlifecycle2.components.support.RxFragment
 import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
+import mengh.zy.base.ui.activity.BaseActivity
 
 
 /**
@@ -22,7 +23,7 @@ import mengh.zy.base.common.AppManger
 abstract class BaseFragment : RxFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mActivity = activity!!
+        mActivity = (activity as BaseActivity?)!!
         return inflater.inflate(layoutId,null)
     }
 
@@ -35,7 +36,7 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
      */
     protected abstract val layoutId: Int
 
-    protected lateinit var mActivity:Activity
+    protected lateinit var mActivity:BaseActivity
 
     abstract fun initView()
 

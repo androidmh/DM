@@ -90,6 +90,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         userInfo?.nickname = result.nickname
         userInfo?.phone = result.phone
         userInfo?.user_icon = result.user_icon
+        userInfo?.user_back = result.user_back
         userInfo?.sign = result.sign
         HawkUtils.putObj(USER_INFO, userInfo)
         toast("登录成功")

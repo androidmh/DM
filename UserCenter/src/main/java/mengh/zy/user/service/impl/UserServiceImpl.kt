@@ -47,4 +47,9 @@ class UserServiceImpl @Inject constructor() : UserService {
         return repository.updateAvatar(part)
                 .convertMsg()
     }
+
+    override fun updateBack(part: MultipartBody.Part): Observable<String> {
+        return repository.updateBack(part)
+                .convertMsg()
+    }
 }

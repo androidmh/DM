@@ -38,4 +38,10 @@ object UserHawkUtils {
         info?.user_icon = user_icon
         HawkUtils.putObj(USER_INFO,info)
     }
+
+    fun putUserBack(back: String) {
+        val info = HawkUtils.getObj<UserInfo>(USER_INFO)
+        info?.user_back = back
+        HawkUtils.putObj(USER_INFO,info)
+    }
 }

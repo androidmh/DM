@@ -1,22 +1,32 @@
 package mengh.zy.user.ui.fragment
 
+import android.app.Activity
+import android.content.Intent
 import android.view.View
-import android.widget.Button
 import com.afollestad.materialdialogs.list.listItems
+import com.bilibili.boxing.Boxing
+import com.bilibili.boxing.model.entity.impl.ImageMedia
 import kotlinx.android.synthetic.main.fragment_user.*
 import mengh.zy.base.common.BaseConstant
+import mengh.zy.base.common.ResultCode
 import mengh.zy.base.data.protocol.UserInfo
+import mengh.zy.base.ext.getCompressFile
 import mengh.zy.base.ext.loadUrl
 import mengh.zy.base.ext.onClick
 import mengh.zy.base.ext.onLongClick
-import mengh.zy.base.ui.fragment.BaseFragment
-import mengh.zy.base.utils.HawkUtils
-import mengh.zy.base.utils.MaterialDialogUtils
+import mengh.zy.base.ui.fragment.BaseMvpFragment
+import mengh.zy.base.utils.*
 import mengh.zy.provider.common.afterLogin
 import mengh.zy.provider.common.isLogin
 import mengh.zy.user.R
+import mengh.zy.user.injection.component.DaggerUserComponent
+import mengh.zy.user.injection.module.UserModule
+import mengh.zy.user.presenter.UserPresenter
+import mengh.zy.user.presenter.view.UserView
 import mengh.zy.user.ui.activity.SettingActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
@@ -28,7 +38,7 @@ import org.jetbrains.anko.support.v4.toast
  *
  *   Describe:
  */
-class UserFragment : BaseFragment() {
+class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
     override val layoutId: Int
         get() = R.layout.fragment_user
 
@@ -36,11 +46,27 @@ class UserFragment : BaseFragment() {
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
-        backgroundLin.onLongClick {
-            MaterialDialogUtils.getBasicDialog(mActivity)
-                    .listItems(items = listOf("更换背景")) { _, _, _ ->
-                    }
-                    .show()
+//        backgroundLin.onLongClick {
+//            MaterialDialogUtils.getBasicDialog(mActivity)
+//                    .listItems(items = listOf("更换背景")) { _, _, _ ->
+//                        afterLogin {
+//                            BoxingUtils.selectSingleCutImg(this, ResultCode.REQUEST_CODE)
+//                        }
+//                    }
+//                    .show()
+//        }
+
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        val medias = Boxing.getResult(data)
+        if (resultCode == Activity.RESULT_OK && requestCode == ResultCode.REQUEST_CODE) {
+            val imageMedia = medias?.get(0) as ImageMedia
+            val file = imageMedia.getCompressFile(mActivity)
+            val imageBody = RequestBody.create(null, file)
+            val createFormData = MultipartBody.Part.createFormData("back", file.name, imageBody)
+            mPresenter.updateBack(createFormData)
         }
     }
 
@@ -54,7 +80,12 @@ class UserFragment : BaseFragment() {
             val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
             userInfo?.let {
                 mUserNameTv.text = it.nickname
-                userInfo.user_icon?.let { it1 -> mUserIconIv.loadUrl(it1) }
+                userInfo.user_icon?.let { it1 ->
+                    mUserIconIv.loadUrl(it1)
+                }
+                userInfo.user_back?.let { it2 ->
+//                    backgroundLin.loadUrl(it2)
+                }
             }
         } else {
             mUserIconIv.setImageResource(R.drawable.icon_default_user)
@@ -73,6 +104,17 @@ class UserFragment : BaseFragment() {
                 startActivity<SettingActivity>()
             }
         }
+    }
+
+    override fun injectComponent() {
+        DaggerUserComponent.builder().activityComponent(activityComponent).userModule(UserModule()).build().inject(this)
+        mPresenter.mView = this
+    }
+
+    override fun onUpdateBackResult(result: String) {
+        UserHawkUtils.putUserBack(result)
+        loadData()
+        toast("上传成功")
     }
 
 }

@@ -1,6 +1,7 @@
 package mengh.zy.base.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import mengh.zy.base.injection.component.ActivityComponent
 import mengh.zy.base.injection.module.ActivityModule
 import mengh.zy.base.injection.module.LifecycleProviderModule
@@ -8,6 +9,7 @@ import mengh.zy.base.common.BaseApplication
 import mengh.zy.base.injection.component.DaggerActivityComponent
 import mengh.zy.base.presenter.BasePresenter
 import mengh.zy.base.presenter.view.BaseView
+import mengh.zy.base.widgets.ProgressLoading
 import org.jetbrains.anko.support.v4.toast
 import javax.inject.Inject
 
@@ -28,10 +30,13 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     lateinit var activityComponent: ActivityComponent
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    private lateinit var mLoadingDialog: ProgressLoading
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         initActivityInjection()
         injectComponent()
+        mLoadingDialog = ProgressLoading.create(mActivity)
     }
 
     abstract fun injectComponent()
@@ -44,12 +49,14 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     }
 
     override fun showLoading() {
+        mLoadingDialog.showLoading()
     }
 
     override fun hideLoading() {
+        mLoadingDialog.hideLoading()
     }
 
-    override fun onError(text:String) {
+    override fun onError(text: String) {
         toast(text)
     }
 }

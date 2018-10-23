@@ -1,6 +1,7 @@
 package mengh.zy.user.service
 
 import io.reactivex.Observable
+import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.user.data.protocol.*
 import okhttp3.MultipartBody
 
@@ -21,4 +22,6 @@ interface UserService {
     fun updateUser(req: UpdateUserReq): Observable<String>
 
     fun updateAvatar(part: MultipartBody.Part): Observable<String>
+
+    fun updateBack(back: MultipartBody.Part): Observable<String>
 }

@@ -1,10 +1,13 @@
 package mengh.zy.base.ext
 
+import android.content.Context
 import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import com.bilibili.boxing.model.entity.impl.ImageMedia
+import com.bilibili.boxing.utils.ImageCompressor
 import com.kennyc.view.MultiStateView
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.base.rx.BaseFuncMsg
@@ -18,6 +21,7 @@ import mengh.zy.base.utils.GlideUtils
 import mengh.zy.base.widgets.DefaultTextWatcher
 import mengh.zy.base.R
 import org.jetbrains.anko.find
+import java.io.File
 
 /**
  * @author by mengh
@@ -67,6 +71,16 @@ fun View.onLongClick(method: () -> Unit): View {
     return this
 }
 
+fun ImageMedia.getCompressFile(context: Context): File {
+    var file = File(this.thumbnailPath)
+    this.setSize(file.length().toString())
+    if (this.compress(ImageCompressor(context))) {
+        this.removeExif()
+        file = File(this.compressPath)
+    }
+    return file
+}
+
 fun Button.enable(method: () -> Boolean, vararg et: EditText) {
     val btn = this
     for (editText in et) {
@@ -101,6 +115,13 @@ fun EditText.getToString(): String {
  */
 fun ImageView.loadUrl(url: String) {
     GlideUtils.loadImg(context, url, this)
+}
+
+/*
+    View加载网络图片
+ */
+fun View.loadUrl(url: String) {
+    GlideUtils.loadViewImg(context, url, this)
 }
 
 /*

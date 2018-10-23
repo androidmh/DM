@@ -47,4 +47,11 @@ interface UserApi {
     @POST("avatar")
     fun updateAvatar(@Part avatar: MultipartBody.Part): Observable<BaseResp<Any>>
 
+    /**
+     * 更新背景图
+     */
+    @Multipart
+    @POST("avatar/back")
+    fun updateBack(@Part back: MultipartBody.Part): Observable<BaseResp<Any>>
+
 }

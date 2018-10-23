@@ -1,9 +1,19 @@
 package mengh.zy.base.utils
 
 import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
+import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.Request
 import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.request.target.CustomViewTarget
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.SizeReadyCallback
+import com.bumptech.glide.request.target.Target
+import com.bumptech.glide.request.transition.Transition
 import mengh.zy.base.R
 import mengh.zy.base.common.GlideApp
 
@@ -18,12 +28,14 @@ import mengh.zy.base.common.GlideApp
  */
 object GlideUtils {
     //glide相关设置
-    var options: RequestOptions = RequestOptions()
+    private var options: RequestOptions = RequestOptions()
             .placeholder(R.drawable.icon_default_user)
             .centerCrop()
             .circleCrop()
 
-
+    private var options2: RequestOptions = RequestOptions()
+            .placeholder(R.drawable.icon_default_user)
+            .centerCrop()
     /**
      * @param activity 上下文
      * @param url 加载地址
@@ -36,6 +48,24 @@ object GlideUtils {
                 .apply(options)
                 .transition(DrawableTransitionOptions().crossFade(500))
                 .into(imageView)
+    }
+
+    fun loadViewImg(context: Context, url: String, view: View) {
+        Glide.with(context)
+                .load(url)
+                .apply(options2)
+                .transition(DrawableTransitionOptions().crossFade(500))
+                .into<CustomViewTarget<View, Drawable>>(object : CustomViewTarget<View, Drawable>(view) {
+                    override fun onLoadFailed(errorDrawable: Drawable?) {
+                    }
+
+                    override fun onResourceReady(resource: Drawable, transition: Transition<in Drawable>?) {
+                        view.background = resource
+                    }
+
+                    override fun onResourceCleared(placeholder: Drawable?) {
+                    }
+                })
     }
 
 }
