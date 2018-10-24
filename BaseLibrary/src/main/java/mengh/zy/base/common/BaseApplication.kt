@@ -5,6 +5,7 @@ import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bilibili.boxing.BoxingCrop
 import com.bilibili.boxing.BoxingMediaLoader
+import com.blankj.utilcode.util.Utils
 import mengh.zy.base.injection.component.AppComponent
 import com.orhanobut.hawk.Hawk
 import mengh.zy.base.injection.component.DaggerAppComponent
@@ -37,6 +38,7 @@ class BaseApplication : Application() {
         Hawk.init(this).build()
         BoxingMediaLoader.getInstance().init(BoxingGlideLoader())
         BoxingCrop.getInstance().init(BoxingUcrop())
+        Utils.init(this)
     }
 
     private fun isDebug(): Boolean {

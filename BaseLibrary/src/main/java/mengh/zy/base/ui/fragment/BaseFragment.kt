@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.blankj.utilcode.util.ScreenUtils
 import com.trello.rxlifecycle2.components.support.RxFragment
 import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
@@ -24,6 +25,11 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mActivity = (activity as BaseActivity?)!!
+        if (ScreenUtils.isPortrait()) {
+            ScreenUtils.adaptScreen4VerticalSlide(mActivity, 360)
+        } else {
+            ScreenUtils.adaptScreen4HorizontalSlide(mActivity, 360)
+        }
         return inflater.inflate(layoutId,null)
     }
 
@@ -31,6 +37,7 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
         super.onViewCreated(view, savedInstanceState)
         initView()
     }
+
     /**
      * 绑定布局
      */

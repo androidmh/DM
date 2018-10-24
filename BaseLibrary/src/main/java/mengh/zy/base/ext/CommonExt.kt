@@ -111,6 +111,13 @@ fun EditText.getToString(): String {
 }
 
 /*
+    ImageView加载网络图片(圆形)
+ */
+fun ImageView.loadCircleUrl(url: String) {
+    GlideUtils.loadCircleImg(context, url, this)
+}
+
+/*
     ImageView加载网络图片
  */
 fun ImageView.loadUrl(url: String) {
@@ -120,7 +127,7 @@ fun ImageView.loadUrl(url: String) {
 /*
     View加载网络图片
  */
-fun View.loadUrl(url: String) {
+fun View.loadUrlTarget(url: String) {
     GlideUtils.loadViewImg(context, url, this)
 }
 

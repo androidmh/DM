@@ -34,7 +34,7 @@ object GlideUtils {
             .circleCrop()
 
     private var options2: RequestOptions = RequestOptions()
-            .placeholder(R.drawable.icon_default_user)
+            .placeholder(R.drawable.loading)
             .centerCrop()
     /**
      * @param activity 上下文
@@ -42,10 +42,18 @@ object GlideUtils {
      * @param imageView 加载imageview
      * 普通加载图片
      */
-    fun loadImg(context: Context, url: String, imageView: ImageView) {
+    fun loadCircleImg(context: Context, url: String, imageView: ImageView) {
         GlideApp.with(context)
                 .load(url)
                 .apply(options)
+                .transition(DrawableTransitionOptions().crossFade(500))
+                .into(imageView)
+    }
+
+    fun loadImg(context: Context, url: String, imageView: ImageView) {
+        GlideApp.with(context)
+                .load(url)
+                .apply(options2)
                 .transition(DrawableTransitionOptions().crossFade(500))
                 .into(imageView)
     }

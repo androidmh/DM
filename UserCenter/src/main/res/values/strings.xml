@@ -19,4 +19,8 @@
     <string name="tv_share">分享</string>
     <string name="tv_setting">设置</string>
     <string name="iv_avatar_des">avatar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_play">玩转</string>
 </resources>

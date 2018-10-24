@@ -101,4 +101,7 @@ dependencies {
 
     //腾讯云
 //    api 'com.tencent.qcloud:cosxml:5.4.15'
+
+    //Utils
+    implementation "com.blankj:utilcode:$utilsVersion"
 }

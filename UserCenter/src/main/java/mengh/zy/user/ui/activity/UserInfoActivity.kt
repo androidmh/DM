@@ -13,7 +13,7 @@ import mengh.zy.base.common.ResultCode.Companion.REQUEST_CODE
 import mengh.zy.base.data.protocol.UserInfo
 import mengh.zy.base.ext.getCompressFile
 import mengh.zy.base.ext.getToString
-import mengh.zy.base.ext.loadUrl
+import mengh.zy.base.ext.loadCircleUrl
 import mengh.zy.base.ui.activity.BaseMvpActivity
 import mengh.zy.base.utils.BoxingUtils
 import mengh.zy.base.utils.HawkUtils
@@ -42,7 +42,7 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
     private fun initData() {
         val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
         userInfo?.let {
-            mUserIconIv.loadUrl(it.user_icon!!)
+            mUserIconIv.loadCircleUrl(it.user_icon!!)
             mUserNameEt.setText(it.nickname)
             if (it.gender == 1) {
                 mGenderMaleRb.isChecked = true
@@ -73,7 +73,7 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
 
     override fun onUpdateAvatarResult(result: String) {
         toast("上传成功")
-        mUserIconIv.loadUrl(result)
+        mUserIconIv.loadCircleUrl(result)
         UserHawkUtils.putUserAvatar(result)
     }
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import com.blankj.utilcode.util.ScreenUtils
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import mengh.zy.base.common.AppManger
 
@@ -22,14 +23,13 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)
-//        steepStatusBar()
         setContentView(mContextView)
         initView()
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)//设置透明状态栏
-////            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)//设置透明导航栏
-//        }
-        fullScreen()
+        if (ScreenUtils.isPortrait()) {
+            ScreenUtils.adaptScreen4VerticalSlide(this, 360)
+        } else {
+            ScreenUtils.adaptScreen4HorizontalSlide(this, 360)
+        }
     }
 
     private fun fullScreen() {
@@ -44,7 +44,7 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
                 window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
                 window.statusBarColor = Color.TRANSPARENT
                 //导航栏颜色也可以正常设置
-                //                window.setNavigationBarColor(Color.TRANSPARENT);
+//                window.navigationBarColor = Color.TRANSPARENT
             } else {
                 val window = this.window
                 val attributes = window.attributes
@@ -54,20 +54,6 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
                 //                attributes.flags |= flagTranslucentNavigation;
                 window.attributes = attributes
             }
-        }
-    }
-
-    private fun hideBottomMenu() {
-        //隐藏虚拟按键
-        if (Build.VERSION.SDK_INT < 19) { // lower api
-            val v = this.window.decorView
-            v.systemUiVisibility = View.GONE
-        } else {
-            //for new api versions.
-            val decorView = window.decorView
-            val uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY/* | View.SYSTEM_UI_FLAG_FULLSCREEN*/
-            decorView.systemUiVisibility = uiOptions
-
         }
     }
 
@@ -81,18 +67,9 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         AppManger.instance.finishActivity(this)
+        ScreenUtils.cancelAdaptScreen(this)
     }
 
-    private fun steepStatusBar() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            // 透明状态栏
-            window.addFlags(
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-            //            // 透明导航栏
-            //            getWindow().addFlags(
-            //                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
-        }
-    }
 
     /**
      * 点击事件

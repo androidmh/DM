@@ -11,7 +11,6 @@
         <activity android:name=".ui.activity.RegisterActivity" />
         <activity android:name=".ui.activity.SettingActivity" />
         <activity android:name=".ui.activity.UserInfoActivity" />
-        <activity android:name=".ui.activity.TestActivity"></activity>
     </application>
 
 </manifest>

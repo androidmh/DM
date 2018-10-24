@@ -12,12 +12,13 @@
         <item name="android:windowBackground">@color/default_page</item>
         <item name="bottomNavigationStyle">@style/Widget.Design.BottomNavigationView</item>
     </style>
+
     <!-- Window黑色背景主题 -->
     <style name="AppTheme.Black" parent="@style/AppTheme">
         <item name="android:windowBackground">@color/common_black</item>
     </style>
 
-    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
