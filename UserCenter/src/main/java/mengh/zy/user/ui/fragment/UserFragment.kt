@@ -21,6 +21,7 @@ import mengh.zy.user.injection.component.DaggerUserComponent
 import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.UserPresenter
 import mengh.zy.user.presenter.view.UserView
+import mengh.zy.user.ui.activity.PlayActivity
 import mengh.zy.user.ui.activity.SettingActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
 import okhttp3.MultipartBody
@@ -113,7 +114,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
                 startActivity<SettingActivity>()
             }
             mPlayTv -> {
-
+                startActivity<PlayActivity>()
             }
         }
     }

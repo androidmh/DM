@@ -103,5 +103,11 @@ dependencies {
 //    api 'com.tencent.qcloud:cosxml:5.4.15'
 
     //Utils
-    implementation "com.blankj:utilcode:$utilsVersion"
+    api "com.blankj:utilcode:$utilsVersion"
+
+    //通用适配器
+    api "com.github.CymChad:BaseRecyclerViewAdapterHelper:$baseRecyclerVersion"
+
+    //轮播
+    api "com.youth.banner:banner:$bannerVersion"
 }

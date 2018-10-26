@@ -37,7 +37,10 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         initActivityInjection()
         injectComponent()
         mLoadingDialog = ProgressLoading.create(mActivity)
+        initView()
     }
+
+    abstract fun initView()
 
     abstract fun injectComponent()
 

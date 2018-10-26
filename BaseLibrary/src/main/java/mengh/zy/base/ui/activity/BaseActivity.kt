@@ -3,12 +3,15 @@ package mengh.zy.base.ui.activity
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.blankj.utilcode.util.ScreenUtils
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
+import org.jetbrains.anko.find
 
 /**
  * @author by mengh
@@ -20,6 +23,11 @@ import mengh.zy.base.common.AppManger
  */
 
 abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
+
+    protected var titleTB = ""
+
+    protected var isBack = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)

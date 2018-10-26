@@ -2,13 +2,15 @@ package mengh.zy.base.widgets
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 import mengh.zy.base.R
+import mengh.zy.base.R.id.headerBar
+import mengh.zy.base.R.id.tvRight
+import mengh.zy.base.common.BaseApplication.Companion.context
 
 /**
  * @author by mengh
@@ -18,7 +20,9 @@ import mengh.zy.base.R
  *
  *   Describe:
  */
-class HeaderToolBar(context: Context, attrs: AttributeSet?) : FrameLayout(context, attrs) {
+class HeaderToolBar @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
     private var isShowBack = true
     private var titleText: String? = null
     private var rightText: String? = null

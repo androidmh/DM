@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.2.61'
+    ext.kotlin_version = '1.2.71'
     repositories {
         google()
         jcenter()
@@ -75,4 +75,8 @@ ext {
     materialedittextVersion = '2.1.4'
 
     utilsVersion = '1.21.0'
+
+    baseRecyclerVersion = '2.9.42'
+
+    bannerVersion = '1.4.10'
 }

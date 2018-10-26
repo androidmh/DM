@@ -33,10 +33,6 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
         return inflater.inflate(layoutId,null)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView()
-    }
 
     /**
      * 绑定布局
@@ -44,8 +40,6 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
     protected abstract val layoutId: Int
 
     protected lateinit var mActivity:BaseActivity
-
-    abstract fun initView()
 
     /**
      * 点击事件

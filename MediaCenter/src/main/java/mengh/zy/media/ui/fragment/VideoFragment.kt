@@ -16,7 +16,7 @@ class VideoFragment : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_video
 
-    override fun initView() {
+     fun initView() {
     }
 
     override fun widgetClick(v: View) {

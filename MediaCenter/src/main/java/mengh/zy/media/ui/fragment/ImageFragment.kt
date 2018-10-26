@@ -16,7 +16,7 @@ class ImageFragment : BaseFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_image
 
-    override fun initView() {
+     fun initView() {
     }
 
     override fun widgetClick(v: View) {
