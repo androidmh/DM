@@ -9,7 +9,7 @@ package mengh.zy.base.common
 class BaseConstant {
     companion object {
         //baseUrl
-        const val SERVER_ADDRESS = "http://172.16.20.109:80/v1/"
+        const val SERVER_ADDRESS = "http://172.16.20.88:80/v1/"
 
         const val TABLE_PREFS = "Kotlin_mall"
 
