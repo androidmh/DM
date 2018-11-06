@@ -28,14 +28,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Android support
-    api "com.android.support:appcompat-v7:$android_support_version"
-    api "com.android.support:design:$android_support_version"
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'com.google.android.material:material:1.1.0-alpha01'
 
     //kotlin support
     api"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //ConstraintLayout
-    api "com.android.support.constraint:constraint-layout:$constraint_version"
+    api 'androidx.constraintlayout:constraintlayout:2.0.0-alpha2'
 
     // Support-v4 (only Anko Commons)
     api "org.jetbrains.anko:anko-support-v4-commons:$anko_version"
@@ -110,4 +110,8 @@ dependencies {
 
     //轮播
     api "com.youth.banner:banner:$bannerVersion"
+
+    api 'com.google.android:flexbox:1.1.0'
+
+    api 'com.gyf.immersionbar:immersionbar:2.3.2-beta01'
 }

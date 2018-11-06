@@ -17,7 +17,7 @@ import mengh.zy.user.ui.fragment.UserFragment
  */
 object FragmentFactory {
     private var mFragments = SparseArray<BaseFragment>()
-    fun createFragment(position: Int): BaseFragment? {
+    fun createFragment(position: Int): BaseFragment {
         var fragment: BaseFragment? = null
         try {
             fragment = mFragments.get(position)
@@ -38,6 +38,6 @@ object FragmentFactory {
             mFragments.put(position, fragment)
         }
 
-        return fragment
+        return fragment!!
     }
 }

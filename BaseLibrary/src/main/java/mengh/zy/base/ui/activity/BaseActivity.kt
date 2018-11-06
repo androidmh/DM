@@ -1,17 +1,13 @@
 package mengh.zy.base.ui.activity
 
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.blankj.utilcode.util.ScreenUtils
+import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
-import org.jetbrains.anko.find
 
 /**
  * @author by mengh
@@ -24,44 +20,22 @@ import org.jetbrains.anko.find
 
 abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
 
-    protected var titleTB = ""
-
-    protected var isBack = false
+    protected lateinit var mImmersionBar: ImmersionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)
         setContentView(mContextView)
+        AppManger.instance.addActivity(this)
         initView()
+        mImmersionBar = ImmersionBar.with(this)
+        mImmersionBar
+                .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+                .init()
         if (ScreenUtils.isPortrait()) {
             ScreenUtils.adaptScreen4VerticalSlide(this, 360)
         } else {
             ScreenUtils.adaptScreen4HorizontalSlide(this, 360)
-        }
-    }
-
-    private fun fullScreen() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                //5.x开始需要把颜色设置透明，否则导航栏会呈现系统默认的浅灰色
-                val window = this.window
-                val decorView = window.decorView
-                //两个 flag 要结合使用，表示让应用的主体内容占用系统状态栏的空间
-                val option = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                decorView.systemUiVisibility = option
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                window.statusBarColor = Color.TRANSPARENT
-                //导航栏颜色也可以正常设置
-//                window.navigationBarColor = Color.TRANSPARENT
-            } else {
-                val window = this.window
-                val attributes = window.attributes
-                val flagTranslucentStatus = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-                val flagTranslucentNavigation = WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION
-                attributes.flags = attributes.flags or flagTranslucentStatus
-                //                attributes.flags |= flagTranslucentNavigation;
-                window.attributes = attributes
-            }
         }
     }
 
@@ -74,10 +48,9 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
 
     override fun onDestroy() {
         super.onDestroy()
+        mImmersionBar.destroy()
         AppManger.instance.finishActivity(this)
-        ScreenUtils.cancelAdaptScreen(this)
     }
-
 
     /**
      * 点击事件
@@ -111,4 +84,6 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
      * View点击
      */
     protected abstract fun widgetClick(v: View)
+
+
 }

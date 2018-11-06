@@ -2,7 +2,7 @@ package mengh.zy.user.ui.fragment
 
 import android.app.Activity
 import android.content.Intent
-import android.support.design.widget.AppBarLayout
+import com.google.android.material.appbar.AppBarLayout
 import android.view.View
 import com.afollestad.materialdialogs.list.listItems
 import com.bilibili.boxing.Boxing
@@ -42,6 +42,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         get() = R.layout.fragment_user
 
     override fun initView() {
+        toast("aa")
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)

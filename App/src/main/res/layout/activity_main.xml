@@ -4,12 +4,11 @@
     android:orientation="vertical"
     android:gravity="bottom">
 
-    <FrameLayout
-        android:id="@+id/mBody"
+    <mengh.zy.base.widgets.NoScrollViewPager
+        android:id="@+id/mainVp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
         android:layout_weight="1"
-        />
+        android:layout_height="0dp"/>
 
     <mengh.zy.base.widgets.BottomNavBar
         android:id="@+id/mBottomNavBar"

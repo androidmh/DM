@@ -1,7 +1,7 @@
 package mengh.zy.media.ui.fragment
 
 import android.view.View
-import mengh.zy.base.ui.fragment.BaseFragment
+import mengh.zy.base.ui.fragment.BaseLazyFragment
 import mengh.zy.media.R
 
 /**
@@ -12,12 +12,13 @@ import mengh.zy.media.R
  *
  *   Describe:
  */
-class ImageFragment : BaseFragment() {
+class ImageFragment : BaseLazyFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_image
 
-     fun initView() {
+    override fun initView() {
     }
+
 
     override fun widgetClick(v: View) {
     }

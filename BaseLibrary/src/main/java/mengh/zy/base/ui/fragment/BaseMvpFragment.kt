@@ -32,12 +32,28 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     private lateinit var mLoadingDialog: ProgressLoading
 
+    private var isLazyLoad = false
+
+    private var isVisibleToUser = true
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initActivityInjection()
         injectComponent()
         mLoadingDialog = ProgressLoading.create(mActivity)
-        initView()
+        if (isVisibleToUser && !isLazyLoad) {
+            isLazyLoad = true
+            initView()
+        }
+    }
+
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+        this.isVisibleToUser = isVisibleToUser
+        if (isVisibleToUser && !isLazyLoad && view != null) {
+            isLazyLoad = true
+            initView()
+        }
+        super.setUserVisibleHint(isVisibleToUser)
     }
 
     abstract fun initView()
@@ -61,5 +77,20 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     override fun onError(text: String) {
         toast(text)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        //解决java.lang.IllegalStateException: Activity has been destroyed 的错误
+        try {
+            val childFragmentManager = androidx.fragment.app.Fragment::class.java.getDeclaredField("mChildFragmentManager")
+            childFragmentManager.isAccessible = true
+            childFragmentManager.set(this, null)
+        } catch (e: NoSuchFieldException) {
+            throw RuntimeException(e)
+        } catch (e: IllegalAccessException) {
+            throw RuntimeException(e)
+        }
+
     }
 }

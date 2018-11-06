@@ -1,6 +1,6 @@
 package mengh.zy.dm.ui.fragment
 
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_index.*
 import mengh.zy.base.ui.fragment.BaseMvpFragment
@@ -54,7 +54,7 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
         }
 
         val adapter = IndexAdapter(data)
-        val layoutManager = LinearLayoutManager(mActivity)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
         indexRv.layoutManager = layoutManager
         indexRv.adapter = adapter
     }
