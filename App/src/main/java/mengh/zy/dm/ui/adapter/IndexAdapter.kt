@@ -1,6 +1,5 @@
 package mengh.zy.dm.ui.adapter
 
-import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
@@ -46,7 +45,7 @@ class IndexAdapter(mData: MutableList<IndexItem>?) : BaseMultiItemQuickAdapter<I
                 localIv.loadUrl(item.getIndexData()!!.url!!)
                 val adTv = helper.getView<TextView>(R.id.adTv)
                 if (item.getIndexData()!!.ad==2){
-                    adTv.visibility = View.VISIBLE
+                    adTv.text = "广告"
                 }
             }
         }

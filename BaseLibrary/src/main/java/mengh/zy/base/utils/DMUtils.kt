@@ -16,14 +16,4 @@ object DMUtils {
         }
         return true
     }
-
-    /**
-     * 判断是否是邮箱地址
-     *
-     * @param mail 待判断邮件地址
-     * @return boolean
-     */
-    fun isMail(mail: String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(mail).matches()
-    }
 }

@@ -1,17 +1,12 @@
 package mengh.zy.base.data.net
 
 import mengh.zy.base.common.BaseConstant
-import mengh.zy.base.utils.HawkUtils
-import mengh.zy.base.utils.SSLSocketFactoryUtils
 import mengh.zy.base.utils.UserHawkUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Protocol
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.util.*
 import java.util.concurrent.TimeUnit
 
 /**

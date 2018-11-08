@@ -42,7 +42,7 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
     private fun initData() {
         val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
         userInfo?.let {
-            mUserIconIv.loadCircleUrl(it.user_icon!!)
+            it.user_icon?.let { it1 -> mUserIconIv.loadCircleUrl(it1) }
             mUserNameEt.setText(it.nickname)
             if (it.gender == 1) {
                 mGenderMaleRb.isChecked = true

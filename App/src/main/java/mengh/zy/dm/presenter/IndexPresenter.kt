@@ -19,15 +19,26 @@ open class IndexPresenter @Inject constructor() : BasePresenter<IndexView>() {
     @Inject
     lateinit var indexService: IndexService
 
-    fun getIndex() {
+    fun getIndex(page: Int, count: Int = 8) {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        indexService.getIndex()
+        indexService.getIndex(page, count)
                 .execute(object : BaseSubscriber<IndexBean>(mView) {
                     override fun onNext(t: IndexBean) {
                         mView.onGetIndexResult(t)
+                    }
+                }, lifecycleProvider)
+    }
+
+    fun getNextPage(page: Int, count: Int = 8) {
+        if (!checkNetWork()) {
+            return
+        }
+        indexService.getIndex(page, count)
+                .execute(object : BaseSubscriber<IndexBean>(mView) {
+                    override fun onNext(t: IndexBean) {
+                        mView.onLoadMoreResult(t)
                     }
                 }, lifecycleProvider)
     }

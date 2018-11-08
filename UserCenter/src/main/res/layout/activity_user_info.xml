@@ -19,13 +19,15 @@
 
         <TextView
             style="@style/user_info_label_style"
-            android:text="头像" />
+            android:text="@string/tv_avatar" />
 
         <ImageView
             android:id="@+id/mArrowIv"
             style="@style/WrapWrap"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
+            android:contentDescription="@string/iv_des"
             android:src="@drawable/icon_arrow" />
 
         <ImageView
@@ -33,8 +35,11 @@
             android:layout_width="@dimen/common_icon_width"
             android:layout_height="@dimen/common_icon_height"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20.0dip"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_toStartOf="@id/mArrowIv"
             android:layout_toLeftOf="@id/mArrowIv"
+            android:contentDescription="@string/iv_des"
             android:src="@drawable/icon_default_user" />
     </RelativeLayout>
 
@@ -42,13 +47,14 @@
 
         <TextView
             style="@style/user_info_label_style"
-            android:text="昵称" />
+            android:text="@string/tv_nickname" />
 
         <EditText
             android:id="@+id/mUserNameEt"
             style="@style/user_info_content_style"
+            android:inputType="text"
             android:background="@null"
-            android:hint="请称呼我"
+            android:hint="@string/username_hint"
             android:maxLength="10" />
     </RelativeLayout>
 
@@ -56,13 +62,14 @@
 
         <TextView
             style="@style/user_info_label_style"
-            android:text="性别" />
+            android:text="@string/tv_gender" />
 
         <RadioGroup
             style="@style/WrapWrap"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true">
 
             <RadioButton
                 android:id="@+id/mGenderMaleRb"
@@ -73,9 +80,10 @@
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
-                android:text="男"
+                android:text="@string/tv_male"
                 android:textColor="@drawable/gender_text_selector"
-                android:textSize="@dimen/text_middle_size" />
+                android:textSize="@dimen/text_middle_size"
+                android:layout_marginEnd="@dimen/common_margin" />
 
             <RadioButton
                 android:id="@+id/mGenderFemaleRb"
@@ -84,7 +92,7 @@
                 android:background="@drawable/gender_bg_selector"
                 android:button="@null"
                 android:gravity="center"
-                android:text="女"
+                android:text="@string/tv_female"
                 android:textColor="@drawable/gender_text_selector"
                 android:textSize="@dimen/text_middle_size" />
         </RadioGroup>
@@ -94,7 +102,7 @@
 
         <TextView
             style="@style/user_info_label_style"
-            android:text="手机" />
+            android:text="@string/tv_phone" />
 
         <TextView
             android:id="@+id/mUserMobileTv"
@@ -105,13 +113,13 @@
 
         <TextView
             style="@style/user_info_label_style"
-            android:text="签名" />
+            android:text="@string/tv_sign" />
 
         <EditText
             android:id="@+id/mUserSignEt"
             style="@style/user_info_content_style"
             android:background="@null"
-            android:hint="请您填写签名"
+            android:hint="@string/sign_hint"
             android:inputType="textEmailAddress" />
     </RelativeLayout>
 </LinearLayout>

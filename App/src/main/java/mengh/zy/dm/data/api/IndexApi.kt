@@ -3,8 +3,6 @@ package mengh.zy.dm.data.api
 import io.reactivex.Observable
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.dm.data.protocol.IndexBean
-import mengh.zy.user.data.protocol.*
-import okhttp3.MultipartBody
 import retrofit2.http.*
 
 /**
@@ -21,5 +19,6 @@ interface IndexApi {
      * 获取userInfo
      */
     @GET("index")
-    fun getIndex(): Observable<BaseResp<IndexBean>>
+    fun getIndex(@Query("page") page: Int,
+                 @Query("count") count: Int): Observable<BaseResp<IndexBean>>
 }

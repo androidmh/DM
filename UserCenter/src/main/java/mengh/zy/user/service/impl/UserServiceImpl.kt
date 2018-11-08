@@ -1,7 +1,6 @@
 package mengh.zy.user.service.impl
 
 import io.reactivex.Observable
-import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.base.ext.convert
 import mengh.zy.user.data.repository.UserRepository
 import mengh.zy.user.service.UserService

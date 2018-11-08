@@ -20,7 +20,7 @@ class IndexServiceImpl @Inject constructor() : IndexService {
     @Inject
     lateinit var repository: IndexRepository
 
-    override fun getIndex(): Observable<IndexBean> {
-        return repository.getIndex().convert()
+    override fun getIndex(page: Int,count: Int): Observable<IndexBean> {
+        return repository.getIndex(page,count).convert()
     }
 }

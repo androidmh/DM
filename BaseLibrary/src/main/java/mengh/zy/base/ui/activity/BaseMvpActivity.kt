@@ -70,9 +70,4 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     override fun onError(text: String) {
         toast(text)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-    }
-
 }

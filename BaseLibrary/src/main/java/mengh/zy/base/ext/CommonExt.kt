@@ -1,17 +1,16 @@
 package mengh.zy.base.ext
 
 import android.content.Context
-import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import com.bilibili.boxing.model.entity.impl.ImageMedia
 import com.bilibili.boxing.utils.ImageCompressor
-import com.kennyc.view.MultiStateView
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.base.rx.BaseFuncMsg
 import com.trello.rxlifecycle2.LifecycleProvider
+import com.vlonjatg.progressactivity.ProgressRelativeLayout
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +19,6 @@ import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.base.utils.GlideUtils
 import mengh.zy.base.widgets.DefaultTextWatcher
 import mengh.zy.base.R
-import org.jetbrains.anko.find
 import java.io.File
 
 /**
@@ -92,22 +90,19 @@ fun Button.enable(method: () -> Boolean, vararg et: EditText) {
     }
 }
 
-
-/*
-    多状态视图开始加载
- */
-fun MultiStateView.startLoading() {
-    viewState = MultiStateView.VIEW_STATE_LOADING
-    val loadingView = getView(MultiStateView.VIEW_STATE_LOADING)
-    val animBackground = loadingView!!.find<View>(R.id.loading_anim_view).background
-    (animBackground as AnimationDrawable).start()
-}
-
 /*
     扩展edit的获取内容方法
  */
 fun EditText.getToString(): String {
     return text.toString()
+}
+
+fun ProgressRelativeLayout.empty(img:Int=R.mipmap.empty,title:String="暂无数据",des:String=""){
+    this.showEmpty(img,title,des)
+}
+
+fun ProgressRelativeLayout.error(img:Int=R.mipmap.error,title:String="暂无数据",des:String="",btnText:String="重试",listener: View.OnClickListener){
+    this.showError(img,title,des,btnText,listener)
 }
 
 /*

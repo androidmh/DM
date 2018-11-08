@@ -2,7 +2,6 @@ package mengh.zy.base.utils
 
 import android.content.Context
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.list.listItems
 import mengh.zy.base.R
 
 

@@ -20,7 +20,14 @@
     <string name="tv_setting">设置</string>
     <string name="iv_avatar_des">avatar</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tv_play">玩转</string>
+    <string name="tv_avatar">头像</string>
+    <string name="tv_nickname">昵称</string>
+    <string name="username_hint">请称呼我</string>
+    <string name="tv_gender">性别</string>
+    <string name="tv_male">男</string>
+    <string name="tv_female">女</string>
+    <string name="tv_phone">手机</string>
+    <string name="tv_sign">签名</string>
+    <string name="sign_hint">请您填写签名</string>
 </resources>

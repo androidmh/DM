@@ -2,7 +2,6 @@ package mengh.zy.base.utils
 
 import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
 import mengh.zy.base.data.protocol.UserInfo
-import kotlin.math.sign
 
 /**
  * @author by mengh

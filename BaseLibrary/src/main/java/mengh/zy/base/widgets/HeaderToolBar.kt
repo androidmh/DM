@@ -8,9 +8,6 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 import mengh.zy.base.R
-import mengh.zy.base.R.id.headerBar
-import mengh.zy.base.R.id.tvRight
-import mengh.zy.base.common.BaseApplication.Companion.context
 
 /**
  * @author by mengh

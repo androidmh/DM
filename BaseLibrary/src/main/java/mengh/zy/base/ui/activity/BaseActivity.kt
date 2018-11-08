@@ -20,7 +20,7 @@ import mengh.zy.base.common.AppManger
 
 abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
 
-    protected lateinit var mImmersionBar: ImmersionBar
+    private lateinit var mImmersionBar: ImmersionBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

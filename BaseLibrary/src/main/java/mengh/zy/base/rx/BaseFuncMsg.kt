@@ -4,7 +4,6 @@ import mengh.zy.base.data.protocol.BaseResp
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.Function
-import mengh.zy.base.common.ResultCode
 
 /**
  * @author by mengh

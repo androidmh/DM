@@ -1,7 +1,6 @@
 package mengh.zy.provider.common
 
 import com.alibaba.android.arouter.launcher.ARouter
-import mengh.zy.base.utils.HawkUtils
 import mengh.zy.base.utils.UserHawkUtils
 import mengh.zy.provider.router.RouterPath.UserCenter.Companion.PATH_LOGIN
 

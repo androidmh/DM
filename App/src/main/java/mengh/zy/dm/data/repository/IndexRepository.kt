@@ -1,13 +1,10 @@
 package mengh.zy.dm.data.repository
 
 import io.reactivex.Observable
-import mengh.zy.user.data.api.UserApi
 import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.dm.data.api.IndexApi
 import mengh.zy.dm.data.protocol.IndexBean
-import mengh.zy.user.data.protocol.*
-import okhttp3.MultipartBody
 import javax.inject.Inject
 
 /**
@@ -21,8 +18,8 @@ import javax.inject.Inject
 
 class IndexRepository @Inject constructor() {
 
-    fun getIndex(): Observable<BaseResp<IndexBean>> {
+    fun getIndex(page: Int,count: Int): Observable<BaseResp<IndexBean>> {
         return RetrofitFactory.instance.create(IndexApi::class.java)
-                .getIndex()
+                .getIndex(page,count)
     }
 }

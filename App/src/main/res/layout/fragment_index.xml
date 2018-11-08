@@ -10,8 +10,18 @@
         style="@style/MatchWrap"
         app:isShowBack="false"
         app:titleText="首页" />
+    <com.vlonjatg.progressactivity.ProgressRelativeLayout
+        android:id="@+id/mProgressLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/indexSl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/indexRv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.vlonjatg.progressactivity.ProgressRelativeLayout>
 </LinearLayout>

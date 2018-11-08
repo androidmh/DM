@@ -1,10 +1,7 @@
 package mengh.zy.dm.service
 
 import io.reactivex.Observable
-import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.dm.data.protocol.IndexBean
-import mengh.zy.user.data.protocol.*
-import okhttp3.MultipartBody
 
 /**
  * @author by mengh
@@ -13,5 +10,5 @@ import okhttp3.MultipartBody
  * PS: Not easy to write code, please indicate.
  */
 interface IndexService {
-    fun getIndex(): Observable<IndexBean>
+    fun getIndex(page: Int,count: Int): Observable<IndexBean>
 }

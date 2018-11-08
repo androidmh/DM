@@ -17,6 +17,7 @@
             app:statusBarScrim="@android:color/transparent">
 
             <ImageView
+                android:contentDescription="@string/iv_des"
                 android:id="@+id/backIv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"

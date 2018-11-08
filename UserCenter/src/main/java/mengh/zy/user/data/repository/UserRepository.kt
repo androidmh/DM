@@ -6,8 +6,6 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.user.data.protocol.*
 import okhttp3.MultipartBody
-import retrofit2.http.Body
-import retrofit2.http.Part
 import javax.inject.Inject
 
 /**

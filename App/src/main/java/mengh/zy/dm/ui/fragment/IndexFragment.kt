@@ -1,8 +1,10 @@
 package mengh.zy.dm.ui.fragment
 
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.View
+import com.chad.library.adapter.base.BaseQuickAdapter.SCALEIN
 import kotlinx.android.synthetic.main.fragment_index.*
+import mengh.zy.base.ext.empty
+import mengh.zy.base.ext.error
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.dm.R
 import mengh.zy.dm.data.protocol.IndexBean
@@ -12,6 +14,7 @@ import mengh.zy.dm.presenter.IndexPresenter
 import mengh.zy.dm.presenter.view.IndexView
 import mengh.zy.dm.ui.adapter.IndexAdapter
 import mengh.zy.dm.ui.item.IndexItem
+import org.jetbrains.anko.support.v4.toast
 
 /**
  * @author by mengh
@@ -22,12 +25,26 @@ import mengh.zy.dm.ui.item.IndexItem
  *   Describe:
  */
 class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
-
     override val layoutId: Int
         get() = R.layout.fragment_index
 
+    private lateinit var adapter: IndexAdapter
+
+    private var page = 0
+
     override fun initView() {
-        mPresenter.getIndex()
+        loadData()
+        mProgressLayout.showLoading()
+        indexSl.setOnRefreshListener {
+            loadData()
+        }
+        indexSl.setOnLoadMoreListener {
+            mPresenter.getNextPage(page)
+        }
+    }
+
+    private fun loadData() {
+        mPresenter.getIndex(0)
     }
 
     override fun widgetClick(v: View) {
@@ -39,7 +56,36 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
     }
 
     override fun onGetIndexResult(result: IndexBean) {
-        setRecycle(result)
+        indexSl.finishRefresh()
+        if (result.banners.isNullOrEmpty() && result.indexes.isNullOrEmpty()) {
+            mProgressLayout.empty()
+        } else {
+            mProgressLayout.showContent()
+            setRecycle(result)
+            page = result.next_page
+        }
+    }
+
+    override fun onLoadMoreResult(result: IndexBean) {
+        if (!result.indexes.isNullOrEmpty()){
+            page = result.next_page
+            for (index in result.indexes) {
+                adapter.addData(IndexItem(IndexItem.LAYOUT,index))
+            }
+        }else{
+            toast("没有更多数据了")
+        }
+        indexSl.finishLoadMore()
+    }
+
+    override fun onError(text: String) {
+        super.onError(text)
+        mProgressLayout.error(title = text, listener = View.OnClickListener {
+            loadData()
+            mProgressLayout.showLoading()
+        })
+        indexSl.finishRefresh(false)
+        indexSl.finishLoadMore(false)
     }
 
     private fun setRecycle(result: IndexBean) {
@@ -48,12 +94,13 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
         for (banner in result.banners) {
             banners.add(banner)
         }
-        data.add(IndexItem(IndexItem.IMG, data2 =banners))
+        data.add(IndexItem(IndexItem.IMG, data2 = banners))
         for (index in result.indexes) {
-            data.add(IndexItem(IndexItem.LAYOUT,index))
+            data.add(IndexItem(IndexItem.LAYOUT, index))
         }
 
-        val adapter = IndexAdapter(data)
+        adapter = IndexAdapter(data)
+        adapter.openLoadAnimation(SCALEIN)
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
         indexRv.layoutManager = layoutManager
         indexRv.adapter = adapter

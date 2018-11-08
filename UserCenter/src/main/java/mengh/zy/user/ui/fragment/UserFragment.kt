@@ -42,7 +42,6 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         get() = R.layout.fragment_user
 
     override fun initView() {
-        toast("aa")
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)

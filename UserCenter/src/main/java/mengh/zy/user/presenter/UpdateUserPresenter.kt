@@ -3,8 +3,6 @@ package mengh.zy.user.presenter
 import mengh.zy.base.ext.execute
 import mengh.zy.base.presenter.BasePresenter
 import mengh.zy.base.rx.BaseSubscriber
-import mengh.zy.user.data.protocol.GetTokenReq
-import mengh.zy.user.data.protocol.LoginTokenBean
 import mengh.zy.user.data.protocol.UpdateUserReq
 import mengh.zy.user.presenter.view.UpdateUserView
 import mengh.zy.user.service.UserService

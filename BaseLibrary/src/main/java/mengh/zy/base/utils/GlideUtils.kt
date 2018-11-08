@@ -32,9 +32,9 @@ object GlideUtils {
             .placeholder(R.drawable.loading)
             .centerCrop()
     /**
-     * @param activity 上下文
+     * @param context 上下文
      * @param url 加载地址
-     * @param imageView 加载imageview
+     * @param imageView 加载imageView
      * 普通加载图片
      */
     fun loadCircleImg(context: Context, url: String, imageView: ImageView) {

@@ -1,10 +1,8 @@
 package mengh.zy.base.widgets
 
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
-
 import com.bilibili.boxing.loader.IBoxingCallback
 import com.bilibili.boxing.loader.IBoxingMediaLoader
 import com.bumptech.glide.Glide
@@ -13,10 +11,8 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-
 import mengh.zy.base.R
 import mengh.zy.base.common.GlideApp
-import mengh.zy.base.utils.GlideUtils
 
 /**
  * @author by mengh

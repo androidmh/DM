@@ -11,4 +11,5 @@ import mengh.zy.dm.data.protocol.IndexBean
  */
 interface IndexView : BaseView {
     fun onGetIndexResult(result: IndexBean)
+    fun onLoadMoreResult(result: IndexBean)
 }
