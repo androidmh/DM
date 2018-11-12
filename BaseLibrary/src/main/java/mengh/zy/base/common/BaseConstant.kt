@@ -10,10 +10,10 @@ class BaseConstant {
     companion object {
         //baseUrl
         //test
-        const val SERVER_ADDRESS = "http://172.16.20.88:80/v1/"
+//        const val SERVER_ADDRESS = "http://172.16.20.88:80/v1/"
 
         //formal
-//        const val SERVER_ADDRESS = "http://40.73.116.21:8888/v1/"
+        const val SERVER_ADDRESS = "http://40.73.116.21:8888/v1/"
 
         //用户名称
         const val USER_INFO = "userInfo"

@@ -16,6 +16,7 @@ import mengh.zy.media.presenter.ImgListPresenter
 import mengh.zy.media.presenter.view.ImgListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.base.widgets.ImgDialogFragment
+import mengh.zy.provider.common.afterLogin
 import org.jetbrains.anko.support.v4.toast
 
 class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
@@ -77,7 +78,9 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgRv.layoutManager = layoutManager
         imgRv.adapter = adapter
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
-            ImgDialogFragment(result.images[position].url!!).show(fragmentManager, "img_dialog")
+            afterLogin {
+                ImgDialogFragment(result.images[position].url!!).show(fragmentManager, "img_dialog")
+            }
         }
     }
 
