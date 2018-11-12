@@ -4,15 +4,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <mengh.zy.base.widgets.HeaderToolBar
-        android:id="@+id/mHeaderBar"
-        app:isShowBack="false"
-        style="@style/MatchWrap"
-        app:titleText="看图" />
-    <TextView
-        android:layout_gravity="center"
-        android:gravity="center"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/imageTab"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="image" />
+        android:layout_height="@dimen/common_toolbar_size"
+        app:tabIndicatorColor="@color/colorPrimaryDark"
+        app:tabPaddingTop="16dp"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/common_black"
+        app:tabBackground="@color/colorPrimary"
+        app:tabTextAppearance="@style/TabLayoutTextStyle"
+        app:tabTextColor="@color/white"/>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/imageVp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

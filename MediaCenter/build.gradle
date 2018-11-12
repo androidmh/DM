@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion compile_sdk_version
@@ -24,4 +25,7 @@ dependencies {
     api project(':Provider')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Dagger2
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

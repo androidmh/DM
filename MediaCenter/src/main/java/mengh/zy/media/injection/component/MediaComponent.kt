@@ -1,10 +1,10 @@
-package mengh.zy.dm.injection.component
+package mengh.zy.media.injection.component
 
 import dagger.Component
+import mengh.zy.media.injection.module.MediaModule
 import mengh.zy.base.injection.PerComponentScope
 import mengh.zy.base.injection.component.ActivityComponent
-import mengh.zy.dm.injection.module.IndexModule
-import mengh.zy.dm.ui.fragment.IndexFragment
+import mengh.zy.media.ui.fragment.ImgListFragment
 
 /**
  * @author by mengh
@@ -15,7 +15,7 @@ import mengh.zy.dm.ui.fragment.IndexFragment
  *   Describe:user的联系类
  */
 @PerComponentScope
-@Component(dependencies = [(ActivityComponent::class)], modules = [(IndexModule::class)])
-interface IndexComponent {
-    fun inject(fragment: IndexFragment)
+@Component(dependencies = [(ActivityComponent::class)], modules = [(MediaModule::class)])
+interface MediaComponent {
+    fun inject(fragment: ImgListFragment)
 }

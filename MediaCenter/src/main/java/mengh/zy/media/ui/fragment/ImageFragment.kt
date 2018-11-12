@@ -1,8 +1,15 @@
 package mengh.zy.media.ui.fragment
 
+import android.os.Bundle
 import android.view.View
+import kotlinx.android.synthetic.main.fragment_image.*
+import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
+import mengh.zy.base.common.BaseConstant.Companion.TAB_KEY
+import mengh.zy.base.ui.fragment.BaseFragment
 import mengh.zy.base.ui.fragment.BaseLazyFragment
 import mengh.zy.media.R
+import mengh.zy.media.ui.adapter.ImageAdapter
+import java.util.ArrayList
 
 /**
  * @author by mengh
@@ -17,6 +24,20 @@ class ImageFragment : BaseLazyFragment() {
         get() = R.layout.fragment_image
 
     override fun initView() {
+        val fragments = ArrayList<BaseFragment>()
+        val list = ArrayList<String>()
+        for (tab in IMG_TAB) {
+            val bundle = Bundle()
+            bundle.putString(TAB_KEY, tab)
+            val imgListFragment = ImgListFragment()
+            imgListFragment.arguments = bundle
+            fragments.add(imgListFragment)
+            list.add(tab)
+        }
+        val adapter = ImageAdapter(childFragmentManager, fragments, list)
+        imageVp.adapter = adapter
+        imageVp.offscreenPageLimit = adapter.count
+        imageTab.setupWithViewPager(imageVp)
     }
 
 

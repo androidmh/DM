@@ -11,13 +11,14 @@ import com.blankj.utilcode.util.Utils
 import mengh.zy.base.injection.component.AppComponent
 import com.orhanobut.hawk.Hawk
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import mengh.zy.base.R
 import mengh.zy.base.injection.component.DaggerAppComponent
 import mengh.zy.base.injection.module.AppModule
 import mengh.zy.base.widgets.BoxingGlideLoader
 import mengh.zy.base.widgets.BoxingUcrop
-
 
 
 /**
@@ -59,22 +60,30 @@ class BaseApplication : Application() {
 
     companion object {
         @SuppressLint("StaticFieldLeak")
-        lateinit var context:Context
+        lateinit var context: Context
+
         init {
             //设置全局默认配置（优先级最低，会被其他设置覆盖）
             SmartRefreshLayout.setDefaultRefreshInitializer { _, layout ->
                 //开始设置全局的基本参数（可以被下面的DefaultRefreshHeaderCreator覆盖）
                 layout.setDragRate(0.5f)
+                layout.setFooterHeight(30f)
+                layout.setHeaderHeight(50f)
             }
 
             //全局设置默认的 Header
             SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
                 layout.setEnableHeaderTranslationContent(true)
                 ClassicsHeader(context)
-                        .setPrimaryColor(ContextCompat.getColor(context,R.color.colorPrimaryDark))
-                        .setAccentColor(ContextCompat.getColor(context,R.color.white))
+                        .setPrimaryColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+                        .setAccentColor(ContextCompat.getColor(context, R.color.white))
             }
 
+            SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
+                layout.setEnableFooterTranslationContent(true)
+                ClassicsFooter(context)
+                        .setAccentColor(ContextCompat.getColor(context, R.color.colorPrimaryDark))
+            }
         }
     }
 }

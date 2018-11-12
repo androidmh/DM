@@ -3,8 +3,8 @@ package mengh.zy.dm.service.impl
 import io.reactivex.Observable
 import mengh.zy.base.ext.convert
 import mengh.zy.dm.data.protocol.IndexBean
-import mengh.zy.dm.service.IndexService
 import mengh.zy.dm.data.repository.IndexRepository
+import mengh.zy.dm.service.IndexService
 import javax.inject.Inject
 
 /**

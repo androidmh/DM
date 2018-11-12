@@ -1,9 +1,7 @@
-package mengh.zy.dm.injection.module
+package mengh.zy.media.injection.module
 
 import dagger.Module
 import dagger.Provides
-import mengh.zy.dm.service.IndexService
-import mengh.zy.dm.service.impl.IndexServiceImpl
 import mengh.zy.media.service.ImageService
 import mengh.zy.media.service.impl.ImageServiceImpl
 
@@ -13,13 +11,12 @@ import mengh.zy.media.service.impl.ImageServiceImpl
  * @date on 2018/8/10$.
  * PS: Not easy to write code, please indicate.
  *
- *   Describe: User的Module注解
+ *   Describe: Media的Module注解
  */
 @Module
-class IndexModule {
-
+class MediaModule {
     @Provides
-    fun providesUserService(service: IndexServiceImpl): IndexService {
+    fun providesMediaService(service: ImageServiceImpl): ImageService {
         return service
     }
 }

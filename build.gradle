@@ -68,7 +68,7 @@ ext {
 
     ucropVersion = '2.2.0'
 
-    bottomVersion = '2.0.5'
+    bottomVersion = '2.1.0'
 
     materialedittextVersion = '2.1.4'
 

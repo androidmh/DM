@@ -44,7 +44,7 @@
     <!-- Toolbar styles -->
     <style name="HeaderBar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">67dp</item>
+        <item name="android:layout_height">@dimen/common_toolbar_size</item>
         <item name="android:background">@color/colorPrimary</item>
     </style>
 
@@ -56,5 +56,14 @@
         <item name="android:padding">@dimen/common_padding_middle</item>
         <item name="android:layout_margin">@dimen/common_margin</item>
         <item name="android:enabled">false</item>
+    </style>
+
+    <style name="TabLayoutTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title.Inverse">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/dialog_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_anim_out</item>
     </style>
 </resources>

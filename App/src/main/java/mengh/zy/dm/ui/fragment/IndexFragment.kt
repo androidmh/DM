@@ -10,6 +10,7 @@ import mengh.zy.dm.R
 import mengh.zy.dm.data.protocol.IndexBean
 import mengh.zy.dm.injection.component.DaggerIndexComponent
 import mengh.zy.dm.injection.module.IndexModule
+import mengh.zy.media.injection.module.MediaModule
 import mengh.zy.dm.presenter.IndexPresenter
 import mengh.zy.dm.presenter.view.IndexView
 import mengh.zy.dm.ui.adapter.IndexAdapter
