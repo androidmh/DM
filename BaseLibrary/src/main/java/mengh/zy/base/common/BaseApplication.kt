@@ -11,7 +11,6 @@ import com.blankj.utilcode.util.Utils
 import mengh.zy.base.injection.component.AppComponent
 import com.orhanobut.hawk.Hawk
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import mengh.zy.base.R

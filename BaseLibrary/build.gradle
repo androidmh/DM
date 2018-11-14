@@ -17,7 +17,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled minify_enabled
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -28,7 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Android support
-    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'androidx.appcompat:appcompat:1.0.2'
     api 'com.google.android.material:material:1.1.0-alpha01'
 
     //kotlin support
@@ -121,4 +121,9 @@ dependencies {
 
     //SmartRefreshLayout Header
     api 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-14'
+
+    //shineButton
+    api 'com.sackcentury:shinebutton:0.2.0'
+
+//    api 'com.android.support:multidex:1.0.3'
 }
