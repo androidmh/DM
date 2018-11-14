@@ -1,6 +1,7 @@
 package mengh.zy.media.service
 
 import io.reactivex.Observable
+import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.protocol.ImageBean
 
 
@@ -12,4 +13,8 @@ import mengh.zy.media.data.protocol.ImageBean
  */
 interface ImageService {
     fun getImage(req: Map<String,String>): Observable<ImageBean>
+
+    fun addCollect(media_id: Int): Observable<String>
+
+    fun deleteCollect(media_id: Int): Observable<String>
 }

@@ -19,5 +19,18 @@ interface ImageApi {
      * 获取userInfo
      */
     @GET("image")
-    fun getImage(@QueryMap req: Map<String,String>): Observable<BaseResp<ImageBean>>
+    fun getImage(@QueryMap req: Map<String, String>): Observable<BaseResp<ImageBean>>
+
+    /**
+     *  添加收藏图片
+     */
+    @FormUrlEncoded
+    @POST("collect/image")
+    fun addCollect(@Field("media_id") media_id: Int): Observable<BaseResp<Any>>
+
+    /**
+     *  添加收藏图片
+     */
+    @DELETE("collect/image")
+    fun deleteCollect(@Query("media_id") media_id: Int): Observable<BaseResp<Any>>
 }

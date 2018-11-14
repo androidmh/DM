@@ -5,6 +5,7 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.api.ImageApi
 import mengh.zy.media.data.protocol.ImageBean
+import retrofit2.http.Field
 import javax.inject.Inject
 
 /**
@@ -15,9 +16,19 @@ import javax.inject.Inject
  *
  *   Describe:
  */
-class ImageRepository @Inject constructor(){
-    fun getImage(req: Map<String,String>): Observable<BaseResp<ImageBean>> {
+class ImageRepository @Inject constructor() {
+    fun getImage(req: Map<String, String>): Observable<BaseResp<ImageBean>> {
         return RetrofitFactory.instance.create(ImageApi::class.java)
                 .getImage(req)
+    }
+
+    fun addCollect(media_id: Int): Observable<BaseResp<Any>> {
+        return RetrofitFactory.instance.create(ImageApi::class.java)
+                .addCollect(media_id)
+    }
+
+    fun deleteCollect(media_id: Int): Observable<BaseResp<Any>> {
+        return RetrofitFactory.instance.create(ImageApi::class.java)
+                .deleteCollect(media_id)
     }
 }

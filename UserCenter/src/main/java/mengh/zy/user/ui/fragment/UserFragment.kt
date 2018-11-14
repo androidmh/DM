@@ -111,7 +111,9 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
                 }
             }
             mSettingTv -> {
-                startActivity<SettingActivity>()
+                afterLogin {
+                    startActivity<SettingActivity>()
+                }
             }
             mPlayTv -> {
                 startActivity<PlayActivity>()

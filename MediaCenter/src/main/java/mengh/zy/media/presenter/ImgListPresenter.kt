@@ -43,4 +43,26 @@ open class ImgListPresenter @Inject constructor() : BasePresenter<ImgListView>()
                     }
                 }, lifecycleProvider)
     }
+
+    fun setCollect(media_id: Int,isCollect:Boolean){
+        if (!checkNetWork()) {
+            return
+        }
+        if (isCollect){
+            indexService.addCollect(media_id)
+                    .execute(object : BaseSubscriber<String>(mView) {
+                        override fun onNext(t: String) {
+                            mView.onCollectResult(t)
+                        }
+                    }, lifecycleProvider)
+        }
+        else{
+            indexService.deleteCollect(media_id)
+                    .execute(object : BaseSubscriber<String>(mView) {
+                        override fun onNext(t: String) {
+                            mView.onCollectResult(t)
+                        }
+                    }, lifecycleProvider)
+        }
+    }
 }

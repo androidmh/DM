@@ -10,8 +10,8 @@ package mengh.zy.media.data.protocol
  * Describe:
  */
 data class ImageBean(var images: List<ImagesBean>, var next_page: Int) {
-    class ImagesBean {
-        var describe: String? = null
-        var url: String? = null
-    }
+    class ImagesBean(var describe: String,
+                     var id: Int,
+                     var is_collect: Boolean,
+                     var url: String)
 }

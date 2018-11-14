@@ -1,5 +1,7 @@
 package mengh.zy.base.utils
 
+import mengh.zy.base.common.BaseConstant
+import mengh.zy.base.common.BaseConstant.Companion.BASE_TOKEN
 import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
 import mengh.zy.base.data.protocol.UserInfo
 
@@ -17,7 +19,7 @@ object UserHawkUtils {
         if (info != null) {
             return info.access_token
         }
-        return ""
+        return BASE_TOKEN
     }
 
     fun deleteUserInfo(){

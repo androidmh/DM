@@ -3,10 +3,12 @@ package mengh.zy.media.ui.fragment
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.sackcentury.shinebuttonlib.ShineButton
 import kotlinx.android.synthetic.main.fragment_img_list.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
+import mengh.zy.base.ext.onClick
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
@@ -16,6 +18,7 @@ import mengh.zy.media.presenter.ImgListPresenter
 import mengh.zy.media.presenter.view.ImgListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.base.widgets.ImgDialogFragment
+import mengh.zy.media.R.id.mProgressLayout
 import mengh.zy.provider.common.afterLogin
 import org.jetbrains.anko.support.v4.toast
 
@@ -71,6 +74,10 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgSl.finishLoadMore()
     }
 
+    override fun onCollectResult(result: String) {
+        toast(result)
+    }
+
     private fun setRecycle(result: ImageBean) {
         adapter = ImageListAdapter(R.layout.item_img_list, result.images)
         adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
@@ -79,7 +86,16 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgRv.adapter = adapter
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
             afterLogin {
-                ImgDialogFragment(result.images[position].url!!).show(fragmentManager, "img_dialog")
+                ImgDialogFragment(result.images[position].url).show(fragmentManager, "img_dialog")
+            }
+        }
+        adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, position ->
+            when (view.id) {
+                R.id.collectBtn -> {
+                    val collectBtn = adapter.getViewByPosition(imgRv, position, R.id.collectBtn) as ShineButton
+                    val isCollect = collectBtn.isChecked
+                    mPresenter.setCollect(result.images[position].id, isCollect)
+                }
             }
         }
     }

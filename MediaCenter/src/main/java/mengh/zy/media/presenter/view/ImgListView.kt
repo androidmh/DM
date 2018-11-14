@@ -14,4 +14,5 @@ import mengh.zy.media.data.protocol.ImageBean
 interface ImgListView : BaseView {
     fun onGetImgResult(result: ImageBean)
     fun onLoadMoreResult(result: ImageBean)
+    fun onCollectResult(result:String)
 }
