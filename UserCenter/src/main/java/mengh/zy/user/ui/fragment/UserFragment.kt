@@ -21,6 +21,7 @@ import mengh.zy.user.injection.component.DaggerUserComponent
 import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.UserPresenter
 import mengh.zy.user.presenter.view.UserView
+import mengh.zy.user.ui.activity.CollectActivity
 import mengh.zy.user.ui.activity.PlayActivity
 import mengh.zy.user.ui.activity.SettingActivity
 import mengh.zy.user.ui.activity.UserInfoActivity
@@ -46,6 +47,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
         mPlayTv.onClick(this)
+        collectTv.onClick(this)
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val scrollRange = appBarLayout.totalScrollRange
             if (verticalOffset == 0) {
@@ -116,7 +118,14 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
                 }
             }
             mPlayTv -> {
-                startActivity<PlayActivity>()
+                afterLogin {
+                    startActivity<PlayActivity>()
+                }
+            }
+            collectTv ->{
+                afterLogin {
+                    startActivity<CollectActivity>()
+                }
             }
         }
     }

@@ -5,7 +5,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sackcentury.shinebuttonlib.ShineButton
 import mengh.zy.base.ext.loadUrl
-import mengh.zy.base.ext.onClick
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
 

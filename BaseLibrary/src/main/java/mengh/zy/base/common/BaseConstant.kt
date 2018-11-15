@@ -25,5 +25,6 @@ class BaseConstant {
         const val TAB_KEY = "tab_key"
 
         val IMG_TAB = arrayOf("科技","幻想","霜降","人工智能","模特")
+
     }
 }

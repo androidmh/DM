@@ -8,7 +8,6 @@ import kotlinx.android.synthetic.main.fragment_img_list.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
-import mengh.zy.base.ext.onClick
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
@@ -18,7 +17,6 @@ import mengh.zy.media.presenter.ImgListPresenter
 import mengh.zy.media.presenter.view.ImgListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.base.widgets.ImgDialogFragment
-import mengh.zy.media.R.id.mProgressLayout
 import mengh.zy.provider.common.afterLogin
 import org.jetbrains.anko.support.v4.toast
 
@@ -84,17 +82,19 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         val layoutManager = GridLayoutManager(mActivity, 2)
         imgRv.layoutManager = layoutManager
         imgRv.adapter = adapter
-        adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+        adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
                 ImgDialogFragment(result.images[position].url).show(fragmentManager, "img_dialog")
             }
         }
-        adapter.onItemChildClickListener = BaseQuickAdapter.OnItemChildClickListener { _, view, position ->
+        adapter.setOnItemChildClickListener { _, view, position ->
             when (view.id) {
                 R.id.collectBtn -> {
                     val collectBtn = adapter.getViewByPosition(imgRv, position, R.id.collectBtn) as ShineButton
                     val isCollect = collectBtn.isChecked
-                    mPresenter.setCollect(result.images[position].id, isCollect)
+                    afterLogin {
+                        mPresenter.setCollect(result.images[position].id, isCollect)
+                    }
                 }
             }
         }
@@ -109,5 +109,4 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgSl.finishRefresh(false)
         imgSl.finishLoadMore(false)
     }
-
 }

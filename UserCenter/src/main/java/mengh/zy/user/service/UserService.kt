@@ -1,6 +1,7 @@
 package mengh.zy.user.service
 
 import io.reactivex.Observable
+import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.user.data.protocol.*
 import okhttp3.MultipartBody
 
@@ -23,4 +24,8 @@ interface UserService {
     fun updateAvatar(part: MultipartBody.Part): Observable<String>
 
     fun updateBack(back: MultipartBody.Part): Observable<String>
+
+    fun getCollectImage(page:Int): Observable<CollectImgBean>
+
+    fun deleteCollect(media_id: Int): Observable<String>
 }

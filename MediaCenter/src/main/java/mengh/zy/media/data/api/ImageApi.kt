@@ -29,7 +29,7 @@ interface ImageApi {
     fun addCollect(@Field("media_id") media_id: Int): Observable<BaseResp<Any>>
 
     /**
-     *  添加收藏图片
+     *  删除收藏图片
      */
     @DELETE("collect/image")
     fun deleteCollect(@Query("media_id") media_id: Int): Observable<BaseResp<Any>>

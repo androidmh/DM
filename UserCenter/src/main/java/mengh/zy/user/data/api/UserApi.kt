@@ -54,4 +54,15 @@ interface UserApi {
     @POST("avatar/back")
     fun updateBack(@Part back: MultipartBody.Part): Observable<BaseResp<Any>>
 
+    /**
+     * 获取收藏图片列表
+     */
+    @GET("collect/image")
+    fun getCollectImage(@Query("page")page:Int): Observable<BaseResp<CollectImgBean>>
+
+    /**
+     *  删除收藏图片
+     */
+    @DELETE("collect/image")
+    fun deleteCollect(@Query("media_id") media_id: Int): Observable<BaseResp<Any>>
 }

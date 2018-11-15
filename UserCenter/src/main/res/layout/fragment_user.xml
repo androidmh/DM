@@ -96,7 +96,7 @@
                     android:text="@string/tv_member" />
 
                 <TextView
-                    android:id="@+id/mCompleteOrderTv"
+                    android:id="@+id/collectTv"
                     style="@style/MeOrderLabelStyle"
                     android:drawableTop="@mipmap/collect"
                     android:text="@string/tv_collect" />

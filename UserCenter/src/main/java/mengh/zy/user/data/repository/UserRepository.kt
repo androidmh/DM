@@ -6,6 +6,7 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.user.data.protocol.*
 import okhttp3.MultipartBody
+import retrofit2.http.Query
 import javax.inject.Inject
 
 /**
@@ -47,5 +48,15 @@ class UserRepository @Inject constructor() {
     fun updateBack(part: MultipartBody.Part): Observable<BaseResp<Any>>{
         return RetrofitFactory.instance.create(UserApi::class.java)
                 .updateBack(part)
+    }
+
+    fun getCollectImage(page:Int): Observable<BaseResp<CollectImgBean>>{
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .getCollectImage(page)
+    }
+
+    fun deleteCollect(media_id: Int): Observable<BaseResp<Any>>{
+        return RetrofitFactory.instance.create(UserApi::class.java)
+                .deleteCollect(media_id)
     }
 }

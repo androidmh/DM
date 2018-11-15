@@ -51,4 +51,14 @@ class UserServiceImpl @Inject constructor() : UserService {
         return repository.updateBack(part)
                 .convertMsg()
     }
+
+    override fun getCollectImage(page: Int): Observable<CollectImgBean> {
+        return repository.getCollectImage(page)
+                .convert()
+    }
+
+    override fun deleteCollect(media_id: Int): Observable<String> {
+        return repository.deleteCollect(media_id)
+                .convertMsg()
+    }
 }
