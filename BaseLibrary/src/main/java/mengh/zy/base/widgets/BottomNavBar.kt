@@ -32,11 +32,11 @@ class BottomNavBar @JvmOverloads constructor(
                 .setActiveColorResource(R.color.colorPrimaryDark)
                 .setInActiveColorResource(R.color.text_dark)
 
-        // 视频item
-        val videoItem = BottomNavigationItem(R.mipmap.video, resources.getString(R.string.video))
-                .setActiveColorResource(R.color.text_light_dark)
-                .setActiveColorResource(R.color.colorPrimaryDark)
-                .setInActiveColorResource(R.color.text_dark)
+        // 视频item(暂时放弃)
+//        val videoItem = BottomNavigationItem(R.mipmap.video, resources.getString(R.string.video))
+//                .setActiveColorResource(R.color.text_light_dark)
+//                .setActiveColorResource(R.color.colorPrimaryDark)
+//                .setInActiveColorResource(R.color.text_dark)
 
         // 我的item
         val userItem = BottomNavigationItem(R.mipmap.user_center, resources.getString(R.string.user_center))
@@ -50,7 +50,7 @@ class BottomNavBar @JvmOverloads constructor(
 
         addItem(homeItem)
                 .addItem(imgItem)
-                .addItem(videoItem)
+//                .addItem(videoItem)
                 .addItem(userItem)
                 .setFirstSelectedPosition(0)
                 .initialise()

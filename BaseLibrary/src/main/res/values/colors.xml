@@ -27,4 +27,8 @@
     <color name="text_grey">#A3A9AE</color>
     <color name="color_hint_black">#3c3c3c</color>
     <color name="register_bg">#69afa3</color>
+
+    <color name="color_collect">#e67e80</color>
+    <color name="color_search_bg">#51ffffff</color>
+
 </resources>

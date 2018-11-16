@@ -8,7 +8,7 @@ class HomeViewPagerAdapter(activity: androidx.fragment.app.FragmentActivity) : B
     override fun init(fm: androidx.fragment.app.FragmentManager, list: MutableList<BaseFragment>) {
         list.add(FragmentFactory.createFragment(0))
         list.add(FragmentFactory.createFragment(1))
-        list.add(FragmentFactory.createFragment(2))
+//        list.add(FragmentFactory.createFragment(2))
         list.add(FragmentFactory.createFragment(3))
     }
 }

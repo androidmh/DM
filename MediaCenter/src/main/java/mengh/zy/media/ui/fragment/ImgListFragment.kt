@@ -3,11 +3,14 @@ package mengh.zy.media.ui.fragment
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.hwangjr.rxbus.annotation.Subscribe
 import com.sackcentury.shinebuttonlib.ShineButton
 import kotlinx.android.synthetic.main.fragment_img_list.*
 import mengh.zy.base.common.BaseConstant
+import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
+import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
@@ -29,6 +32,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
     private var page = 0
 
     override fun initView() {
+        DMBus.mBus.register(this)
         loadData()
         mProgressLayout.showLoading()
         imgSl.setOnRefreshListener {
@@ -73,7 +77,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
     }
 
     override fun onCollectResult(result: String) {
-        toast(result)
+//        toast(result)
     }
 
     private fun setRecycle(result: ImageBean) {
@@ -100,6 +104,13 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         }
     }
 
+    @Subscribe
+    fun login(loginEvent: LoginEvent) {
+        if (loginEvent.isLogin) {
+            loadData()
+        }
+    }
+
     override fun onError(text: String) {
         super.onError(text)
         mProgressLayout.error(title = text, listener = View.OnClickListener {
@@ -108,5 +119,10 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         })
         imgSl.finishRefresh(false)
         imgSl.finishLoadMore(false)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        DMBus.mBus.unregister(this)
     }
 }

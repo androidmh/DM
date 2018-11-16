@@ -129,5 +129,7 @@ dependencies {
     //shineButton
     api 'com.sackcentury:shinebutton:0.2.0'
 
+    api 'com.hwangjr.rxbus:rxbus:1.0.6'
+
 //    api 'com.android.support:multidex:1.0.3'
 }

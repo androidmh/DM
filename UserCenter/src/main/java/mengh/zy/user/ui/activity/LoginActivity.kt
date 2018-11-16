@@ -8,9 +8,11 @@ import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
 import mengh.zy.base.common.BaseConstant.Companion.USER_PSD
 import mengh.zy.base.data.protocol.UserInfo
 import mengh.zy.base.data.protocol.UserPsd
+import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.enable
 import mengh.zy.base.ext.getToString
 import mengh.zy.base.ext.onClick
+import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.BaseMvpActivity
 import mengh.zy.base.utils.DMUtils
 import mengh.zy.base.utils.HawkUtils
@@ -94,6 +96,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         userInfo?.sign = result.sign
         HawkUtils.putObj(USER_INFO, userInfo)
         toast("登录成功")
+        DMBus.mBus.post(LoginEvent(true))
         finish()
     }
 

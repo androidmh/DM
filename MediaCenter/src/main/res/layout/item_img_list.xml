@@ -18,14 +18,14 @@
 
     <com.sackcentury.shinebuttonlib.ShineButton
         android:id="@+id/collectBtn"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_centerInParent="true"
         android:layout_gravity="bottom|end"
         android:layout_margin="7dp"
         android:src="@android:color/darker_gray"
         app:allow_random_color="false"
         app:btn_color="@android:color/darker_gray"
-        app:btn_fill_color="@color/colorPrimary"
+        app:btn_fill_color="@color/color_collect"
         app:siShape="@raw/star" />
 </androidx.cardview.widget.CardView>

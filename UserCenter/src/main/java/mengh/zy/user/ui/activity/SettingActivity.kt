@@ -2,7 +2,9 @@ package mengh.zy.user.ui.activity
 
 import android.view.View
 import kotlinx.android.synthetic.main.activity_setting.*
+import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.onClick
+import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.BaseActivity
 import mengh.zy.base.utils.MaterialDialogUtils
 import mengh.zy.base.utils.UserHawkUtils
@@ -22,6 +24,7 @@ class SettingActivity : BaseActivity() {
                 MaterialDialogUtils.getConfirmDialog(this,"是否退出登录？","")
                         .positiveButton {
                             UserHawkUtils.deleteUserInfo()
+                            DMBus.mBus.post(LoginEvent(true))
                             finish()
                         }
                         .show()

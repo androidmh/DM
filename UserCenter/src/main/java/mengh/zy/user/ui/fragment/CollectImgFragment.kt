@@ -8,7 +8,6 @@ import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.base.utils.MaterialDialogUtils
-import mengh.zy.base.utils.UserHawkUtils
 import mengh.zy.base.widgets.ImgDialogFragment
 import mengh.zy.user.ui.adapter.CollectImgAdapter
 import mengh.zy.user.R

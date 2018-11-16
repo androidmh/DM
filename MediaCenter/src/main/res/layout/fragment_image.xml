@@ -1,22 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_toolbar_size"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        app:contentInsetStart="0dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="350dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="22dp"
+            android:background="@drawable/search_bg"
+            android:drawableStart="@mipmap/search"
+            android:drawableLeft="@mipmap/search"
+            android:gravity="center"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="搜索你喜欢的图片"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_small_size" />
+    </androidx.appcompat.widget.Toolbar>
+
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/imageTab"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/common_toolbar_size"
+        android:layout_height="35dp"
+        app:tabBackground="@color/white"
         app:tabIndicatorColor="@color/colorPrimaryDark"
-        app:tabPaddingTop="16dp"
         app:tabMode="scrollable"
-        app:tabSelectedTextColor="@color/common_black"
-        app:tabBackground="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorPrimary"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
-        app:tabTextColor="@color/white"/>
+        app:tabTextColor="@color/colorPrimary" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/imageVp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 </LinearLayout>
