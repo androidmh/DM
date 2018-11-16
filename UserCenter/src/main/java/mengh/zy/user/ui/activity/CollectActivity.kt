@@ -20,8 +20,6 @@ class CollectActivity : BaseActivity() {
         list.add("图片")
         fragments.add(CollectImgFragment())
         list.add("文章")
-        fragments.add(CollectImgFragment())
-        list.add("视频")
         val adapter = CollectAdapter(supportFragmentManager, fragments, list)
         collectVp.adapter = adapter
         collectVp.offscreenPageLimit = adapter.count
