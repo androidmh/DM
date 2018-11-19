@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
 import androidx.core.content.ContextCompat
+import androidx.multidex.MultiDexApplication
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bilibili.boxing.BoxingCrop
 import com.bilibili.boxing.BoxingMediaLoader
@@ -28,7 +29,7 @@ import mengh.zy.base.widgets.BoxingUcrop
  *
  *   Describe:
  */
-class BaseApplication : Application() {
+class BaseApplication : MultiDexApplication() {
     lateinit var appComponent: AppComponent
     override fun onCreate() {
         super.onCreate()

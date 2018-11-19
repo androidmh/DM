@@ -9,7 +9,7 @@ package mengh.zy.dm.data.protocol
  *
  * Describe:
  */
-class IndexBean(var banners: List<BannersBean>, var indexes: List<IndexesBean>,var next_page:Int) {
+class IndexBean(var banners: List<BannersBean>, var indexes: List<IndexesBean>,var next_page:Int,var tabs: ArrayList<String>) {
     class BannersBean {
         var describe: String? = null
         var url: String? = null

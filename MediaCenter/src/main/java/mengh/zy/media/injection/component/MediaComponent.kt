@@ -4,6 +4,7 @@ import dagger.Component
 import mengh.zy.media.injection.module.MediaModule
 import mengh.zy.base.injection.PerComponentScope
 import mengh.zy.base.injection.component.ActivityComponent
+import mengh.zy.media.ui.activity.SearchActivity
 import mengh.zy.media.ui.fragment.ImgListFragment
 
 /**
@@ -18,4 +19,5 @@ import mengh.zy.media.ui.fragment.ImgListFragment
 @Component(dependencies = [(ActivityComponent::class)], modules = [(MediaModule::class)])
 interface MediaComponent {
     fun inject(fragment: ImgListFragment)
+    fun inject(activity: SearchActivity)
 }

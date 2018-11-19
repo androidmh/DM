@@ -3,6 +3,7 @@ package mengh.zy.dm.ui.fragment
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter.SCALEIN
 import kotlinx.android.synthetic.main.fragment_index.*
+import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
 import mengh.zy.base.ui.fragment.BaseMvpFragment
@@ -10,7 +11,6 @@ import mengh.zy.dm.R
 import mengh.zy.dm.data.protocol.IndexBean
 import mengh.zy.dm.injection.component.DaggerIndexComponent
 import mengh.zy.dm.injection.module.IndexModule
-import mengh.zy.media.injection.module.MediaModule
 import mengh.zy.dm.presenter.IndexPresenter
 import mengh.zy.dm.presenter.view.IndexView
 import mengh.zy.dm.ui.adapter.IndexAdapter
@@ -58,6 +58,7 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
 
     override fun onGetIndexResult(result: IndexBean) {
         indexSl.finishRefresh()
+        IMG_TAB = result.tabs
         if (result.banners.isNullOrEmpty() && result.indexes.isNullOrEmpty()) {
             mProgressLayout.empty()
         } else {

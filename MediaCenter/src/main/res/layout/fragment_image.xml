@@ -9,12 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_toolbar_size"
         android:background="@color/colorPrimary"
-        android:gravity="center"
         app:contentInsetStart="0dp">
 
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/iv_des"
+            android:src="@mipmap/logo" />
+
         <TextView
-            android:id="@+id/tvTitle"
-            android:layout_width="350dp"
+            android:id="@+id/searchTv"
+            android:layout_width="230dp"
             android:layout_height="25dp"
             android:layout_gravity="center"
             android:layout_marginTop="22dp"
@@ -25,10 +33,21 @@
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:text="搜索你喜欢的图片"
+            android:text="@string/search_hint"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
             android:textSize="@dimen/text_small_size" />
+
+        <ImageView
+            android:id="@+id/uploadTv"
+            android:layout_width="20dp"
+            android:layout_height="25dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="18dp"
+            android:layout_marginRight="18dp"
+            android:contentDescription="@string/iv_des"
+            android:src="@mipmap/upload" />
     </androidx.appcompat.widget.Toolbar>
 
     <com.google.android.material.tabs.TabLayout

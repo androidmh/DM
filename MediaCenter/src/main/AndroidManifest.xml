@@ -1,2 +1,9 @@
-<manifest
-    package="mengh.zy.media" />
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mengh.zy.media">
+
+    <application>
+        <activity android:name=".ui.activity.SearchActivity"></activity>
+    </application>
+
+</manifest>

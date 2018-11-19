@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/mToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/common_toolbar_size"
+        app:navigationIcon="@mipmap/arrow_back"
+        app:contentInsetStartWithNavigation="0dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="10dp">
+
+        <EditText
+            android:id="@+id/searchTv"
+            android:layout_width="230dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/search_bg"
+            android:drawableStart="@mipmap/search"
+            android:layout_gravity="center"
+            android:drawableLeft="@mipmap/search"
+            android:gravity="center"
+            android:hint="@string/search_hint"
+            android:paddingStart="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="@dimen/text_small_size" />
+    </androidx.appcompat.widget.Toolbar>
+
+</LinearLayout>

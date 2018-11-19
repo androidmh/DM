@@ -38,8 +38,8 @@ class WelcomeActivity : BaseActivity() {
         tv_wel.setOnClickListener(this)
         val flag = WindowManager.LayoutParams.FLAG_FULLSCREEN
         window.setFlags(flag, flag)
-//        timer.schedule(task, 1000, 1000)
-        toMain()
+        timer.schedule(task, 1000, 1000)
+//        toMain()
     }
 
     override fun widgetClick(v: View) {
