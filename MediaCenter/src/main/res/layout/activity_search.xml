@@ -9,20 +9,21 @@
         android:id="@+id/mToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_toolbar_size"
-        app:navigationIcon="@mipmap/arrow_back"
-        app:contentInsetStartWithNavigation="0dp"
         android:background="@color/colorPrimary"
-        android:paddingTop="10dp">
+        android:paddingTop="10dp"
+        app:contentInsetStartWithNavigation="0dp"
+        app:navigationIcon="@mipmap/arrow_back">
 
         <EditText
-            android:id="@+id/searchTv"
+            android:id="@+id/searchEt"
             android:layout_width="230dp"
             android:layout_height="25dp"
+            android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/search_bg"
             android:drawableStart="@mipmap/search"
-            android:layout_gravity="center"
             android:drawableLeft="@mipmap/search"
+            android:focusableInTouchMode="false"
             android:gravity="center"
             android:hint="@string/search_hint"
             android:paddingStart="10dp"
@@ -33,5 +34,36 @@
             android:textColorHint="@color/white"
             android:textSize="@dimen/text_small_size" />
     </androidx.appcompat.widget.Toolbar>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+        <TextView
+            android:id="@+id/historyTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/history_tv"
+            android:textColor="@color/common_black"
+            android:textSize="@dimen/text_small_size" />
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:contentDescription="@string/iv_des"
+            android:src="@mipmap/delete" />
+
+        <com.google.android.flexbox.FlexboxLayout
+            android:id="@+id/historyFl"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_below="@+id/historyTv"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="10dp"
+            app:flexWrap="wrap"
+            app:justifyContent="center" />
+    </RelativeLayout>
 </LinearLayout>

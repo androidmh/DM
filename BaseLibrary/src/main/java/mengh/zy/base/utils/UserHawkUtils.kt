@@ -1,6 +1,5 @@
 package mengh.zy.base.utils
 
-import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.common.BaseConstant.Companion.BASE_TOKEN
 import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
 import mengh.zy.base.data.protocol.UserInfo
