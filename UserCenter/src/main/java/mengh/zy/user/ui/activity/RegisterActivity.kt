@@ -24,16 +24,18 @@ import org.jetbrains.anko.toast
  *   Describe:
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
-
-
     override val layoutId: Int
         get() = R.layout.activity_register
+
 
     override fun initView() {
         registerBtn.enable({ isBtnEnable() }, nickNameEt, userPhoneEt, psdEt)
         registerBtn.onClick {
             mPresenter.register(RegisterReq(nickNameEt.getToString(), userPhoneEt.getToString(), psdEt.getToString()))
         }
+    }
+
+    override fun initData() {
     }
 
     override fun widgetClick(v: View) {

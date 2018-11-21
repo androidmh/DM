@@ -5,9 +5,7 @@ import mengh.zy.base.presenter.BasePresenter
 import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.user.data.protocol.CollectImgBean
 import mengh.zy.user.presenter.view.CollectImgView
-import mengh.zy.user.presenter.view.UserView
 import mengh.zy.user.service.UserService
-import okhttp3.MultipartBody
 import javax.inject.Inject
 
 /**

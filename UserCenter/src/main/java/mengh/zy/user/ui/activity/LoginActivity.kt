@@ -43,14 +43,17 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
 
     override fun initView() {
         loginBtn.enable({ isBtnEnable() }, userPhoneEt, psdEt)
+        mHeaderBar.getRightView().onClick(this)
+        loginBtn.onClick(this)
+    }
+
+    override fun initData() {
         val userPsd = HawkUtils.getObj<UserPsd>(USER_PSD)
         userPsd?.let { it ->
             userPhoneEt.setText(it.username)
             psdEt.setText(it.password)
             rememberCb.isChecked = it.password != ""
         }
-        mHeaderBar.getRightView().onClick(this)
-        loginBtn.onClick(this)
     }
 
     override fun widgetClick(v: View) {

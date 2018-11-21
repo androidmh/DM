@@ -61,7 +61,7 @@
                     android:layout_gravity="center"
                     android:gravity="bottom|center"
                     android:paddingBottom="10dp"
-                    android:text="我的"
+                    android:text="@string/user_center"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="@android:color/white"
                     android:textSize="17sp"

@@ -1,7 +1,6 @@
 package mengh.zy.media.service
 
 import io.reactivex.Observable
-import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.protocol.ImageBean
 
 

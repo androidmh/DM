@@ -1,6 +1,9 @@
 package mengh.zy.base.ui.activity
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
@@ -8,6 +11,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import mengh.zy.base.common.AppManger
+import mengh.zy.base.ext.judgeSdk21
 
 /**
  * @author by mengh
@@ -24,6 +28,13 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        judgeSdk21({
+            val transition = TransitionInflater.from(this).inflateTransition(android.R.transition.move)
+            window.enterTransition = transition
+            window.exitTransition = transition
+            window.reenterTransition = transition
+        })
+
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)
         setContentView(mContextView)
         AppManger.instance.addActivity(this)
@@ -78,6 +89,32 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
         }
         lastClickTime = curClickTime
         return false
+    }
+
+    /**
+     * 带动画跳转
+     */
+    fun startActivityAnimation(cls: Class<out BaseActivity>, bundle: Bundle? =null) {
+        val intent = Intent(this, cls)
+        if (bundle != null) {
+            intent.putExtras(bundle)
+        }
+        judgeSdk21({
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }, {
+            startActivity(intent)
+        })
+    }
+
+    /**
+     * 带动画finish
+     */
+    fun finishAnimation(){
+        judgeSdk21({
+            finishAfterTransition()
+        }, {
+            finish()
+        })
     }
 
     /**

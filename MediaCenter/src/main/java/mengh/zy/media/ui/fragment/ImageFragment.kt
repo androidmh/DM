@@ -1,22 +1,16 @@
 package mengh.zy.media.ui.fragment
 
-import android.app.ActivityOptions
-import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.annotation.RequiresApi
 import kotlinx.android.synthetic.main.fragment_image.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
 import mengh.zy.base.common.BaseConstant.Companion.TAB_KEY
-import mengh.zy.base.ext.judgeSdk21
 import mengh.zy.base.ext.onClick
 import mengh.zy.base.ui.fragment.BaseFragment
 import mengh.zy.base.ui.fragment.BaseLazyFragment
 import mengh.zy.media.R
 import mengh.zy.media.ui.activity.SearchActivity
 import mengh.zy.media.ui.adapter.ImageAdapter
-import org.jetbrains.anko.support.v4.startActivity
 import java.util.ArrayList
 
 /**
@@ -54,12 +48,7 @@ class ImageFragment : BaseLazyFragment() {
     override fun widgetClick(v: View) {
         when (v) {
             searchTv -> {
-                val intent = Intent(mActivity, SearchActivity::class.java)
-                judgeSdk21({
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mActivity).toBundle())
-                }, {
-                    startActivity(intent)
-                })
+                startActivityAnimation(SearchActivity::class.java)
             }
             uploadTv -> {
             }

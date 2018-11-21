@@ -35,11 +35,10 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
     override fun initView() {
         mHeaderBar.getRightView().onClick(this)
         mUserIconView.onClick(this)
-        initData()
     }
 
 
-    private fun initData() {
+    override fun initData() {
         val userInfo = HawkUtils.getObj<UserInfo>(BaseConstant.USER_INFO)
         userInfo?.let {
             it.user_icon?.let { it1 -> mUserIconIv.loadCircleUrl(it1) }

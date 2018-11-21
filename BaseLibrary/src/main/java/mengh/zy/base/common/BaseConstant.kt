@@ -17,12 +17,15 @@ class BaseConstant {
 
         const val BASE_TOKEN = "Basic ZXlKaGJHY2lPaUpJVXpJMU5pSXNJbWxoZENJNk1UVTBNakU0TVRFeE15d2laWGh3SWpveE9EQXhNemd4TVRFemZRLmV5SjFhV1FpT2prNU9UazVMQ0owZVhCbElqb3hNREVzSW5OamIzQmxJam9pVlhObGNsTmpiM0JsSW4wLnRia2MtY0VRYUxnLUlEVnRNdUd0cEtHdnF0SmhKYmVLQWUtQ2hlSVItZDg6"
 
-        //用户名称
         const val USER_INFO = "userInfo"
 
         const val USER_PSD = "userPsd"
 
+        const val HISTORY = "userHistory"
+
         const val TAB_KEY = "tab_key"
+
+        const val SEARCH_KEY = "search_key"
 
         var IMG_TAB = ArrayList<String>()
 

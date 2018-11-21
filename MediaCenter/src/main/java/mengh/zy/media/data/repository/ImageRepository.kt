@@ -5,7 +5,6 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.api.ImageApi
 import mengh.zy.media.data.protocol.ImageBean
-import retrofit2.http.Field
 import javax.inject.Inject
 
 /**

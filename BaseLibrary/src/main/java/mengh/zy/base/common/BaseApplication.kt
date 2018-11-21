@@ -1,7 +1,6 @@
 package mengh.zy.base.common
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.multidex.MultiDexApplication

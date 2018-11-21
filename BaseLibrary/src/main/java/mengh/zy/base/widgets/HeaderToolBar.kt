@@ -8,6 +8,7 @@ import android.widget.FrameLayout
 import android.widget.TextView
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 import mengh.zy.base.R
+import mengh.zy.base.ext.setVisible
 
 /**
  * @author by mengh
@@ -53,7 +54,7 @@ class HeaderToolBar @JvmOverloads constructor(
         }
         rightText?.let {
             tvRight.text = it
-            tvRight.visibility = View.VISIBLE
+            tvRight.setVisible(true)
         }
     }
 

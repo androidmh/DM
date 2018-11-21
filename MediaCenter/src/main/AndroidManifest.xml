@@ -3,7 +3,8 @@
     package="mengh.zy.media">
 
     <application>
-        <activity android:name=".ui.activity.SearchActivity"></activity>
+        <activity android:name=".ui.activity.SearchActivity" />
+        <activity android:name=".ui.activity.SearchListActivity"/>
     </application>
 
 </manifest>

@@ -30,5 +30,6 @@
 
     <color name="color_collect">#e67e80</color>
     <color name="color_search_bg">#51ffffff</color>
+    <color name="color_label_bg">#ececec</color>
 
 </resources>

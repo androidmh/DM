@@ -4,8 +4,6 @@ import dagger.Module
 import dagger.Provides
 import mengh.zy.dm.service.IndexService
 import mengh.zy.dm.service.impl.IndexServiceImpl
-import mengh.zy.media.service.ImageService
-import mengh.zy.media.service.impl.ImageServiceImpl
 
 /**
  * @author by mengh

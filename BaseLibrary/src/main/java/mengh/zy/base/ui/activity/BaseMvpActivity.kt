@@ -35,16 +35,16 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        //加载布局
-
-
         initActivityInjection()
 
         injectComponent()
 
+        initData()
         mLoadingDialog = ProgressLoading.create(this)
         ARouter.getInstance().inject(this)
     }
+
+    abstract fun initData()
 
 
     /**

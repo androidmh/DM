@@ -1,7 +1,6 @@
 package mengh.zy.base.widgets
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".ui.activity.SearchListActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/mToolbar"
@@ -18,9 +19,7 @@
         <EditText
             android:id="@+id/searchEt"
             android:layout_width="230dp"
-            android:inputType="text"
             android:layout_height="25dp"
-            android:imeOptions="actionSearch"
             android:layout_gravity="center"
             android:layout_marginTop="12dp"
             android:background="@drawable/search_bg"
@@ -28,6 +27,8 @@
             android:drawableLeft="@mipmap/search"
             android:gravity="center"
             android:hint="@string/search_hint"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
             android:paddingStart="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -47,38 +48,20 @@
             android:textColor="@color/white" />
     </androidx.appcompat.widget.Toolbar>
 
-    <RelativeLayout
+    <com.vlonjatg.progressactivity.ProgressRelativeLayout
+        android:id="@+id/mProgressLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/historyTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@string/history_tv"
-            android:textColor="@color/common_black"
-            android:textSize="@dimen/text_small_size"
-            tools:ignore="RelativeOverlap" />
-
-        <ImageView
-            android:id="@+id/deleteIv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_margin="8dp"
-            android:contentDescription="@string/iv_des"
-            android:src="@mipmap/delete" />
-        <com.google.android.flexbox.FlexboxLayout
-            android:id="@+id/historyFl"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/imgSl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/historyTv"
-            android:layout_gravity="bottom"
-            app:flexWrap="wrap"
-            app:justifyContent="flex_start" />
-    </RelativeLayout>
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/imgRv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.vlonjatg.progressactivity.ProgressRelativeLayout>
 </LinearLayout>

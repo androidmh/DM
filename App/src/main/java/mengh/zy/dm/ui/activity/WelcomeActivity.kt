@@ -4,6 +4,7 @@ import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_welcome.*
 import mengh.zy.base.common.BaseApplication.Companion.context
+import mengh.zy.base.ext.setVisible
 import mengh.zy.base.ui.activity.BaseActivity
 import mengh.zy.base.utils.DMTimeUtils
 import org.jetbrains.anko.startActivity
@@ -23,6 +24,7 @@ class WelcomeActivity : BaseActivity() {
                 timeTv.text = String.format(context.resources.getString(mengh.zy.dm.R.string.jump_times),recLen)
                 if (recLen < 0) {
                     timer.cancel()
+                    timeTv.setVisible(false)
                     toMain()
                 }
             }

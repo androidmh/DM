@@ -1,5 +1,7 @@
 package mengh.zy.base.ui.fragment
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +10,7 @@ import android.view.WindowManager
 import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxFragment
+import mengh.zy.base.ext.judgeSdk21
 import mengh.zy.base.ui.activity.BaseActivity
 
 
@@ -102,7 +105,18 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
         } catch (e: IllegalAccessException) {
             throw RuntimeException(e)
         }
+    }
 
+    /**
+     * 带动画跳转
+     */
+    fun startActivityAnimation(cls: Class<out BaseActivity>) {
+        val intent = Intent(mActivity, cls)
+        judgeSdk21({
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mActivity).toBundle())
+        }, {
+            startActivity(intent)
+        })
     }
 
     override fun onDestroy() {
