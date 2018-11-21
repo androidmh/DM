@@ -4,14 +4,17 @@ import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
 import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
 import mengh.zy.base.ext.judgeSdk21
+import org.jetbrains.anko.startActivity
 
 /**
  * @author by mengh
@@ -29,7 +32,7 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         judgeSdk21({
-            val transition = TransitionInflater.from(this).inflateTransition(android.R.transition.move)
+            val transition = TransitionInflater.from(this).inflateTransition(R.transition.fade)
             window.enterTransition = transition
             window.exitTransition = transition
             window.reenterTransition = transition
@@ -94,13 +97,14 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     /**
      * 带动画跳转
      */
-    fun startActivityAnimation(cls: Class<out BaseActivity>, bundle: Bundle? =null) {
+    fun startActivityAnimation(cls: Class<out BaseActivity>, bundle: Bundle? = null, vararg sharedElements: Pair<View, String>) {
         val intent = Intent(this, cls)
         if (bundle != null) {
             intent.putExtras(bundle)
         }
         judgeSdk21({
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            val toBundle = ActivityOptions.makeSceneTransitionAnimation(this, *sharedElements).toBundle()
+            startActivity(intent, toBundle)
         }, {
             startActivity(intent)
         })
@@ -109,7 +113,7 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     /**
      * 带动画finish
      */
-    fun finishAnimation(){
+    fun finishAnimation() {
         judgeSdk21({
             finishAfterTransition()
         }, {

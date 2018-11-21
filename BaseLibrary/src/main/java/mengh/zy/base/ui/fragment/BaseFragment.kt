@@ -3,6 +3,7 @@ package mengh.zy.base.ui.fragment
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Bundle
+import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -110,10 +111,11 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
     /**
      * 带动画跳转
      */
-    fun startActivityAnimation(cls: Class<out BaseActivity>) {
+    fun startActivityAnimation(cls: Class<out BaseActivity>, vararg sharedElements: Pair<View, String>) {
         val intent = Intent(mActivity, cls)
         judgeSdk21({
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(mActivity).toBundle())
+            val toBundle = ActivityOptions.makeSceneTransitionAnimation(mActivity, *sharedElements).toBundle()
+            startActivity(intent, toBundle)
         }, {
             startActivity(intent)
         })

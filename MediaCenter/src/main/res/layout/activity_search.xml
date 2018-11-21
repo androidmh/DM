@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/mToolbar"
+        android:id="@id/mToolbar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/common_toolbar_size"
         android:background="@color/colorPrimary"
