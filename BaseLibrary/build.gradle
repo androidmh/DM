@@ -134,6 +134,8 @@ dependencies {
     //混淆
     api 'com.android.support:multidex:1.0.3'
 
-    //chip
-//    api 'com.github.fiskurgit:ChipCloud:3.0.5'
+    //progress
+    api 'me.jessyan:progressmanager:1.5.0'
+
+    api "com.android.support:exifinterface:$android_support_version"
 }

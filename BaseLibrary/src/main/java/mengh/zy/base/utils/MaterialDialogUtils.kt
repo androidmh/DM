@@ -22,4 +22,5 @@ object MaterialDialogUtils {
             MaterialDialog(context)
         }
     }
+
 }

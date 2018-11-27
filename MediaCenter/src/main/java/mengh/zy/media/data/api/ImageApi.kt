@@ -3,6 +3,7 @@ package mengh.zy.media.data.api
 import io.reactivex.Observable
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.protocol.ImageBean
+import okhttp3.ResponseBody
 import retrofit2.http.*
 
 /**
@@ -33,4 +34,10 @@ interface ImageApi {
      */
     @DELETE("collect/image")
     fun deleteCollect(@Query("media_id") media_id: Int): Observable<BaseResp<Any>>
+
+    /**
+     * 下载图片
+     */
+    @GET
+    fun downloadImage(): Observable<ResponseBody>
 }
