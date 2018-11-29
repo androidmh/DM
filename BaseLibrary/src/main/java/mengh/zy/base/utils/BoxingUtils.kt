@@ -5,10 +5,10 @@ import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.config.BoxingConfig
 import com.bilibili.boxing.model.config.BoxingCropOption
 import com.bilibili.boxing.utils.BoxingFileHelper
-import com.bilibili.boxing_impl.ui.BoxingActivity
 import mengh.zy.base.R
 import mengh.zy.base.ui.activity.BaseActivity
 import mengh.zy.base.ui.fragment.BaseFragment
+import mengh.zy.base.widgets.DMBoxingActivity
 import java.util.*
 
 /**
@@ -29,9 +29,10 @@ object BoxingUtils {
                 .build()
         val singleCropImgConfig = BoxingConfig(BoxingConfig.Mode.SINGLE_IMG)
                 .withCropOption(BoxingCropOption(destUri))
+                .withAlbumPlaceHolderRes(R.mipmap.image)
                 .withMediaPlaceHolderRes(R.mipmap.image)
                 .needCamera(R.drawable.ic_boxing_camera_white)
-        Boxing.of(singleCropImgConfig).withIntent(activity, BoxingActivity::class.java).start(activity, code)
+        Boxing.of(singleCropImgConfig).withIntent(activity, DMBoxingActivity::class.java).start(activity, code)
     }
 
     fun selectSingleCutImg(fragment: BaseFragment, code: Int) {
@@ -44,7 +45,8 @@ object BoxingUtils {
         val singleCropImgConfig = BoxingConfig(BoxingConfig.Mode.SINGLE_IMG)
                 .withCropOption(BoxingCropOption(destUri))
                 .withMediaPlaceHolderRes(R.mipmap.image)
+                .withAlbumPlaceHolderRes(R.mipmap.image)
                 .needCamera(R.drawable.ic_boxing_camera_white)
-        Boxing.of(singleCropImgConfig).withIntent(fragment.activity!!, BoxingActivity::class.java).start(fragment, code)
+        Boxing.of(singleCropImgConfig).withIntent(fragment.activity!!, DMBoxingActivity::class.java).start(fragment, code)
     }
 }

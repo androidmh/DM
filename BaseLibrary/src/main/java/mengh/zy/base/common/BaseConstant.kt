@@ -29,5 +29,6 @@ class BaseConstant {
 
         var IMG_TAB = ArrayList<String>()
 
+        const val DCIM_PHOTO_DIR = "/dm/photograph"
     }
 }

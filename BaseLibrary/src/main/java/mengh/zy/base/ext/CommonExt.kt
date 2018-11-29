@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.ProgressBar
 import com.bilibili.boxing.model.entity.impl.ImageMedia
 import com.bilibili.boxing.utils.ImageCompressor
 import mengh.zy.base.data.protocol.BaseResp
@@ -14,12 +15,18 @@ import com.vlonjatg.progressactivity.ProgressRelativeLayout
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import me.jessyan.progressmanager.ProgressListener
+import me.jessyan.progressmanager.ProgressManager
+import me.jessyan.progressmanager.body.ProgressInfo
 import mengh.zy.base.rx.BaseFunc
 import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.base.utils.GlideUtils
 import mengh.zy.base.widgets.DefaultTextWatcher
 import mengh.zy.base.R
+import mengh.zy.base.R.id.mProgressBar
+import mengh.zy.base.rx.BaseDownloadSubscriber
 import java.io.File
+import java.lang.Exception
 
 /**
  * @author by mengh
@@ -30,6 +37,12 @@ import java.io.File
 fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>, lifecycleProvider: LifecycleProvider<*>) {
     this.observeOn(AndroidSchedulers.mainThread())
             .compose(lifecycleProvider.bindToLifecycle())
+            .subscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+}
+
+fun <T> Observable<T>.executeDown(subscriber: BaseDownloadSubscriber<T>) {
+    this.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(subscriber)
 }
@@ -97,12 +110,12 @@ fun EditText.getToString(): String {
     return text.toString()
 }
 
-fun ProgressRelativeLayout.empty(img:Int=R.mipmap.empty,title:String="暂无数据",des:String=""){
-    this.showEmpty(img,title,des)
+fun ProgressRelativeLayout.empty(img: Int = R.mipmap.empty, title: String = "暂无数据", des: String = "") {
+    this.showEmpty(img, title, des)
 }
 
-fun ProgressRelativeLayout.error(img:Int=R.mipmap.error,title:String="暂无数据",des:String="",btnText:String="重试",listener: View.OnClickListener){
-    this.showError(img,title,des,btnText,listener)
+fun ProgressRelativeLayout.error(img: Int = R.mipmap.error, title: String = "暂无数据", des: String = "", btnText: String = "重试", listener: View.OnClickListener) {
+    this.showError(img, title, des, btnText, listener)
 }
 
 /*
@@ -131,4 +144,18 @@ fun View.loadUrlTarget(url: String) {
  */
 fun View.setVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+/*
+    动态加载进度条
+ */
+fun ProgressBar.setProgress(url: String) {
+    ProgressManager.getInstance().addResponseListener(url, object : ProgressListener {
+        override fun onProgress(progressInfo: ProgressInfo) {
+            this@setProgress.progress = progressInfo.percent
+        }
+
+        override fun onError(id: Long, e: Exception?) {
+        }
+    })
 }

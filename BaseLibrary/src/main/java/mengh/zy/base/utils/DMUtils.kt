@@ -1,20 +1,17 @@
 package mengh.zy.base.utils
 
 import android.content.*
-import android.util.Log
 import android.widget.EditText
 import okhttp3.ResponseBody
 import java.io.*
 import java.util.*
-import android.content.Intent
-import android.net.Uri
+import android.media.MediaScannerConnection
 import android.os.Environment
-import android.provider.MediaStore
+import android.util.Log
 import androidx.exifinterface.media.ExifInterface
-import com.blankj.utilcode.util.FileUtils
 import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
-
+import android.net.Uri
 
 /**
  * Created by HMH on 2017/7/31.
@@ -36,15 +33,15 @@ object DMUtils {
      */
     fun writeResponseBodyToDisk(body: ResponseBody, context: Context?): Boolean {
         try {
-            val futureStudioIconFile = File(getDir() + File.separator + UUID.randomUUID().toString() + ".jpg")
+            val fileName = TimeUtils.getNowMills().toString() + ".jpg"
+            val futureStudioIconFile = File(getDir() , fileName)
 
             var inputStream: InputStream? = null
-            var outputStream: OutputStream? = null
+            var outputStream: FileOutputStream? = null
 
             try {
                 val fileReader = ByteArray(4096)
 
-                val fileSize = body.contentLength()
                 var fileSizeDownloaded: Long = 0
 
                 inputStream = body.byteStream()
@@ -60,8 +57,6 @@ object DMUtils {
                     outputStream.write(fileReader, 0, read)
 
                     fileSizeDownloaded += read.toLong()
-
-                    Log.d("dmdm", "file download: $fileSizeDownloaded of $fileSize")
                 }
 
                 outputStream.flush()
@@ -73,29 +68,36 @@ object DMUtils {
                 inputStream?.close()
 
                 outputStream?.close()
-                val fileLastModified = (FileUtils.getFileLastModified(futureStudioIconFile) / 1000).toInt()
+
+                //更改文件时间
                 val exifInterface = ExifInterface(futureStudioIconFile.absolutePath)
-                val dateFormat = SimpleDateFormat("yyyy:MM:dd hh:mm:ss", Locale.getDefault())
-                val format = dateFormat.format(TimeUtils.getNowMills())
+                val dateFormat = SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.getDefault())
+                val nowMills = TimeUtils.getNowMills()
+                val format = dateFormat.format(nowMills)
                 exifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, format)
                 exifInterface.saveAttributes()
 
-                val values = ContentValues()
-                values.put(MediaStore.Images.Media.DATA, futureStudioIconFile.absolutePath)
-                values.put(MediaStore.Images.Media.DESCRIPTION, "来自dm的图片")
-                values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
-                val insert = context?.contentResolver?.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values)
-                val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(futureStudioIconFile))
-                context?.sendBroadcast(intent)
+                var sMediaScannerConnection: MediaScannerConnection? = null
+                sMediaScannerConnection = MediaScannerConnection(context,object : MediaScannerConnection.MediaScannerConnectionClient{
+                    override fun onMediaScannerConnected() {
+                        Log.e("dmdm","onMediaScannerConnected")
+                        sMediaScannerConnection?.scanFile(futureStudioIconFile.toString(),"image/jpeg")
+                    }
+                    override fun onScanCompleted(path: String?, uri: Uri?) {
+                        Log.e("dmdm","onScanCompleted$path$uri")
+                        sMediaScannerConnection?.disconnect()
+                    }
+                })
+                sMediaScannerConnection.connect()
             }
         } catch (e: IOException) {
             return false
         }
-
     }
 
     private fun getDir(): String {
-        val dir = Environment.getExternalStorageDirectory().absolutePath+"/mengh.zy.dm/Media/DMImage"
+        val mainPath = Environment.getExternalStorageDirectory().path
+        val dir = "$mainPath/HDM/Media/DMImage"
         val tmpFile = File(dir)
         if (!tmpFile.exists()) {
             tmpFile.mkdirs()
