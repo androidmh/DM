@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
     <external-path name="dcim" path="DCIM/dm/photograph" />
+
+    <external-path name="DMImg" path="/HDM/Media/DMImage/" />
 </paths>
