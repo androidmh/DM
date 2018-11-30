@@ -2,10 +2,7 @@ package mengh.zy.base.ext
 
 import android.content.Context
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.ProgressBar
+import android.widget.*
 import com.bilibili.boxing.model.entity.impl.ImageMedia
 import com.bilibili.boxing.utils.ImageCompressor
 import mengh.zy.base.data.protocol.BaseResp
@@ -23,7 +20,6 @@ import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.base.utils.GlideUtils
 import mengh.zy.base.widgets.DefaultTextWatcher
 import mengh.zy.base.R
-import mengh.zy.base.R.id.mProgressBar
 import mengh.zy.base.rx.BaseDownloadSubscriber
 import java.io.File
 import java.lang.Exception
@@ -149,7 +145,7 @@ fun View.setVisible(visible: Boolean) {
 /*
     动态加载进度条
  */
-fun ProgressBar.setProgress(url: String) {
+fun SeekBar.setProgress(url: String) {
     ProgressManager.getInstance().addResponseListener(url, object : ProgressListener {
         override fun onProgress(progressInfo: ProgressInfo) {
             this@setProgress.progress = progressInfo.percent

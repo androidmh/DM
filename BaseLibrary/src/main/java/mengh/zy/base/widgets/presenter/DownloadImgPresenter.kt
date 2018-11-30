@@ -1,12 +1,11 @@
 package mengh.zy.base.widgets.presenter
 
-import android.widget.ProgressBar
+import android.widget.SeekBar
 import mengh.zy.base.data.api.DownloadApi
 import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.ext.executeDown
 import mengh.zy.base.ext.setProgress
 import mengh.zy.base.presenter.BaseDownloadPresenter
-import mengh.zy.base.presenter.BasePresenter
 import mengh.zy.base.rx.BaseDownloadSubscriber
 import mengh.zy.base.widgets.presenter.view.DownloadImgView
 import okhttp3.ResponseBody
@@ -20,7 +19,7 @@ import okhttp3.ResponseBody
  *   Describe:
  */
 class DownloadImgPresenter : BaseDownloadPresenter<DownloadImgView>() {
-    fun getImg(url:String,progressBar: ProgressBar){
+    fun getImg(url:String,progressBar: SeekBar){
         if (!checkNetWork()) {
             return
         }

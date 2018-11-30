@@ -15,6 +15,7 @@ import mengh.zy.base.utils.MaterialDialogUtils
 import com.blankj.utilcode.constant.PermissionConstants
 import kotlinx.android.synthetic.main.dialog_img.*
 import mengh.zy.base.ext.loadUrl
+import mengh.zy.base.ext.setVisible
 import mengh.zy.base.utils.DMUtils
 import mengh.zy.base.widgets.presenter.DownloadImgPresenter
 import mengh.zy.base.widgets.presenter.view.DownloadImgView
@@ -62,6 +63,8 @@ class ImgDialogFragment(private var url: String) : DialogFragment(),DownloadImgV
             this.dismiss()
         }
         downloadIv.onClick {
+            downloadIv.setVisible(false)
+            mProgressBar.setVisible(true)
             checkStoragePermission()
         }
     }
@@ -100,6 +103,8 @@ class ImgDialogFragment(private var url: String) : DialogFragment(),DownloadImgV
             toast("下载成功")
         }else{
             toast("下载失败")
+            downloadIv.setVisible(true)
+            mProgressBar.setVisible(false)
         }
     }
 }
