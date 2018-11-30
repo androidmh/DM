@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.LogUtils
  *   Describe:全局Log
  */
 object DMLog {
-    fun LogV(tag: String, content: Any) {
+    fun logV(tag: String, content: Any) {
         LogUtils.vTag(tag, content)
     }
 }

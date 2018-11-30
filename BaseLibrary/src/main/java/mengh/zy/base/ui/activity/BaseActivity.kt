@@ -14,7 +14,6 @@ import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import mengh.zy.base.R
 import mengh.zy.base.common.AppManger
 import mengh.zy.base.ext.judgeSdk21
-import org.jetbrains.anko.startActivity
 
 /**
  * @author by mengh

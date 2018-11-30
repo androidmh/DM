@@ -28,7 +28,7 @@ open class BaseDownloadSubscriber<T>(private val baseView: BaseDownloadView) : O
 
     override fun onError(e: Throwable) {
         val body = (e as HttpException).response().errorBody()
-        DMLog.LogV("error",body!!.string())
+        DMLog.logV("error",body!!.string())
         baseView.onError("网络异常，下载失败")
     }
 

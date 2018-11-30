@@ -1,7 +1,6 @@
 package mengh.zy.media.ui.fragment
 
 import android.os.Bundle
-import android.util.Pair
 import android.view.View
 import kotlinx.android.synthetic.main.fragment_image.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB

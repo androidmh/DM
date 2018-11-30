@@ -12,7 +12,6 @@ import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
 import android.net.Uri
-import androidx.core.content.FileProvider
 
 
 /**

@@ -11,4 +11,4 @@ package mengh.zy.base.rx
  *   @param msg 错误信息
  */
 
-class BaseException(val status: Int, val msg: String) : Throwable()
+class BaseException(private val status: Int, private val msg: String) : Throwable()

@@ -1,11 +1,8 @@
 package mengh.zy.base.presenter
 
 import android.content.Context
-import com.trello.rxlifecycle2.LifecycleProvider
 import mengh.zy.base.presenter.view.BaseDownloadView
-import mengh.zy.base.presenter.view.BaseView
 import mengh.zy.base.utils.NetWorkUtils
-import javax.inject.Inject
 
 /**
  * @author by mengh
