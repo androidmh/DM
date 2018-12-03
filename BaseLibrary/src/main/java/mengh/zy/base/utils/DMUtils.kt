@@ -12,6 +12,7 @@ import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
 import android.net.Uri
+import android.os.Environment.DIRECTORY_PICTURES
 
 
 /**
@@ -36,7 +37,7 @@ object DMUtils {
         try {
             val nowMills1 = TimeUtils.getNowMills()
             val fileName = nowMills1.toString() + ".jpg"
-            val futureStudioIconFile = File(Environment.getExternalStorageDirectory(), "${getDMDir()}$fileName")
+            val futureStudioIconFile = File(getDMDir(), fileName)
 
             var inputStream: InputStream? = null
             var outputStream: FileOutputStream? = null
@@ -78,20 +79,21 @@ object DMUtils {
                 exifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, format)
                 exifInterface.saveAttributes()
 
-                var sMediaScannerConnection: MediaScannerConnection? = null
-                sMediaScannerConnection = MediaScannerConnection(context, object : MediaScannerConnection.MediaScannerConnectionClient {
-                    override fun onMediaScannerConnected() {
-                        Log.e("dmdm", "onMediaScannerConnected")
-                        sMediaScannerConnection?.scanFile(futureStudioIconFile.toString(), "image/jpeg")
-                    }
-
-                    override fun onScanCompleted(path: String?, uri: Uri?) {
-                        Log.e("dmdm", "onScanCompleted$path$uri")
-                        context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,uri))
-                        sMediaScannerConnection?.disconnect()
-                    }
-                })
-                sMediaScannerConnection.connect()
+                context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(futureStudioIconFile)))
+//                var sMediaScannerConnection: MediaScannerConnection? = null
+//                sMediaScannerConnection = MediaScannerConnection(context, object : MediaScannerConnection.MediaScannerConnectionClient {
+//                    override fun onMediaScannerConnected() {
+//                        Log.e("dmdm", "onMediaScannerConnected")
+//                        sMediaScannerConnection?.scanFile(futureStudioIconFile.toString(), "image/jpeg")
+//                    }
+//
+//                    override fun onScanCompleted(path: String?, uri: Uri?) {
+//                        Log.e("dmdm", "onScanCompleted$path$uri")
+//                        context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,uri))
+//                        sMediaScannerConnection?.disconnect()
+//                    }
+//                })
+//                sMediaScannerConnection.connect()
             }
         } catch (e: IOException) {
             return false
@@ -99,10 +101,10 @@ object DMUtils {
     }
 
     private fun getDMDir():String{
-        val tmpFile = File(Environment.getExternalStorageDirectory(),"HDM/Media/DMImage/")
+        val tmpFile = File(Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES),"HDM/dmDownload")
         if (!tmpFile.exists()) {
             tmpFile.mkdirs()
         }
-        return "HDM/Media/DMImage/"
+        return tmpFile.absolutePath
     }
 }
