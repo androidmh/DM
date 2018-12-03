@@ -101,7 +101,9 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
-                ImgDialogFragment(result.images[position].url).show(supportFragmentManager, "img_dialog")
+                val imgDialogFragment = ImgDialogFragment()
+                imgDialogFragment.putUrl(result.images[position].url)
+                imgDialogFragment.show(supportFragmentManager, "img_dialog")
             }
         }
         adapter.setOnItemChildClickListener { _, view, position ->

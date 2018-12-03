@@ -82,7 +82,9 @@ class CollectImgFragment : BaseMvpFragment<CollectImgPresenter>(), CollectImgVie
         imgRv.layoutManager = layoutManager
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
-            ImgDialogFragment(result.images[position].url).show(fragmentManager, "img_dialog")
+            val imgDialogFragment = ImgDialogFragment()
+            imgDialogFragment.putUrl(result.images[position].url)
+            imgDialogFragment.show(fragmentManager, "img_dialog")
         }
         adapter.setOnItemLongClickListener { _, _, position ->
             MaterialDialogUtils.getConfirmDialog(mActivity,"是否删除本条收藏？","")

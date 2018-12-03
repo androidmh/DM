@@ -88,7 +88,9 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
-                ImgDialogFragment(result.images[position].url).show(fragmentManager, "img_dialog")
+                val imgDialogFragment = ImgDialogFragment()
+                imgDialogFragment.putUrl(result.images[position].url)
+                imgDialogFragment.show(fragmentManager, "img_dialog")
             }
         }
         adapter.setOnItemChildClickListener { _, view, position ->

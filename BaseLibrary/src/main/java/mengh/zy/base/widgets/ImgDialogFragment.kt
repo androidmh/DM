@@ -27,10 +27,15 @@ import org.jetbrains.anko.support.v4.toast
  * Created by HMH on 2017/8/17.
  */
 
-@SuppressLint("ValidFragment")
-class ImgDialogFragment(private var url: String) : DialogFragment(),DownloadImgView{
+class ImgDialogFragment : DialogFragment(),DownloadImgView{
 
     private lateinit var mPresenter:DownloadImgPresenter
+
+    private lateinit var url: String;
+
+    fun putUrl(url: String){
+        this.url = url
+    }
 
     override fun onStart() {
         super.onStart()
