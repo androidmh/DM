@@ -1,9 +1,11 @@
 package mengh.zy.media.ui.activity
 
+import android.view.Menu
 import android.view.View
-import android.view.inputmethod.EditorInfo
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.SearchView
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
-import com.blankj.utilcode.util.KeyboardUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hwangjr.rxbus.annotation.Subscribe
 import com.sackcentury.shinebuttonlib.ShineButton
@@ -12,8 +14,6 @@ import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
-import mengh.zy.base.ext.getToString
-import mengh.zy.base.ext.onClick
 import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.BaseMvpActivity
 import mengh.zy.base.utils.UserHawkUtils
@@ -26,6 +26,7 @@ import mengh.zy.media.presenter.SearchListPresenter
 import mengh.zy.media.presenter.view.SearchListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.provider.common.afterLogin
+import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
 class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListView {
@@ -40,9 +41,11 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
 
     override fun initView() {
         DMBus.mBus.register(this)
-        searchTv.onClick(this)
+        val toolbar = find<Toolbar>(R.id.dmToolbar)
+        initToolbar(toolbar, "", true){
+            finishAnimation()
+        }
         searchString = intent.getStringExtra(BaseConstant.SEARCH_KEY)
-        searchEt.setText(searchString)
         mProgressLayout.showLoading()
         imgSl.setOnRefreshListener {
             initData()
@@ -51,30 +54,47 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
         imgSl.setOnLoadMoreListener {
             mPresenter.getNextPage(mapOf(Pair("search", searchString), Pair("page", "$page")))
         }
-
-        mToolbar.setNavigationOnClickListener {
-            finishAnimation()
-        }
-
-        searchEt.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                searchTo(searchEt.getToString())
-            }
-            false
-        }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_search, menu)
+        val searchItem = menu?.findItem(R.id.search_view)
+        val searchView = searchItem?.actionView as SearchView
+        //保持展开状态
+        searchView.isIconified = false
+        //无内容无取消按钮
+        searchView.onActionViewExpanded()
+        //提交按钮
+        searchView.isSubmitButtonEnabled = true
+        searchView.queryHint = getString(R.string.search_hint)
+        searchView.clearFocus()
+
+        val go = searchView.findViewById<AppCompatImageView>(R.id.search_go_btn)
+        go.setImageResource(R.mipmap.search)
+
+        val input = searchView.findViewById<SearchView.SearchAutoComplete>(R.id.search_src_text)
+        input.setText(searchString)
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String): Boolean {
+                searchString = query
+                searchTo(query)
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                return true
+            }
+        })
+        return true
+    }
 
     override fun initData() {
         mPresenter.getImage(mapOf(Pair("search", searchString), Pair("page", "0")))
     }
 
     override fun widgetClick(v: View) {
-        when (v) {
-            searchTv -> {
-                searchTo(searchEt.getToString())
-            }
-        }
     }
 
     override fun injectComponent() {
@@ -154,7 +174,6 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
             toast("请输入你要搜索的内容")
         } else {
             UserHawkUtils.putSearchHistory(search)
-            KeyboardUtils.hideSoftInput(searchEt)
             mPresenter.getImage(mapOf(Pair("search", search), Pair("page", "0")))
         }
     }

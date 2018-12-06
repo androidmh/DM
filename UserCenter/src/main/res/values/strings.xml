@@ -30,5 +30,7 @@
     <string name="tv_phone">手机</string>
     <string name="tv_sign">签名</string>
     <string name="sign_hint">请您填写签名</string>
+    <string name="register_menu">注册</string>
+    <string name="save_menu">保存</string>
 
 </resources>

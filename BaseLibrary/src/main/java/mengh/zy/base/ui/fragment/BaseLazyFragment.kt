@@ -1,7 +1,9 @@
 package mengh.zy.base.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 
 abstract class BaseLazyFragment : BaseFragment() {
 
@@ -28,6 +30,16 @@ abstract class BaseLazyFragment : BaseFragment() {
         super.setUserVisibleHint(isVisibleToUser)
     }
 
+    fun initToolbar(toolbar: Toolbar?, title: String, isBack: Boolean = false) {
+        toolbar?.title = title
+        toolbar?.setTitleTextColor(Color.WHITE)
+        mImmersionBar.titleBar(toolbar)
+        mActivity.setSupportActionBar(toolbar)
+        if (isBack) {
+            mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            toolbar?.setNavigationOnClickListener { mActivity.finish() }
+        }
+    }
 
     override fun onDetach() {
         super.onDetach()

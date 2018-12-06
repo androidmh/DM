@@ -4,7 +4,7 @@
     android:duration="500">
     <targets>
         <target
-            android:excludeId="@id/mToolbar"
+            android:excludeId="@id/appBarLayout"
             tools:ignore="UnusedAttribute" />
     </targets>
 </fade>

@@ -43,6 +43,7 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         get() = R.layout.fragment_user
 
     override fun initView() {
+        initToolbar(dmToolbar, "我的")
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
         mSettingTv.onClick(this)
@@ -51,10 +52,10 @@ class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val scrollRange = appBarLayout.totalScrollRange
             if (verticalOffset == 0) {
-                tvTitle.alpha = 0.0f
+//                tvTitle.alpha = 0.0f
             } else {
                 val alpha = Math.abs(Math.round(1.0f * verticalOffset / scrollRange) * 10) / 10
-                tvTitle.alpha = alpha.toFloat()
+//                tvTitle.alpha = alpha.toFloat()
             }
         })
         backIv.onLongClick {

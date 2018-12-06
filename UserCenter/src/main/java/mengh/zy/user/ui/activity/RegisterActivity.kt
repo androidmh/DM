@@ -13,6 +13,7 @@ import mengh.zy.user.injection.component.DaggerUserComponent
 import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.RegisterPresenter
 import mengh.zy.user.presenter.view.RegisterView
+import org.jetbrains.anko.find
 import org.jetbrains.anko.toast
 
 /**
@@ -29,6 +30,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
 
 
     override fun initView() {
+        initToolbar(find(R.id.dmToolbar), "注册", true)
         registerBtn.enable({ isBtnEnable() }, nickNameEt, userPhoneEt, psdEt)
         registerBtn.onClick {
             mPresenter.register(RegisterReq(nickNameEt.getToString(), userPhoneEt.getToString(), psdEt.getToString()))

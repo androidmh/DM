@@ -1,7 +1,9 @@
 package mengh.zy.user.ui.activity
 
 import android.util.Base64
+import android.view.Menu
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.alibaba.android.arouter.facade.annotation.Route
 import kotlinx.android.synthetic.main.activity_login.*
 import mengh.zy.base.common.BaseConstant.Companion.USER_INFO
@@ -24,6 +26,7 @@ import mengh.zy.user.injection.component.DaggerUserComponent
 import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.LoginPresenter
 import mengh.zy.user.presenter.view.LoginView
+import org.jetbrains.anko.find
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
@@ -42,8 +45,17 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
         get() = R.layout.activity_login
 
     override fun initView() {
+        val toolbar = find<Toolbar>(R.id.dmToolbar)
+        initToolbar(toolbar, "登录", true)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.register -> {
+                    startActivity<RegisterActivity>()
+                }
+            }
+            true
+        }
         loginBtn.enable({ isBtnEnable() }, userPhoneEt, psdEt)
-        mHeaderBar.getRightView().onClick(this)
         loginBtn.onClick(this)
     }
 
@@ -58,8 +70,6 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
 
     override fun widgetClick(v: View) {
         when (v.id) {
-            R.id.tvRight -> startActivity<RegisterActivity>()
-
             R.id.loginBtn -> {
                 if (userPhoneEt.getToString().length != 11) {
                     toast("请输入正确的手机号")
@@ -68,6 +78,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView {
                 mPresenter.getToken(GetTokenReq(userPhoneEt.getToString(), psdEt.getToString()))
             }
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_login, menu)
+        return true
     }
 
     override fun injectComponent() {

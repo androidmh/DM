@@ -2,7 +2,9 @@ package mengh.zy.user.ui.activity
 
 import android.app.Activity
 import android.content.Intent
+import android.view.Menu
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.entity.impl.ImageMedia
 import kotlinx.android.synthetic.main.activity_user_info.*
@@ -26,6 +28,7 @@ import mengh.zy.user.presenter.view.UpdateUserView
 import okhttp3.MultipartBody
 import org.jetbrains.anko.toast
 import okhttp3.RequestBody
+import org.jetbrains.anko.find
 
 
 class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView {
@@ -33,7 +36,21 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
         get() = R.layout.activity_user_info
 
     override fun initView() {
-        mHeaderBar.getRightView().onClick(this)
+        val toolbar = find<Toolbar>(R.id.dmToolbar)
+        initToolbar(toolbar, "个人信息", true)
+        toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.save_info -> {
+                    if (checkInput()) {
+                        val gender = if (mGenderMaleRb.isChecked) 1 else 2
+                        mPresenter.updateUser(UpdateUserReq(gender, mUserNameEt.getToString(), mUserSignEt.getToString()))
+                    } else {
+                        toast("您未做任何更改")
+                    }
+                }
+            }
+            true
+        }
         mUserIconView.onClick(this)
     }
 
@@ -82,16 +99,13 @@ class UserInfoActivity : BaseMvpActivity<UpdateUserPresenter>(), UpdateUserView 
         UserHawkUtils.putUserInfo(gender, mUserNameEt.getToString(), mUserSignEt.getToString())
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_user_info, menu)
+        return true
+    }
+
     override fun widgetClick(v: View) {
         when (v.id) {
-            R.id.tvRight -> {
-                if (checkInput()) {
-                    val gender = if (mGenderMaleRb.isChecked) 1 else 2
-                    mPresenter.updateUser(UpdateUserReq(gender, mUserNameEt.getToString(), mUserSignEt.getToString()))
-                } else {
-                    toast("您未做任何更改")
-                }
-            }
             R.id.mUserIconView -> {
                 BoxingUtils.selectSingleCutImg(this, REQUEST_CODE)
             }

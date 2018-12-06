@@ -15,6 +15,7 @@ import mengh.zy.dm.presenter.IndexPresenter
 import mengh.zy.dm.presenter.view.IndexView
 import mengh.zy.dm.ui.adapter.IndexAdapter
 import mengh.zy.dm.ui.item.IndexItem
+import org.jetbrains.anko.support.v4.find
 import org.jetbrains.anko.support.v4.toast
 
 /**
@@ -34,6 +35,7 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
     private var page = 0
 
     override fun initView() {
+        initToolbar(find(R.id.dmToolbar), "首页")
         loadData()
         mProgressLayout.showLoading()
         indexSl.setOnRefreshListener {

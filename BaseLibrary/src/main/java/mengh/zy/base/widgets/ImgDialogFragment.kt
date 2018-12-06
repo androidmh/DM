@@ -1,7 +1,6 @@
 package mengh.zy.base.widgets
 
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,7 @@ class ImgDialogFragment : DialogFragment(),DownloadImgView{
 
     private lateinit var mPresenter:DownloadImgPresenter
 
-    private lateinit var url: String;
+    private lateinit var url: String
 
     fun putUrl(url: String){
         this.url = url

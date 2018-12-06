@@ -5,10 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <mengh.zy.base.widgets.HeaderToolBar
-        android:id="@+id/mHeaderBar"
-        style="@style/MatchWrap"
-        app:titleText="注册" />
+    <include layout="@layout/header_bar"/>
 
     <com.rengwuxian.materialedittext.MaterialEditText
         android:id="@+id/nickNameEt"

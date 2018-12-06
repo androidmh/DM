@@ -1,7 +1,9 @@
 package mengh.zy.base.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.Toolbar
 import mengh.zy.base.injection.component.ActivityComponent
 import mengh.zy.base.injection.module.ActivityModule
 import mengh.zy.base.injection.module.LifecycleProviderModule
@@ -59,6 +61,17 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
     abstract fun initView()
 
     abstract fun injectComponent()
+
+    fun initToolbar(toolbar: Toolbar?, title: String, isBack: Boolean = false) {
+        toolbar?.title = title
+        toolbar?.setTitleTextColor(Color.WHITE)
+        mImmersionBar.titleBar(toolbar)
+        mActivity.setSupportActionBar(toolbar)
+        if (isBack) {
+            mActivity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            toolbar?.setNavigationOnClickListener { mActivity.finish() }
+        }
+    }
 
     private fun initActivityInjection() {
         activityComponent = DaggerActivityComponent.builder().appComponent((activity!!.application as BaseApplication).appComponent)

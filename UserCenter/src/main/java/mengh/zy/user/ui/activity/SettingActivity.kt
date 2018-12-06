@@ -9,12 +9,14 @@ import mengh.zy.base.ui.activity.BaseActivity
 import mengh.zy.base.utils.MaterialDialogUtils
 import mengh.zy.base.utils.UserHawkUtils
 import mengh.zy.user.R
+import org.jetbrains.anko.find
 
 class SettingActivity : BaseActivity() {
     override val layoutId: Int
         get() = R.layout.activity_setting
 
     override fun initView() {
+        initToolbar(find(R.id.dmToolbar), "设置",true)
         mLogoutBtn.onClick(this)
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search_item"
+        android:icon="@mipmap/search"
+        android:orderInCategory="80"
+        android:title="@string/search_menu"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/upload_item"
+        android:icon="@mipmap/upload"
+        android:orderInCategory="90"
+        android:title="@string/search_menu"
+        app:showAsAction="ifRoom" />
+</menu>

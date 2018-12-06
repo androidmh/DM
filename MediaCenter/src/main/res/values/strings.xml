@@ -2,5 +2,5 @@
     <string name="app_name">MediaCenter</string>
     <string name="search_hint">搜索你喜欢的图片</string>
     <string name="history_tv">历史搜索</string>
-    <string name="search_tv">搜索</string>
+    <string name="search_menu">搜索</string>
 </resources>

@@ -26,7 +26,7 @@ import mengh.zy.base.ui.activity.BaseActivity
 
 abstract class BaseFragment : RxFragment(), View.OnClickListener {
 
-    private lateinit var mImmersionBar: ImmersionBar
+    protected lateinit var mImmersionBar: ImmersionBar
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mActivity = (activity as BaseActivity?)!!

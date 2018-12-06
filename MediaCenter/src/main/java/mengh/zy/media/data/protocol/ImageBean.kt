@@ -14,6 +14,7 @@ data class ImageBean(var images: List<ImagesBean>,
 
     class ImagesBean(var describe: String,
                      var id: Int,
+                     var from_id: Int,
                      var is_collect: Boolean,
                      var url: String)
 }

@@ -5,9 +5,7 @@ import android.widget.EditText
 import okhttp3.ResponseBody
 import java.io.*
 import java.util.*
-import android.media.MediaScannerConnection
 import android.os.Environment
-import android.util.Log
 import androidx.exifinterface.media.ExifInterface
 import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
@@ -83,12 +81,10 @@ object DMUtils {
 //                var sMediaScannerConnection: MediaScannerConnection? = null
 //                sMediaScannerConnection = MediaScannerConnection(context, object : MediaScannerConnection.MediaScannerConnectionClient {
 //                    override fun onMediaScannerConnected() {
-//                        Log.e("dmdm", "onMediaScannerConnected")
 //                        sMediaScannerConnection?.scanFile(futureStudioIconFile.toString(), "image/jpeg")
 //                    }
 //
 //                    override fun onScanCompleted(path: String?, uri: Uri?) {
-//                        Log.e("dmdm", "onScanCompleted$path$uri")
 //                        context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,uri))
 //                        sMediaScannerConnection?.disconnect()
 //                    }

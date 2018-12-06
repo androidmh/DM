@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch.Vertical.Common">
 
-    <mengh.zy.base.widgets.HeaderToolBar
-        android:id="@+id/mHeaderBar"
-        style="@style/MatchWrap"
-        app:rightText="保存"
-        app:titleText="个人信息" />
+    <include layout="@layout/header_bar"/>
 
     <RelativeLayout
         android:id="@+id/mUserIconView"

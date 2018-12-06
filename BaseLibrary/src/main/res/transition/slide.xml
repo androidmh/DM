@@ -3,4 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:interpolator="@android:interpolator/decelerate_cubic"
     android:slideEdge="end"
-    tools:targetApi="lollipop" />
+    tools:targetApi="lollipop" >
+    <targets>
+        <target
+            android:excludeId="@id/appBarLayout"
+            tools:ignore="UnusedAttribute" />
+    </targets>
+</slide>

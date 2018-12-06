@@ -2,12 +2,14 @@ package mengh.zy.base.ui.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.util.Pair
 import android.view.LayoutInflater
 import android.view.View
 import android.view.WindowManager
+import androidx.appcompat.widget.Toolbar
 import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
@@ -31,7 +33,7 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         judgeSdk21({
-            val transition = TransitionInflater.from(this).inflateTransition(R.transition.fade)
+            val transition = TransitionInflater.from(this).inflateTransition(R.transition.slide)
             window.enterTransition = transition
             window.exitTransition = transition
             window.reenterTransition = transition
@@ -40,15 +42,26 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)
         setContentView(mContextView)
         AppManger.instance.addActivity(this)
-        initView()
         mImmersionBar = ImmersionBar.with(this)
         mImmersionBar
                 .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                 .init()
+        initView()
         if (ScreenUtils.isPortrait()) {
             ScreenUtils.adaptScreen4VerticalSlide(this, 360)
         } else {
             ScreenUtils.adaptScreen4HorizontalSlide(this, 360)
+        }
+    }
+
+    fun initToolbar(toolbar: Toolbar?, title: String, isBack: Boolean = false, method: () -> Unit={finish()}) {
+        toolbar?.title = title
+        toolbar?.setTitleTextColor(Color.WHITE)
+        setSupportActionBar(toolbar)
+        mImmersionBar.titleBar(toolbar)
+        if (isBack) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            toolbar?.setNavigationOnClickListener { method() }
         }
     }
 
