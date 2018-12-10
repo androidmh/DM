@@ -2,6 +2,8 @@ package mengh.zy.media.service
 
 import io.reactivex.Observable
 import mengh.zy.media.data.protocol.ImageBean
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 
 
 /**
@@ -16,4 +18,6 @@ interface ImageService {
     fun addCollect(media_id: Int): Observable<String>
 
     fun deleteCollect(media_id: Int): Observable<String>
+
+    fun uploadImage(img: MultipartBody.Part, map: MutableMap<String, RequestBody>): Observable<String>
 }

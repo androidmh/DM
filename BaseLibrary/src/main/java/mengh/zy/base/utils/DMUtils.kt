@@ -11,6 +11,8 @@ import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Environment.DIRECTORY_PICTURES
+import okhttp3.MediaType
+import okhttp3.RequestBody
 
 
 /**
@@ -103,4 +105,11 @@ object DMUtils {
         }
         return tmpFile.absolutePath
     }
+
+    /**
+     * string转RequestBody解决@part带双引号
+     */
+    fun stringToRequestBody(string: String):RequestBody {
+       return RequestBody.create(MediaType.parse("text/plain"), string)
+   }
 }

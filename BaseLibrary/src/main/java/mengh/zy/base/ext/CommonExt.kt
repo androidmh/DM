@@ -1,6 +1,7 @@
 package mengh.zy.base.ext
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import android.widget.*
 import com.bilibili.boxing.model.entity.impl.ImageMedia
@@ -15,6 +16,7 @@ import io.reactivex.schedulers.Schedulers
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
+import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import mengh.zy.base.rx.BaseFunc
 import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.base.utils.GlideUtils
@@ -149,9 +151,24 @@ fun SeekBar.setProgress(url: String) {
     ProgressManager.getInstance().addResponseListener(url, object : ProgressListener {
         override fun onProgress(progressInfo: ProgressInfo) {
             this@setProgress.progress = progressInfo.percent
+            Log.e("dmdm", progressInfo.percent.toString())
         }
 
         override fun onError(id: Long, e: Exception?) {
+            Log.e("dmdm",e.toString())
+        }
+    })
+}
+
+fun ProgressBar.setUpProgress(url: String) {
+    ProgressManager.getInstance().addRequestListener(url, object : ProgressListener {
+        override fun onProgress(progressInfo: ProgressInfo) {
+            this@setUpProgress.progress = progressInfo.percent
+            Log.e("dmdm", progressInfo.percent.toString())
+        }
+
+        override fun onError(id: Long, e: Exception?) {
+            Log.e("dmdm",e.toString())
         }
     })
 }

@@ -25,7 +25,7 @@ class DownloadImgPresenter : BaseDownloadPresenter<DownloadImgView>() {
         }
         progressBar.setProgress(url)
         RetrofitFactory.instance
-                .create(DownloadApi::class.java,true)
+                .create(DownloadApi::class.java)
                 .downloadImage(url)
                 .executeDown(object : BaseDownloadSubscriber<ResponseBody>(mView) {
                     override fun onNext(t: ResponseBody) {

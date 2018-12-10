@@ -9,7 +9,7 @@ package mengh.zy.base.common
 class BaseConstant {
     companion object {
         //baseUrl
-        //test
+        //loacal
 //        const val SERVER_ADDRESS = "http://172.16.20.88:80/v1/"
 
         //formal
@@ -26,6 +26,8 @@ class BaseConstant {
         const val TAB_KEY = "tab_key"
 
         const val SEARCH_KEY = "search_key"
+
+        const val WEB_KEY = "web_key"
 
         var IMG_TAB = ArrayList<String>()
 

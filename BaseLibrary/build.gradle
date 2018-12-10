@@ -137,5 +137,9 @@ dependencies {
     //progress
     api 'me.jessyan:progressmanager:1.5.0'
 
+    //文件操作
     api "com.android.support:exifinterface:$android_support_version"
+
+    // progress
+    api 'me.zhanghai.android.materialprogressbar:library:1.6.0'
 }

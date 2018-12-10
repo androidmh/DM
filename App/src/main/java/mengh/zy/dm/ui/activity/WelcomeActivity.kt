@@ -17,18 +17,19 @@ class WelcomeActivity : BaseActivity() {
     private lateinit var timer:Timer
 
     override fun initView() {
-        timeTv.setOnClickListener(this)
-        timer = DMTimeUtils.startTimeMethod({
-            runOnUiThread {
-                recLen--
-                timeTv.text = String.format(context.resources.getString(mengh.zy.dm.R.string.jump_times),recLen)
-                if (recLen < 0) {
-                    timer.cancel()
-                    timeTv.setVisible(false)
-                    toMain()
-                }
-            }
-        }, recLen*1000,1000)
+//        timeTv.setOnClickListener(this)
+//        timer = DMTimeUtils.startTimeMethod({
+//            runOnUiThread {
+//                recLen--
+//                timeTv.text = String.format(context.resources.getString(mengh.zy.dm.R.string.jump_times),recLen)
+//                if (recLen < 0) {
+//                    timer.cancel()
+//                    timeTv.setVisible(false)
+//                    toMain()
+//                }
+//            }
+//        }, recLen*1000,1000)
+        toMain()
         val flag = WindowManager.LayoutParams.FLAG_FULLSCREEN
         window.setFlags(flag, flag)
     }
@@ -41,7 +42,7 @@ class WelcomeActivity : BaseActivity() {
 
     private fun toMain() {
         startActivity<MainActivity>()
-        timer.cancel()
+//        timer.cancel()
         finish()
     }
 

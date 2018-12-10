@@ -14,9 +14,11 @@ class ImageListAdapter(layoutResId: Int, data: List<ImageBean.ImagesBean>) : Bas
     override fun convert(helper: BaseViewHolder, item: ImageBean.ImagesBean) {
         val imgIv = helper.getView<ImageView>(R.id.imgIv)
         val collectBtn = helper.getView<ShineButton>(R.id.collectBtn)
-
         helper.addOnClickListener(R.id.collectBtn)
+        helper.addOnClickListener(R.id.authorTv)
 
+        helper.setText(R.id.desTv,item.describe)
+        helper.setText(R.id.authorTv,item.author.nickname)
         imgIv.loadUrl(item.url)
         collectBtn.isChecked = item.is_collect
         if (!isLogin()) {

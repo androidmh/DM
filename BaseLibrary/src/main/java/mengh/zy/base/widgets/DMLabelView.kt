@@ -23,10 +23,11 @@ class DMLabelView @JvmOverloads constructor(
 
     init {
         this.background = ContextCompat.getDrawable(context, R.drawable.label_bg)
-        this.setPadding(15, 15, 15, 15)
+        this.setPadding(18, 18, 18, 18)
         val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)
+        this.setTextColor(ContextCompat.getColor(context,R.color.text_normal))
         params.setMargins(10,10,10,10)
         this.layoutParams = params
-        this.textSize = 12f
+        this.textSize = 15f
     }
 }

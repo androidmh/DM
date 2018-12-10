@@ -14,7 +14,9 @@ data class ImageBean(var images: List<ImagesBean>,
 
     class ImagesBean(var describe: String,
                      var id: Int,
-                     var from_id: Int,
+                     var author: AuthorBean,
                      var is_collect: Boolean,
                      var url: String)
+
+    class AuthorBean(var id:Int,var nickname:String, var sign:String)
 }

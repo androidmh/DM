@@ -11,6 +11,7 @@ import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
 import mengh.zy.base.rx.DMBus
+import mengh.zy.base.ui.activity.DMWebActivity
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
@@ -21,6 +22,7 @@ import mengh.zy.media.presenter.view.ImgListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.base.widgets.ImgDialogFragment
 import mengh.zy.provider.common.afterLogin
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
@@ -100,6 +102,13 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
                     val isCollect = collectBtn.isChecked
                     afterLogin {
                         mPresenter.setCollect(result.images[position].id, isCollect)
+                    }
+                }
+                R.id.authorTv -> {
+                    val author = result.images[position].author
+                    if (author.id < 0) {
+                        startActivity<DMWebActivity>(BaseConstant.WEB_KEY to author.sign)
+                    } else {
                     }
                 }
             }

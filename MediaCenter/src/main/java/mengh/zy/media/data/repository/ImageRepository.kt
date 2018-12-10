@@ -5,6 +5,12 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.api.ImageApi
 import mengh.zy.media.data.protocol.ImageBean
+import mengh.zy.media.data.protocol.UploadImgReq
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.http.Body
+import retrofit2.http.Part
+import retrofit2.http.PartMap
 import javax.inject.Inject
 
 /**
@@ -29,5 +35,10 @@ class ImageRepository @Inject constructor() {
     fun deleteCollect(media_id: Int): Observable<BaseResp<Any>> {
         return RetrofitFactory.instance.create(ImageApi::class.java)
                 .deleteCollect(media_id)
+    }
+
+    fun uploadImage(img: MultipartBody.Part, map: MutableMap<String, RequestBody>): Observable<BaseResp<Any>> {
+        return RetrofitFactory.instance.create(ImageApi::class.java)
+                .uploadImage(img,map)
     }
 }
