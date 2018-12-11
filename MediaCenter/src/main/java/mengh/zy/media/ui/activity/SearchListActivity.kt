@@ -16,8 +16,8 @@ import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
 import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.BaseMvpActivity
+import mengh.zy.base.ui.activity.PhotoViewActivity
 import mengh.zy.base.utils.UserHawkUtils
-import mengh.zy.base.widgets.ImgDialogFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
 import mengh.zy.media.injection.component.DaggerMediaComponent
@@ -27,6 +27,7 @@ import mengh.zy.media.presenter.view.SearchListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
 import mengh.zy.provider.common.afterLogin
 import org.jetbrains.anko.find
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListView {
@@ -121,9 +122,7 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
-                val imgDialogFragment = ImgDialogFragment()
-                imgDialogFragment.putUrl(result.images[position].url)
-                imgDialogFragment.show(supportFragmentManager, "img_dialog")
+                startActivity<PhotoViewActivity>(BaseConstant.IMAGE_URL_KEY to result.images[position].url)
             }
         }
         adapter.setOnItemChildClickListener { _, view, position ->

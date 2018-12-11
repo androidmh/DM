@@ -5,11 +5,13 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomViewTarget
 import com.bumptech.glide.request.transition.Transition
 import mengh.zy.base.R
+import mengh.zy.base.common.BaseApplication
 import mengh.zy.base.common.GlideApp
 
 
@@ -30,7 +32,11 @@ object GlideUtils {
 
     private var options2: RequestOptions = RequestOptions()
             .placeholder(R.drawable.loading)
-            .centerCrop()
+
+    private var diskOptions: RequestOptions = RequestOptions()
+            .placeholder(mengh.zy.base.R.drawable.loading)
+            .diskCacheStrategy(DiskCacheStrategy.ALL)
+
     /**
      * @param context 上下文
      * @param url 加载地址
@@ -45,16 +51,40 @@ object GlideUtils {
                 .into(imageView)
     }
 
-    fun loadImg(context: Context, url: String, imageView: ImageView) {
-        GlideApp.with(context)
+    fun loadImg(context: Context, url: String, imageView: ImageView, isCenter: Boolean) {
+        if (isCenter) {
+            GlideApp.with(context)
+                    .load(url)
+                    .apply(options2)
+                    .centerCrop()
+                    .transition(DrawableTransitionOptions().crossFade(500))
+                    .into(imageView)
+        } else {
+            GlideApp.with(context)
+                    .load(url)
+                    .apply(options2)
+                    .transition(DrawableTransitionOptions().crossFade(500))
+                    .into(imageView)
+        }
+    }
+
+    fun loadDiskCacheImg(context: Context, url: String, imageView: ImageView) {
+        Glide.with(context)
                 .load(url)
-                .apply(options2)
-                .transition(DrawableTransitionOptions().crossFade(500))
+                .apply(diskOptions)
                 .into(imageView)
     }
 
+    fun downloadDisk(url: String): Boolean {
+        val file = Glide.with(BaseApplication.context)
+                .download(url)
+                .submit()
+                .get()
+        return DMUtils.writeResponseBodyToDisk(file, BaseApplication.context)
+    }
+
     fun loadViewImg(context: Context, url: String, view: View) {
-        Glide.with(context)
+        GlideApp.with(context)
                 .load(url)
                 .apply(options2)
                 .transition(DrawableTransitionOptions().crossFade(500))

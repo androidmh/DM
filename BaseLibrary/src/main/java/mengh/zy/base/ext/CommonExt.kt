@@ -16,13 +16,11 @@ import io.reactivex.schedulers.Schedulers
 import me.jessyan.progressmanager.ProgressListener
 import me.jessyan.progressmanager.ProgressManager
 import me.jessyan.progressmanager.body.ProgressInfo
-import me.zhanghai.android.materialprogressbar.MaterialProgressBar
 import mengh.zy.base.rx.BaseFunc
 import mengh.zy.base.rx.BaseSubscriber
 import mengh.zy.base.utils.GlideUtils
 import mengh.zy.base.widgets.DefaultTextWatcher
 import mengh.zy.base.R
-import mengh.zy.base.rx.BaseDownloadSubscriber
 import java.io.File
 import java.lang.Exception
 
@@ -35,12 +33,6 @@ import java.lang.Exception
 fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>, lifecycleProvider: LifecycleProvider<*>) {
     this.observeOn(AndroidSchedulers.mainThread())
             .compose(lifecycleProvider.bindToLifecycle())
-            .subscribeOn(Schedulers.io())
-            .subscribe(subscriber)
-}
-
-fun <T> Observable<T>.executeDown(subscriber: BaseDownloadSubscriber<T>) {
-    this.observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe(subscriber)
 }
@@ -126,8 +118,15 @@ fun ImageView.loadCircleUrl(url: String) {
 /*
     ImageView加载网络图片
  */
-fun ImageView.loadUrl(url: String) {
-    GlideUtils.loadImg(context, url, this)
+fun ImageView.loadUrl(url: String,isCenter:Boolean=true) {
+    GlideUtils.loadImg(context, url, this,isCenter)
+}
+
+/*
+    ImageView加载网络图片并缓存到磁盘
+ */
+fun ImageView.loadDiskUrl(url: String) {
+    GlideUtils.loadDiskCacheImg(context, url, this)
 }
 
 /*

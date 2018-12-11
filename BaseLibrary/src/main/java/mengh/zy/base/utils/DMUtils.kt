@@ -11,8 +11,12 @@ import com.blankj.utilcode.util.TimeUtils
 import java.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Environment.DIRECTORY_PICTURES
+import android.view.View
 import okhttp3.MediaType
 import okhttp3.RequestBody
+import android.view.ViewGroup
+
+
 
 
 /**
@@ -98,6 +102,59 @@ object DMUtils {
         }
     }
 
+    fun writeResponseBodyToDisk(file: File, context: Context?): Boolean {
+        try {
+            val nowMills1 = TimeUtils.getNowMills()
+            val fileName = nowMills1.toString() + ".jpg"
+            val futureStudioIconFile = File(getDMDir(), fileName)
+
+            var inputStream: InputStream? = null
+            var outputStream: FileOutputStream? = null
+
+            try {
+                val fileReader = ByteArray(4096)
+
+                var fileSizeDownloaded: Long = 0
+
+                inputStream = file.inputStream()
+                outputStream = FileOutputStream(futureStudioIconFile)
+
+                while (true) {
+                    val read = inputStream.read(fileReader)
+
+                    if (read == -1) {
+                        break
+                    }
+
+                    outputStream.write(fileReader, 0, read)
+
+                    fileSizeDownloaded += read.toLong()
+                }
+
+                outputStream.flush()
+
+                return true
+            } catch (e: IOException) {
+                return false
+            } finally {
+                inputStream?.close()
+
+                outputStream?.close()
+                //更改文件时间
+                val exifInterface = ExifInterface(futureStudioIconFile.absolutePath)
+                val dateFormat = SimpleDateFormat("yyyy:MM:dd HH:mm:ss", Locale.getDefault())
+                val nowMills = TimeUtils.getNowMills()
+                val format = dateFormat.format(nowMills)
+                exifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, format)
+                exifInterface.saveAttributes()
+
+                context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(futureStudioIconFile)))
+            }
+        } catch (e: IOException) {
+            return false
+        }
+    }
+
     private fun getDMDir():String{
         val tmpFile = File(Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES),"HDM/dmDownload")
         if (!tmpFile.exists()) {
@@ -112,4 +169,12 @@ object DMUtils {
     fun stringToRequestBody(string: String):RequestBody {
        return RequestBody.create(MediaType.parse("text/plain"), string)
    }
+
+    fun setMargins(v: View, l: Int, t: Int, r: Int, b: Int) {
+        if (v.layoutParams is ViewGroup.MarginLayoutParams) {
+            val p = v.layoutParams as ViewGroup.MarginLayoutParams
+            p.setMargins(l, t, r, b)
+            v.requestLayout()
+        }
+    }
 }

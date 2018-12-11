@@ -4,11 +4,12 @@ import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_collect_img.*
+import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
+import mengh.zy.base.ui.activity.PhotoViewActivity
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.base.utils.MaterialDialogUtils
-import mengh.zy.base.widgets.ImgDialogFragment
 import mengh.zy.user.ui.adapter.CollectImgAdapter
 import mengh.zy.user.R
 import mengh.zy.user.data.protocol.CollectImgBean
@@ -16,6 +17,7 @@ import mengh.zy.user.injection.component.DaggerUserComponent
 import mengh.zy.user.injection.module.UserModule
 import mengh.zy.user.presenter.CollectImgPresenter
 import mengh.zy.user.presenter.view.CollectImgView
+import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class CollectImgFragment : BaseMvpFragment<CollectImgPresenter>(), CollectImgView {
@@ -82,9 +84,7 @@ class CollectImgFragment : BaseMvpFragment<CollectImgPresenter>(), CollectImgVie
         imgRv.layoutManager = layoutManager
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
-            val imgDialogFragment = ImgDialogFragment()
-            imgDialogFragment.putUrl(result.images[position].url)
-            imgDialogFragment.show(fragmentManager, "img_dialog")
+            startActivity<PhotoViewActivity>(BaseConstant.IMAGE_URL_KEY to result.images[position].url)
         }
         adapter.setOnItemLongClickListener { _, _, position ->
             MaterialDialogUtils.getConfirmDialog(mActivity,"是否删除本条收藏？","")

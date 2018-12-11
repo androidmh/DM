@@ -142,4 +142,6 @@ dependencies {
 
     // progress
     api 'me.zhanghai.android.materialprogressbar:library:1.6.0'
+
+    api 'com.github.chrisbanes:PhotoView:2.3.0'
 }

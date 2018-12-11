@@ -5,12 +5,8 @@ import mengh.zy.base.data.net.RetrofitFactory
 import mengh.zy.base.data.protocol.BaseResp
 import mengh.zy.media.data.api.ImageApi
 import mengh.zy.media.data.protocol.ImageBean
-import mengh.zy.media.data.protocol.UploadImgReq
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import retrofit2.http.Body
-import retrofit2.http.Part
-import retrofit2.http.PartMap
 import javax.inject.Inject
 
 /**

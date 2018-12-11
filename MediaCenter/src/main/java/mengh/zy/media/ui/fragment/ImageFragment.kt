@@ -12,6 +12,7 @@ import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.entity.impl.ImageMedia
+import com.github.chrisbanes.photoview.PhotoView
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_image.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
@@ -52,8 +53,6 @@ import java.util.ArrayList
  */
 class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
 
-    private lateinit var userChooseImg: ImageView
-    private var createFormData: MultipartBody.Part? = null
 
     override val layoutId: Int
         get() = R.layout.fragment_image
@@ -69,7 +68,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
                 }
                 R.id.upload_item -> {
                     afterLogin {
-                        showUpDialog()
+                        BoxingUtils.selectSingleCutImg(this, ResultCode.REQUEST_CODE)
                     }
                 }
             }
@@ -92,15 +91,20 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
         imageTab.setupWithViewPager(imageVp)
     }
 
-    private fun showUpDialog() {
-        val uploadDialog = MaterialDialogUtils.getCustomDialogs(mActivity, "上传", R.layout.dialog_upload)
+    private fun showUpDialog(imageMedia: ImageMedia) {
+        val uploadDialog = MaterialDialogUtils.getCustomDialogs(mActivity, "上传", R.layout.dialog_upload_test)
         val customView = uploadDialog.getCustomView()
         val chooseBtn = customView?.find<Button>(R.id.chooseBtn)
         val uploadBtn = customView?.find<Button>(R.id.uploadBtn)
         val sortSp = customView?.find<AppCompatSpinner>(R.id.sortSp)
         val desEt = customView?.find<TextInputEditText>(R.id.desEt)
         val upProgressBar = customView?.find<ProgressBar>(R.id.upProgressBar)
-        userChooseImg = customView!!.find(R.id.userChooseImg)
+        val userChooseImg = customView!!.find<PhotoView>(R.id.userChooseImg)
+
+        val file = imageMedia.getCompressFile(mActivity)
+        val imageBody = RequestBody.create(null, file)
+        val createFormData = MultipartBody.Part.createFormData("img", file.name, imageBody)
+        userChooseImg.loadUrl(imageMedia.path)
 
         val adapter = ArrayAdapter<String>(mActivity, android.R.layout.simple_list_item_1, IMG_TAB)
         sortSp?.adapter = adapter
@@ -114,7 +118,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
                 createFormData == null -> toast("请选择图片")
                 des.isNullOrEmpty() -> toast("请输入描述")
                 else -> {
-                    mPresenter.uploadImage(createFormData!!, mutableMapOf(
+                    mPresenter.uploadImage(createFormData, mutableMapOf(
                             Pair("sort", DMUtils.stringToRequestBody(sortSp!!.selectedItem.toString())),
                             Pair("describe", DMUtils.stringToRequestBody(des)),
                             Pair("label", DMUtils.stringToRequestBody("1,2"))),
@@ -141,10 +145,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
         val medias = Boxing.getResult(data)
         if (resultCode == Activity.RESULT_OK && requestCode == ResultCode.REQUEST_CODE) {
             val imageMedia = medias?.get(0) as ImageMedia
-            val file = imageMedia.getCompressFile(mActivity)
-            val imageBody = RequestBody.create(null, file)
-            createFormData = MultipartBody.Part.createFormData("img", file.name, imageBody)
-            userChooseImg.loadUrl(imageMedia.path)
+            showUpDialog(imageMedia)
         }
     }
 

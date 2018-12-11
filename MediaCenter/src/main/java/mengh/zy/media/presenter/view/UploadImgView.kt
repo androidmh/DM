@@ -1,7 +1,6 @@
 package mengh.zy.media.presenter.view
 
 import mengh.zy.base.presenter.view.BaseView
-import mengh.zy.media.data.protocol.ImageBean
 
 /**
  * @author by mengh

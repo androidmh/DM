@@ -4,7 +4,6 @@ import io.reactivex.Observable
 import mengh.zy.base.ext.convert
 import mengh.zy.base.ext.convertMsg
 import mengh.zy.media.data.protocol.ImageBean
-import mengh.zy.media.data.protocol.UploadImgReq
 import mengh.zy.media.data.repository.ImageRepository
 import mengh.zy.media.service.ImageService
 import okhttp3.MultipartBody

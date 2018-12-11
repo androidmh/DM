@@ -29,6 +29,8 @@ class BaseConstant {
 
         const val WEB_KEY = "web_key"
 
+        const val IMAGE_URL_KEY= "image_url"
+
         var IMG_TAB = ArrayList<String>()
 
         const val DCIM_PHOTO_DIR = "/dm/photograph"

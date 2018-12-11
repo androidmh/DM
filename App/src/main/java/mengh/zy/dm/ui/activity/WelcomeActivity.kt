@@ -3,10 +3,7 @@ package mengh.zy.dm.ui.activity
 import android.view.View
 import android.view.WindowManager
 import kotlinx.android.synthetic.main.activity_welcome.*
-import mengh.zy.base.common.BaseApplication.Companion.context
-import mengh.zy.base.ext.setVisible
 import mengh.zy.base.ui.activity.BaseActivity
-import mengh.zy.base.utils.DMTimeUtils
 import org.jetbrains.anko.startActivity
 import java.util.*
 

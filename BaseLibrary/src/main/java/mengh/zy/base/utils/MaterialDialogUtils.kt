@@ -26,7 +26,6 @@ object MaterialDialogUtils {
 
     fun getCustomDialogs(context: Context, title: String, layout: Int): MaterialDialog {
         return MaterialDialog(context)
-                .title(text = title)
                 .customView(layout, scrollable = true)
                 .negativeButton(R.string.disagree)
     }

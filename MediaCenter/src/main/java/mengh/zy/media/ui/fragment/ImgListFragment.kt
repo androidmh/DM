@@ -7,11 +7,13 @@ import com.hwangjr.rxbus.annotation.Subscribe
 import com.sackcentury.shinebuttonlib.ShineButton
 import kotlinx.android.synthetic.main.fragment_img_list.*
 import mengh.zy.base.common.BaseConstant
+import mengh.zy.base.common.BaseConstant.Companion.IMAGE_URL_KEY
 import mengh.zy.base.event.LoginEvent
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
 import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.DMWebActivity
+import mengh.zy.base.ui.activity.PhotoViewActivity
 import mengh.zy.base.ui.fragment.BaseMvpFragment
 import mengh.zy.media.R
 import mengh.zy.media.data.protocol.ImageBean
@@ -20,7 +22,6 @@ import mengh.zy.media.injection.module.MediaModule
 import mengh.zy.media.presenter.ImgListPresenter
 import mengh.zy.media.presenter.view.ImgListView
 import mengh.zy.media.ui.adapter.ImageListAdapter
-import mengh.zy.base.widgets.ImgDialogFragment
 import mengh.zy.provider.common.afterLogin
 import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
@@ -90,9 +91,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgRv.adapter = adapter
         adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
-                val imgDialogFragment = ImgDialogFragment()
-                imgDialogFragment.putUrl(result.images[position].url)
-                imgDialogFragment.show(fragmentManager, "img_dialog")
+                startActivity<PhotoViewActivity>(IMAGE_URL_KEY to result.images[position].url)
             }
         }
         adapter.setOnItemChildClickListener { _, view, position ->
