@@ -14,29 +14,33 @@ class PhotoViewActivity : BaseActivity() {
     override val layoutId: Int
         get() = R.layout.activity_photo_view
 
+    private lateinit var url: String
 
     override fun initView() {
-        val url = intent.getStringExtra(IMAGE_URL_KEY)
+        url = intent.getStringExtra(IMAGE_URL_KEY)
         photoView.loadDiskUrl(url)
-        photoView.onClick {
-            finish()
-        }
-        saveIv.onClick {
-            doAsync {
-                val downloadDisk = GlideUtils.downloadDisk(url)
-                runOnUiThread {
-                    if (downloadDisk) {
-                        toast("图片已保存至/storage/emulated/0/Pictures/HDM/dmDownload")
-                    } else {
-                        toast("保存失败")
+        photoView.onClick(this)
+        saveIv.onClick(this)
+    }
+
+    override fun widgetClick(v: View) {
+        when (v) {
+            photoView -> {
+                finish()
+            }
+            saveIv -> {
+                doAsync {
+                    val downloadDisk = GlideUtils.downloadDisk(url)
+                    runOnUiThread {
+                        if (downloadDisk) {
+                            toast("图片已保存至/storage/emulated/0/Pictures/HDM/dmDownload")
+                        } else {
+                            toast("保存失败")
+                        }
                     }
                 }
             }
         }
-
-    }
-
-    override fun widgetClick(v: View) {
     }
 
 }
