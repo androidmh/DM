@@ -15,17 +15,16 @@ abstract class BaseLazyFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         if (isVisibleToUser && !isLazyLoad) {
             isLazyLoad = true
-            initView()
+//            initView()
         }
     }
 
-    protected abstract fun initView()
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) {
         this.isVisibleToUser = isVisibleToUser
         if (isVisibleToUser && !isLazyLoad && view != null) {
             isLazyLoad = true
-            initView()
+//            initView()
         }
         super.setUserVisibleHint(isVisibleToUser)
     }

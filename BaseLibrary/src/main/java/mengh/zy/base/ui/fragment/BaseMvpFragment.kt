@@ -45,7 +45,7 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         mLoadingDialog = ProgressLoading.create(mActivity)
         if (isVisibleToUser && !isLazyLoad) {
             isLazyLoad = true
-            initView()
+            initData()
         }
     }
 
@@ -53,12 +53,12 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
         this.isVisibleToUser = isVisibleToUser
         if (isVisibleToUser && !isLazyLoad && view != null) {
             isLazyLoad = true
-            initView()
+            initData()
         }
         super.setUserVisibleHint(isVisibleToUser)
     }
 
-    abstract fun initView()
+    abstract fun initData()
 
     abstract fun injectComponent()
 

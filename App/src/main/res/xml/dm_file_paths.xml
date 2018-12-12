@@ -2,5 +2,5 @@
 <paths>
     <external-path name="dcim" path="DCIM/dm/photograph" />
 
-    <external-path name="DMImg" path="/HDM/Media/DMImage/" />
+    <external-path name="dmDownload" path="Pictures/HDM/dmDownload" />
 </paths>

@@ -5,9 +5,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion compile_sdk_version
-
-
-
     defaultConfig {
         minSdkVersion min_sdk_version
         targetSdkVersion target_sdk_version
@@ -32,7 +29,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     //Android support
-    api 'androidx.appcompat:appcompat:1.0.2'
+    api 'androidx.appcompat:appcompat:1.1.0-alpha01'
     api 'com.google.android.material:material:1.1.0-alpha01'
 
     //kotlin support

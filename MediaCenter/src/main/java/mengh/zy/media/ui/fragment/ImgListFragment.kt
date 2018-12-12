@@ -6,6 +6,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.hwangjr.rxbus.annotation.Subscribe
 import com.sackcentury.shinebuttonlib.ShineButton
 import kotlinx.android.synthetic.main.fragment_img_list.*
+import kotlinx.android.synthetic.main.fragment_img_list.view.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.common.BaseConstant.Companion.IMAGE_URL_KEY
 import mengh.zy.base.event.LoginEvent
@@ -27,6 +28,7 @@ import org.jetbrains.anko.support.v4.startActivity
 import org.jetbrains.anko.support.v4.toast
 
 class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
+
     override val layoutId: Int
         get() = R.layout.fragment_img_list
 
@@ -34,9 +36,16 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
 
     private var page = 0
 
-    override fun initView() {
+    override fun initView(v: View) {
+        adapter = ImageListAdapter(R.layout.item_img_list, mutableListOf())
+        adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
+        val layoutManager = GridLayoutManager(mActivity, 2)
+        v.imgRv.layoutManager = layoutManager
+        v.imgRv.adapter = adapter
+    }
+
+    override fun initData() {
         DMBus.mBus.register(this)
-        loadData()
         mProgressLayout.showLoading()
         imgSl.setOnRefreshListener {
             loadData()
@@ -44,6 +53,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgSl.setOnLoadMoreListener {
             mPresenter.getNextPage(mapOf(Pair("sort", arguments?.getString(BaseConstant.TAB_KEY)!!), Pair("page", "$page")))
         }
+        loadData()
     }
 
     private fun loadData() {
@@ -84,11 +94,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
     }
 
     private fun setRecycle(result: ImageBean) {
-        adapter = ImageListAdapter(R.layout.item_img_list, result.images)
-        adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
-        val layoutManager = GridLayoutManager(mActivity, 2)
-        imgRv.layoutManager = layoutManager
-        imgRv.adapter = adapter
+        adapter.addData(result.images)
         adapter.setOnItemClickListener { _, _, position ->
             afterLogin {
                 startActivity<PhotoViewActivity>(IMAGE_URL_KEY to result.images[position].url)

@@ -35,8 +35,12 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
         } else {
             ScreenUtils.adaptScreen4HorizontalSlide(mActivity, 360)
         }
-        return inflater.inflate(layoutId, null)
+        val v = inflater.inflate(layoutId, null)
+        initView(v)
+        return v
     }
+
+    abstract fun initView(v: View)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -111,8 +115,11 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
     /**
      * 带动画跳转
      */
-    fun startActivityAnimation(cls: Class<out BaseActivity>, vararg sharedElements: Pair<View, String>) {
+    fun startActivityAnimation(cls: Class<out BaseActivity>, bundle: Bundle? = null, vararg sharedElements: Pair<View, String>) {
         val intent = Intent(mActivity, cls)
+        if (bundle != null) {
+            intent.putExtras(bundle)
+        }
         judgeSdk21({
             val toBundle = ActivityOptions.makeSceneTransitionAnimation(mActivity, *sharedElements).toBundle()
             startActivity(intent, toBundle)

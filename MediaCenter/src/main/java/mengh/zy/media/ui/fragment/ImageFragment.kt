@@ -53,14 +53,16 @@ import java.util.ArrayList
  */
 class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
 
-
     override val layoutId: Int
         get() = R.layout.fragment_image
 
-    override fun initView() {
+    override fun initView(v: View) {
+        setHasOptionsMenu(true)
+    }
+
+    override fun initData() {
         val toolbar = find<Toolbar>(R.id.dmToolbar)
         initToolbar(toolbar, "图片")
-        setHasOptionsMenu(true)
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.search_item -> {
@@ -149,8 +151,8 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater?.inflate(R.menu.menu_image, menu)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_image, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 

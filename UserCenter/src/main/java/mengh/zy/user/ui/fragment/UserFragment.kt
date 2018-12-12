@@ -8,6 +8,7 @@ import com.afollestad.materialdialogs.list.listItems
 import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.entity.impl.ImageMedia
 import kotlinx.android.synthetic.main.fragment_user.*
+import kotlinx.android.synthetic.main.fragment_user.view.*
 import mengh.zy.base.common.BaseConstant
 import mengh.zy.base.common.ResultCode
 import mengh.zy.base.data.protocol.UserInfo
@@ -39,16 +40,20 @@ import org.jetbrains.anko.support.v4.toast
  *   Describe:
  */
 class UserFragment : BaseMvpFragment<UserPresenter>(), UserView {
+
     override val layoutId: Int
         get() = R.layout.fragment_user
 
-    override fun initView() {
+    override fun initView(v: View) {
+        v.mUserIconIv.onClick(this)
+        v.mUserNameTv.onClick(this)
+        v.mSettingTv.onClick(this)
+        v.mPlayTv.onClick(this)
+        v.collectTv.onClick(this)
+    }
+
+    override fun initData() {
         initToolbar(dmToolbar, "我的")
-        mUserIconIv.onClick(this)
-        mUserNameTv.onClick(this)
-        mSettingTv.onClick(this)
-        mPlayTv.onClick(this)
-        collectTv.onClick(this)
         appBarLayout.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { appBarLayout, verticalOffset ->
             val scrollRange = appBarLayout.totalScrollRange
             if (verticalOffset == 0) {

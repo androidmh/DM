@@ -3,6 +3,7 @@ package mengh.zy.dm.ui.fragment
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter.SCALEIN
 import kotlinx.android.synthetic.main.fragment_index.*
+import kotlinx.android.synthetic.main.fragment_index.view.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
 import mengh.zy.base.ext.empty
 import mengh.zy.base.ext.error
@@ -27,6 +28,7 @@ import org.jetbrains.anko.support.v4.toast
  *   Describe:
  */
 class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
+
     override val layoutId: Int
         get() = R.layout.fragment_index
 
@@ -34,7 +36,15 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
 
     private var page = 0
 
-    override fun initView() {
+    override fun initView(v: View) {
+        adapter = IndexAdapter(mutableListOf())
+        adapter.openLoadAnimation(SCALEIN)
+        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
+        v.indexRv.layoutManager = layoutManager
+        v.indexRv.adapter = adapter
+    }
+
+    override fun initData() {
         initToolbar(find(R.id.dmToolbar), "首页")
         loadData()
         mProgressLayout.showLoading()
@@ -102,11 +112,6 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
         for (index in result.indexes) {
             data.add(IndexItem(IndexItem.LAYOUT, index))
         }
-
-        adapter = IndexAdapter(data)
-        adapter.openLoadAnimation(SCALEIN)
-        val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
-        indexRv.layoutManager = layoutManager
-        indexRv.adapter = adapter
+        adapter.addData(data)
     }
 }

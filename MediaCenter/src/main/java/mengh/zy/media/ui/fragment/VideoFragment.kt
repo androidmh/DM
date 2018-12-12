@@ -16,7 +16,7 @@ class VideoFragment : BaseLazyFragment() {
     override val layoutId: Int
         get() = R.layout.fragment_video
 
-    override fun initView() {
+    override fun initView(v: View) {
     }
 
     override fun widgetClick(v: View) {

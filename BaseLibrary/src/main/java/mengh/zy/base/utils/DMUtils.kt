@@ -15,8 +15,7 @@ import android.view.View
 import okhttp3.MediaType
 import okhttp3.RequestBody
 import android.view.ViewGroup
-
-
+import androidx.core.content.FileProvider
 
 
 /**
@@ -83,7 +82,7 @@ object DMUtils {
                 exifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, format)
                 exifInterface.saveAttributes()
 
-                context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(futureStudioIconFile)))
+                context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(futureStudioIconFile)))
 //                var sMediaScannerConnection: MediaScannerConnection? = null
 //                sMediaScannerConnection = MediaScannerConnection(context, object : MediaScannerConnection.MediaScannerConnectionClient {
 //                    override fun onMediaScannerConnected() {
@@ -102,6 +101,7 @@ object DMUtils {
         }
     }
 
+    lateinit var uri: Uri
     fun writeResponseBodyToDisk(file: File, context: Context?): Boolean {
         try {
             val nowMills1 = TimeUtils.getNowMills()
@@ -148,15 +148,16 @@ object DMUtils {
                 exifInterface.setAttribute(ExifInterface.TAG_DATETIME_ORIGINAL, format)
                 exifInterface.saveAttributes()
 
-                context?.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,Uri.fromFile(futureStudioIconFile)))
+                uri = FileProvider.getUriForFile(context!!, "mengh.zy.dm.fileprovider", futureStudioIconFile)
+                context.sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(futureStudioIconFile)))
             }
         } catch (e: IOException) {
             return false
         }
     }
 
-    private fun getDMDir():String{
-        val tmpFile = File(Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES),"HDM/dmDownload")
+    private fun getDMDir(): String {
+        val tmpFile = File(Environment.getExternalStoragePublicDirectory(DIRECTORY_PICTURES), "HDM/dmDownload")
         if (!tmpFile.exists()) {
             tmpFile.mkdirs()
         }
@@ -166,9 +167,9 @@ object DMUtils {
     /**
      * string转RequestBody解决@part带双引号
      */
-    fun stringToRequestBody(string: String):RequestBody {
-       return RequestBody.create(MediaType.parse("text/plain"), string)
-   }
+    fun stringToRequestBody(string: String): RequestBody {
+        return RequestBody.create(MediaType.parse("text/plain"), string)
+    }
 
     fun setMargins(v: View, l: Int, t: Int, r: Int, b: Int) {
         if (v.layoutParams is ViewGroup.MarginLayoutParams) {
