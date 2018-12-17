@@ -39,6 +39,12 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
             window.reenterTransition = transition
         })
 
+        if (ScreenUtils.isPortrait()) {
+            ScreenUtils.adaptScreen4VerticalSlide(this, 360)
+        } else {
+            ScreenUtils.adaptScreen4HorizontalSlide(this, 360)
+        }
+
         val mContextView = LayoutInflater.from(this).inflate(layoutId, null)
         setContentView(mContextView)
         AppManger.instance.addActivity(this)
@@ -47,11 +53,6 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
                 .keyboardMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
                 .init()
         initView()
-        if (ScreenUtils.isPortrait()) {
-            ScreenUtils.adaptScreen4VerticalSlide(this, 360)
-        } else {
-            ScreenUtils.adaptScreen4HorizontalSlide(this, 360)
-        }
     }
 
     fun initToolbar(toolbar: Toolbar?, title: String, isBack: Boolean = false, method: () -> Unit={finish()}) {

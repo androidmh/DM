@@ -12,7 +12,6 @@ import androidx.appcompat.widget.Toolbar
 import com.afollestad.materialdialogs.customview.getCustomView
 import com.bilibili.boxing.Boxing
 import com.bilibili.boxing.model.entity.impl.ImageMedia
-import com.github.chrisbanes.photoview.PhotoView
 import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.fragment_image.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
@@ -101,7 +100,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
         val sortSp = customView?.find<AppCompatSpinner>(R.id.sortSp)
         val desEt = customView?.find<TextInputEditText>(R.id.desEt)
         val upProgressBar = customView?.find<ProgressBar>(R.id.upProgressBar)
-        val userChooseImg = customView!!.find<PhotoView>(R.id.userChooseImg)
+        val userChooseImg = customView!!.find<ImageView>(R.id.userChooseImg)
 
         val file = imageMedia.getCompressFile(mActivity)
         val imageBody = RequestBody.create(null, file)

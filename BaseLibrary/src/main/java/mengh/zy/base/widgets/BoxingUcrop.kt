@@ -4,9 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
+import androidx.core.content.ContextCompat
 import com.bilibili.boxing.loader.IBoxingCrop
 import com.bilibili.boxing.model.config.BoxingCropOption
 import com.yalantis.ucrop.UCrop
+import mengh.zy.base.R
 
 /**
  * use Ucrop(https://github.com/Yalantis/uCrop) as the implement for [IBoxingCrop]
@@ -27,6 +29,8 @@ class BoxingUcrop : IBoxingCrop {
         crop.setCompressionFormat(Bitmap.CompressFormat.PNG)
         crop.withMaxResultSize(cropConfig.maxWidth, cropConfig.maxHeight)
         crop.withAspectRatio(cropConfig.aspectRatioX, cropConfig.aspectRatioY)
+        crop.setToolbarColor(ContextCompat.getColor(context,R.color.colorPrimary))
+        crop.setStatusBarColor(ContextCompat.getColor(context,R.color.colorPrimary))
 
         UCrop.of(uri, cropConfig.destination)
                 .withOptions(crop)

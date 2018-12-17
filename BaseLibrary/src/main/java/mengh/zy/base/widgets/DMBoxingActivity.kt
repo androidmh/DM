@@ -10,6 +10,7 @@ import com.bilibili.boxing.AbsBoxingActivity
 import com.bilibili.boxing.AbsBoxingViewFragment
 import com.bilibili.boxing.model.config.BoxingConfig
 import com.bilibili.boxing.model.entity.BaseMedia
+import mengh.zy.base.R
 import java.util.ArrayList
 
 /**
@@ -35,7 +36,7 @@ class DMBoxingActivity : AbsBoxingActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.bilibili.boxing_impl.R.layout.activity_boxing)
+        setContentView(R.layout.activity_boxing)
         createToolbar()
         setTitleTxt(boxingConfig)
     }

@@ -54,7 +54,7 @@
         <activity android:name="mengh.zy.base.widgets.DMBoxingActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
-            android:theme="@style/Boxing.AppTheme.NoActionBar"
+            android:theme="@style/NoExtendBase"
             />
     </application>
 

@@ -18,6 +18,10 @@
         <item name="android:windowBackground">@color/common_black</item>
     </style>
 
+    <style name="NoExtendBase" parent="@style/AppTheme">
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.ActionBar" />
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
@@ -65,5 +69,12 @@
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/dialog_anim_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_anim_out</item>
+    </style>
+
+    <style name="Boxing.Toolbar" parent="Boxing.AppTheme.NoActionBar">
+        <item name="titleTextColor">@color/boxing_white</item>
+        <item name="android:textColorSecondary">@color/boxing_white</item>
+        <item name="android:textColor">@color/boxing_white</item>
+        <item name="android:background">@color/colorPrimary</item>
     </style>
 </resources>
