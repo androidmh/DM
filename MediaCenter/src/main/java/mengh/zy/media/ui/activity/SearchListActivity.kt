@@ -116,7 +116,7 @@ class SearchListActivity : BaseMvpActivity<SearchListPresenter>(), SearchListVie
 
     private fun setRecycle(result: ImageBean) {
         adapter = ImageListAdapter(R.layout.item_img_list, result.images)
-        adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
+        adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         val layoutManager = GridLayoutManager(this, 2)
         imgRv.layoutManager = layoutManager
         imgRv.adapter = adapter

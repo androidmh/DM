@@ -21,7 +21,8 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup"
-        tools:targetApi="m">
+        android:networkSecurityConfig="@xml/network_security_config"
+        tools:targetApi="n">
 
         <provider
             android:name="androidx.core.content.FileProvider"

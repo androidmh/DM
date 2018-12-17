@@ -38,7 +38,7 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
 
     override fun initView(v: View) {
         adapter = ImageListAdapter(R.layout.item_img_list, mutableListOf())
-        adapter.openLoadAnimation(BaseQuickAdapter.SCALEIN)
+        adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         val layoutManager = GridLayoutManager(mActivity, 2)
         v.imgRv.layoutManager = layoutManager
         v.imgRv.adapter = adapter

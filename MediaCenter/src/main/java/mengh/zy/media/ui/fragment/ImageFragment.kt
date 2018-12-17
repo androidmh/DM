@@ -94,7 +94,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
     }
 
     private fun showUpDialog(imageMedia: ImageMedia) {
-        val uploadDialog = MaterialDialogUtils.getCustomDialogs(mActivity, "上传", R.layout.dialog_upload_test)
+        val uploadDialog = MaterialDialogUtils.getCustomDialogs(mActivity, "上传", R.layout.dialog_upload)
         val customView = uploadDialog.getCustomView()
         val chooseBtn = customView?.find<Button>(R.id.chooseBtn)
         val uploadBtn = customView?.find<Button>(R.id.uploadBtn)
@@ -106,7 +106,7 @@ class ImageFragment : BaseMvpFragment<UploadImgPresenter>(), UploadImgView {
         val file = imageMedia.getCompressFile(mActivity)
         val imageBody = RequestBody.create(null, file)
         val createFormData = MultipartBody.Part.createFormData("img", file.name, imageBody)
-        userChooseImg.loadUrl(imageMedia.path)
+        userChooseImg.loadUrl(imageMedia.path,false)
 
         val adapter = ArrayAdapter<String>(mActivity, android.R.layout.simple_list_item_1, IMG_TAB)
         sortSp?.adapter = adapter

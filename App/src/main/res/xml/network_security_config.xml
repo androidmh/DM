@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!--因为后台没有配置域名要适配androidP-->
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

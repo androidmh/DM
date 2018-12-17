@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="400dp"
+    android:orientation="vertical">
 
     <ProgressBar
         android:id="@+id/upProgressBar"
@@ -10,64 +10,46 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:max="100"
-        android:progress="0"/>
-    <ImageView
+        android:progress="0" />
+
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/userChooseImg"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="372dp"
-        android:contentDescription="@string/iv_des"
-        android:src="@mipmap/image"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/upProgressBar"
-        app:layout_constraintVertical_bias="1.0" />
+        android:layout_width="280dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="280dp"
+        android:layout_below="@+id/uploadBtn"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/iv_des" />
 
     <Button
         android:id="@+id/chooseBtn"
+        android:visibility="gone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="选择图片"
-        app:layout_constraintBottom_toBottomOf="@+id/userChooseImg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.312"
-        app:layout_constraintStart_toEndOf="@+id/userChooseImg"
-        app:layout_constraintTop_toTopOf="@+id/userChooseImg" />
+        android:layout_below="@+id/upProgressBar"
+        android:text="@string/choose_img_btn" />
 
     <androidx.appcompat.widget.AppCompatSpinner
         android:id="@+id/sortSp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.192"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userChooseImg"
-        app:layout_constraintVertical_bias="0.14" />
+        android:theme="@style/AppTheme"
+        android:layout_height="40dp"
+        android:layout_below="@+id/upProgressBar" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/desEt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="输入描述"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sortSp"
-        app:layout_constraintVertical_bias="0.111" />
+        android:layout_below="@+id/userChooseImg"
+        android:layout_alignParentBottom="true"
+        android:hint="@string/des_hint" />
 
     <Button
         android:id="@+id/uploadBtn"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="上传"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/desEt"
-        app:layout_constraintVertical_bias="0.131" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="40dp"
+        android:layout_below="@+id/upProgressBar"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/upload_btn" />
+</RelativeLayout>

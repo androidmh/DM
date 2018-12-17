@@ -4,4 +4,7 @@
     <string name="history_tv">历史搜索</string>
     <string name="search_menu">搜索</string>
     <string name="from_tv">来自:  </string>
+    <string name="choose_img_btn">选择图片</string>
+    <string name="des_hint">输入描述</string>
+    <string name="upload_btn">上传</string>
 </resources>

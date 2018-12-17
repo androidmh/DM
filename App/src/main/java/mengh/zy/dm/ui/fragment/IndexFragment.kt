@@ -1,7 +1,7 @@
 package mengh.zy.dm.ui.fragment
 
 import android.view.View
-import com.chad.library.adapter.base.BaseQuickAdapter.SCALEIN
+import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_index.*
 import kotlinx.android.synthetic.main.fragment_index.view.*
 import mengh.zy.base.common.BaseConstant.Companion.IMG_TAB
@@ -38,7 +38,7 @@ class IndexFragment : BaseMvpFragment<IndexPresenter>(), IndexView {
 
     override fun initView(v: View) {
         adapter = IndexAdapter(mutableListOf())
-        adapter.openLoadAnimation(SCALEIN)
+        adapter.openLoadAnimation(BaseQuickAdapter.ALPHAIN)
         val layoutManager = androidx.recyclerview.widget.LinearLayoutManager(mActivity)
         v.indexRv.layoutManager = layoutManager
         v.indexRv.adapter = adapter
