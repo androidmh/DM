@@ -22,13 +22,11 @@ class BottomNavBar @JvmOverloads constructor(
     init {
         // 首页item
         val homeItem = BottomNavigationItem(R.mipmap.index, resources.getString(R.string.index))
-                .setActiveColorResource(R.color.text_light_dark)
                 .setActiveColorResource(R.color.colorPrimaryDark)
                 .setInActiveColorResource(R.color.text_dark)
 
         // 图片item
         val imgItem = BottomNavigationItem(R.mipmap.image, resources.getString(R.string.img))
-                .setActiveColorResource(R.color.text_light_dark)
                 .setActiveColorResource(R.color.colorPrimaryDark)
                 .setInActiveColorResource(R.color.text_dark)
 
@@ -40,7 +38,6 @@ class BottomNavBar @JvmOverloads constructor(
 
         // 我的item
         val userItem = BottomNavigationItem(R.mipmap.user_center, resources.getString(R.string.user_center))
-                .setActiveColorResource(R.color.text_light_dark)
                 .setActiveColorResource(R.color.colorPrimaryDark)
                 .setInActiveColorResource(R.color.text_dark)
 

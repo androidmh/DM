@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ScreenUtils
 import com.gyf.barlibrary.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxFragment
 import mengh.zy.base.ext.judgeSdk21
+import mengh.zy.base.rx.DMBus
 import mengh.zy.base.ui.activity.BaseActivity
 
 
@@ -131,6 +132,11 @@ abstract class BaseFragment : RxFragment(), View.OnClickListener {
     override fun onDestroy() {
         super.onDestroy()
         mImmersionBar.destroy()
+        try {
+            DMBus.mBus.unregister(this)
+        }catch (e:Exception){
+
+        }
     }
 
 }

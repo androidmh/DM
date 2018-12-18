@@ -136,9 +136,4 @@ class ImgListFragment : BaseMvpFragment<ImgListPresenter>(), ImgListView {
         imgSl.finishRefresh(false)
         imgSl.finishLoadMore(false)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        DMBus.mBus.unregister(this)
-    }
 }

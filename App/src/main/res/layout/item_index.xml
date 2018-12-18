@@ -19,7 +19,7 @@
             style="@style/WrapWrap"
             tools:text="标题"
             android:textStyle="bold"
-            android:textColor="@color/common_black"
+            android:textColor="@color/text_color_black"
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:textSize="16sp" />

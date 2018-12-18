@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary_night">#000</color>
+    <color name="colorPrimaryDark_night">#000</color>
+    <color name="colorAccent_night">#000</color>
+    <color name="default_page_night">#000</color>
+    <color name="bottom_nav_night">#000</color>
+</resources>

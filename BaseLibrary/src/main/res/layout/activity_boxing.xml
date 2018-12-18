@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical">
 
@@ -10,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?android:attr/actionBarSize"
-        app:theme="@style/Boxing.Toolbar">
+        app:theme="@style/DMToolbar">
 
         <TextView
             android:id="@+id/pick_album_txt"
@@ -23,7 +24,8 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:text="@string/boxing_default_album"
-            android:drawableEnd="@drawable/abc_spinner_mtrl_am_alpha" />
+            android:drawableEnd="@drawable/abc_spinner_mtrl_am_alpha"
+            tools:ignore="PrivateResource" />
     </androidx.appcompat.widget.Toolbar>
 
     <FrameLayout

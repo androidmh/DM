@@ -5,6 +5,6 @@
 
     <size android:height="30dp" android:width="80dp"/>
 
-    <solid android:color="@color/text_light_dark" />
+    <solid android:color="@color/timer_bg" />
 
 </shape>

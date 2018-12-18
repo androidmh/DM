@@ -73,6 +73,16 @@ abstract class BaseActivity : RxAppCompatActivity(), View.OnClickListener {
 
     abstract fun initView()
 
+    override fun onResume() {
+        super.onResume()
+//        Aesthetic.resume(this)
+    }
+
+    override fun onPause() {
+//        Aesthetic.pause(this)
+        super.onPause()
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         mImmersionBar.destroy()

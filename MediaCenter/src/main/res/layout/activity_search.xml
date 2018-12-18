@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:text="@string/history_tv"
-            android:textColor="@color/common_black"
+            android:textColor="@color/text_color_black"
             android:textSize="@dimen/text_small_size"
             tools:ignore="RelativeOverlap" />
 

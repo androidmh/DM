@@ -14,7 +14,7 @@
         app:tabBackground="@color/colorPrimary"
         app:tabIndicatorColor="@color/colorPrimaryDark"
         app:tabPaddingTop="16dp"
-        app:tabSelectedTextColor="@color/common_black"
+        app:tabSelectedTextColor="@color/text_color_black"
         app:tabTextAppearance="@style/TabLayoutTextStyle"
         app:tabTextColor="@color/white" />
 
